@@ -1,0 +1,58 @@
+#include "StartScene.h"
+
+
+Scene* StartScene::createScene() {
+	auto scene = Scene::create();
+	auto layer = StartScene::create();
+	scene->addChild(layer);
+	return scene;
+}
+
+
+bool StartScene::init(){
+    if (!LayerColor::initWithColor(Color4B(255, 255, 255, 255)))
+    {
+        return false;
+    }
+
+    auto play_button = MenuItemFont::create("Play", CC_CALLBACK_1(StartScene::playGame, this));
+    play_button->setColor(Color3B(0, 0, 0));
+    //std::string path = FileUtils::getInstance()->getWritablePath() + "save.csv";
+
+    auto load_button = MenuItemFont::create("Load", CC_CALLBACK_1(StartScene::loadGame, this));
+    load_button->setColor(Color3B(0, 0, 0));
+
+    auto ranking_button = MenuItemFont::create("Ranking", CC_CALLBACK_1(StartScene::rankingGame, this));
+    ranking_button->setColor(Color3B(0, 0, 0));
+
+    auto exit_button = MenuItemFont::create("Exit", CC_CALLBACK_1(StartScene::exitGame, this));
+    exit_button->setColor(Color3B(0, 0, 0));
+
+    //if (!FileUtils::getInstance()->isFileExist(path))
+     //   continue_game->setEnabled(false);
+
+    auto pMenu = Menu::create(play_button, load_button, ranking_button, exit_button, NULL);
+
+    pMenu->alignItemsVertically();
+
+    this->addChild(pMenu);
+    return true;
+}
+
+void StartScene::playGame(cocos2d::Ref* pSender) {
+
+}
+
+
+void StartScene::loadGame(cocos2d::Ref* pSender) {
+
+}
+
+void StartScene::rankingGame(cocos2d::Ref* pSender) {
+
+}
+
+void StartScene::exitGame(cocos2d::Ref* pSender) {
+
+}
+
