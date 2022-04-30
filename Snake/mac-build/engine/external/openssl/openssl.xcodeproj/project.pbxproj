@@ -9,19 +9,19 @@
 /* Begin PBXAggregateTarget section */
 		7E0ED86C7F21484899EEE109 /* ALL_BUILD */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 2E152B0D9E564D3B903C3B58 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildConfigurationList = 61C9B10D47F34E1DADDB6449 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
 			buildPhases = (
 				01A91021B8A1935EA3156BA6 /* Generate CMakeFiles/ALL_BUILD */,
 			);
 			dependencies = (
-				06EAA93C608A4CBAB4287F99 /* PBXTargetDependency */,
+				7643C4F9B3B440A5A8CA87BB /* PBXTargetDependency */,
 			);
 			name = ALL_BUILD;
 			productName = ALL_BUILD;
 		};
 		CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = B5DCA7162DE94B1AB42E9BA6 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildConfigurationList = 88AF7C5263C74DDC80A309DD /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
 			buildPhases = (
 				E94701074069EAAB7576760B /* Generate CMakeFiles/ZERO_CHECK */,
 			);
@@ -33,38 +33,38 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildStyle section */
-		3641C03676F14FBE87C0A380 /* MinSizeRel */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = MinSizeRel;
-		};
-		4D35B5D33ED84A1EBEA22422 /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = Debug;
-		};
-		D5CCE2DA5F0B4AACA1C698F0 /* Release */ = {
+		450277803BB54A7EB2141154 /* Release */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = Release;
 		};
-		EF10DF5783D8456CACD9B3EE /* RelWithDebInfo */ = {
+		6B0D37BC5A7D4166B9592889 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		6CCC9F5B00294127A455B0AA /* RelWithDebInfo */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = RelWithDebInfo;
 		};
+		BD33965FB6024E17B5AFFEC8 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
-		4E9E6F5E6DD2403DAF68E881 /* PBXContainerItemProxy */ = {
+		69C5CD9C4B31402B8EE0326A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 897C336A4CA8467A9ADEFDED /* Project object */;
 			proxyType = 1;
@@ -74,43 +74,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6D19F12993B54BB0BA45CF56 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/openssl/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		A3EC8D1462AA41B49AFDE3C3 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/openssl/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		40CBE763CC684483BEEA8B62 /* CMake Rules */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "CMake Rules";
-			sourceTree = "<group>";
-		};
-		7357F0C30A77457A9EEB2B8D = {
-			isa = PBXGroup;
-			children = (
-				9F718F970BD44636AE2CCF81 /* ALL_BUILD */,
-				BBAAA305F7E34260B8D1B531 /* Products */,
-				B91DF8FE927A422A8E4E63E8 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		9F718F970BD44636AE2CCF81 /* ALL_BUILD */ = {
-			isa = PBXGroup;
-			children = (
-				40CBE763CC684483BEEA8B62 /* CMake Rules */,
-				6D19F12993B54BB0BA45CF56 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/openssl/CMakeLists.txt */,
-			);
-			name = ALL_BUILD;
-			sourceTree = "<group>";
-		};
-		B91DF8FE927A422A8E4E63E8 /* Frameworks */ = {
+		66EEEC0A51034F478AEEFB5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BBAAA305F7E34260B8D1B531 /* Products */ = {
+		745060E2810D4F7FBD2D484A /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				941D97792F234E7BAD157994 /* CMake Rules */,
+				A3EC8D1462AA41B49AFDE3C3 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/openssl/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		78551C64CE41491EB9673A29 = {
+			isa = PBXGroup;
+			children = (
+				745060E2810D4F7FBD2D484A /* ALL_BUILD */,
+				EB919D656A3C4E8197D156FE /* Products */,
+				66EEEC0A51034F478AEEFB5E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		941D97792F234E7BAD157994 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		EB919D656A3C4E8197D156FE /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -126,18 +126,18 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1330;
 			};
-			buildConfigurationList = 0CF65987C0CF4B85A58E0BB5 /* Build configuration list for PBXProject "openssl" */;
+			buildConfigurationList = EF12B848B7FF4428917FB022 /* Build configuration list for PBXProject "openssl" */;
 			buildSettings = {
 			};
 			buildStyles = (
-				4D35B5D33ED84A1EBEA22422 /* Debug */,
-				D5CCE2DA5F0B4AACA1C698F0 /* Release */,
-				3641C03676F14FBE87C0A380 /* MinSizeRel */,
-				EF10DF5783D8456CACD9B3EE /* RelWithDebInfo */,
+				BD33965FB6024E17B5AFFEC8 /* Debug */,
+				450277803BB54A7EB2141154 /* Release */,
+				6B0D37BC5A7D4166B9592889 /* MinSizeRel */,
+				6CCC9F5B00294127A455B0AA /* RelWithDebInfo */,
 			);
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
-			mainGroup = 7357F0C30A77457A9EEB2B8D;
+			mainGroup = 78551C64CE41491EB9673A29;
 			projectDirPath = ../../../../cocos2d/external/openssl;
 			projectRoot = "";
 			targets = (
@@ -247,146 +247,15 @@ fi
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		06EAA93C608A4CBAB4287F99 /* PBXTargetDependency */ = {
+		7643C4F9B3B440A5A8CA87BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */;
-			targetProxy = 4E9E6F5E6DD2403DAF68E881 /* PBXContainerItemProxy */;
+			targetProxy = 69C5CD9C4B31402B8EE0326A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1393B5F18BA54AD686395B78 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		1E584DE096FF4A97AF5FB40D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		33A8C104347A4ECF8105FC23 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		41070FCCCAD54B5DB595D628 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Debug;
-		};
-		4B5D141FD8874AA588CB0B3F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Debug;
-		};
-		595CD9CF962947C9917A1D8E /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		683FBF11479543A88F02D724 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl/build";
-			};
-			name = Release;
-		};
-		A2A0622899064EE1A53CDF13 /* Release */ = {
+		34C227D522B84A6B96763192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -406,7 +275,7 @@ fi
 			};
 			name = Release;
 		};
-		B8F1F98EDD0249FD95F0FF44 /* Debug */ = {
+		45FD9D73DBFC42F2AA5E00B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
@@ -415,31 +284,29 @@ fi
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
 				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl/build";
 			};
-			name = Debug;
+			name = Release;
 		};
-		D3E6947BE0B6474DB1C96015 /* RelWithDebInfo */ = {
+		6DD0A3C4EE5C4EE19273D4A0 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl/build";
-			};
-			name = RelWithDebInfo;
-		};
-		E1E1B1D8FA6D45D0B855D96B /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl/build";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
 			};
 			name = MinSizeRel;
 		};
-		F911498E295F4253A5C12C1D /* RelWithDebInfo */ = {
+		701E28D9D5884509A56336BF /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -458,39 +325,172 @@ fi
 				WARNING_CFLAGS = ("$(inherited)");
 			};
 			name = RelWithDebInfo;
+		};
+		8861F5C7D86A41308CDF2FD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		A99792869DBC44C3AAD0B3D2 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		AC556CB80F2546ED883ED338 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl/build";
+			};
+			name = RelWithDebInfo;
+		};
+		CA06362819414E7DA80B82EC /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		CD6459C919DC4FD0B8FCBC93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		CF3E03E49B184C2E813B4FD3 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl/build";
+			};
+			name = MinSizeRel;
+		};
+		E3C2413F38AD407397C51907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl/build";
+			};
+			name = Debug;
+		};
+		EE2BAF9B270B42FCBEA15BB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/openssl";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0CF65987C0CF4B85A58E0BB5 /* Build configuration list for PBXProject "openssl" */ = {
+		61C9B10D47F34E1DADDB6449 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8F1F98EDD0249FD95F0FF44 /* Debug */,
-				683FBF11479543A88F02D724 /* Release */,
-				E1E1B1D8FA6D45D0B855D96B /* MinSizeRel */,
-				D3E6947BE0B6474DB1C96015 /* RelWithDebInfo */,
+				8861F5C7D86A41308CDF2FD4 /* Debug */,
+				EE2BAF9B270B42FCBEA15BB2 /* Release */,
+				6DD0A3C4EE5C4EE19273D4A0 /* MinSizeRel */,
+				CA06362819414E7DA80B82EC /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		2E152B0D9E564D3B903C3B58 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+		88AF7C5263C74DDC80A309DD /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4B5D141FD8874AA588CB0B3F /* Debug */,
-				1E584DE096FF4A97AF5FB40D /* Release */,
-				1393B5F18BA54AD686395B78 /* MinSizeRel */,
-				33A8C104347A4ECF8105FC23 /* RelWithDebInfo */,
+				CD6459C919DC4FD0B8FCBC93 /* Debug */,
+				34C227D522B84A6B96763192 /* Release */,
+				A99792869DBC44C3AAD0B3D2 /* MinSizeRel */,
+				701E28D9D5884509A56336BF /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		B5DCA7162DE94B1AB42E9BA6 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+		EF12B848B7FF4428917FB022 /* Build configuration list for PBXProject "openssl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				41070FCCCAD54B5DB595D628 /* Debug */,
-				A2A0622899064EE1A53CDF13 /* Release */,
-				595CD9CF962947C9917A1D8E /* MinSizeRel */,
-				F911498E295F4253A5C12C1D /* RelWithDebInfo */,
+				E3C2413F38AD407397C51907 /* Debug */,
+				45FD9D73DBFC42F2AA5E00B9 /* Release */,
+				CF3E03E49B184C2E813B4FD3 /* MinSizeRel */,
+				AC556CB80F2546ED883ED338 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

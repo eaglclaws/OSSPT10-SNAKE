@@ -9,20 +9,20 @@
 /* Begin PBXAggregateTarget section */
 		7E0ED86C7F21484899EEE109 /* ALL_BUILD */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = F0EE011E2C7447F1A19EA758 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildConfigurationList = 6236BDD45FEF4F1E8C9F6A40 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
 			buildPhases = (
 				E4258C5922F98F6B9145E802 /* Generate CMakeFiles/ALL_BUILD */,
 			);
 			dependencies = (
-				31CD985FA4D8427F83CEAB51 /* PBXTargetDependency */,
-				32FC9EBB90D44D31941DDC1C /* PBXTargetDependency */,
+				A6A758F588E941D88A5B0972 /* PBXTargetDependency */,
+				CCB9F2FC64034C59A614FD9A /* PBXTargetDependency */,
 			);
 			name = ALL_BUILD;
 			productName = ALL_BUILD;
 		};
 		CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 39C4AF87505B430986681863 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildConfigurationList = 954CFD24DAAC4EBFA63AAFB3 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
 			buildPhases = (
 				EC82055CA191888245511047 /* Generate CMakeFiles/ZERO_CHECK */,
 			);
@@ -34,61 +34,61 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		04DF3C306AAD4E578C69FEE1 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep.cc */ = {isa = PBXBuildFile; fileRef = C00DB49834624A84BA7C0FC4 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep.cc */; };
-		296CBEB561E14750B76AA0AF /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep_context.cc */ = {isa = PBXBuildFile; fileRef = 003A3A3F5191414BAEDAD461 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep_context.cc */; };
-		442DB726E0CD42A69ADB98EE /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/common/shapes.cc */ = {isa = PBXBuildFile; fileRef = 0611E81BF27143B6960DF568 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/common/shapes.cc */; };
-		5B5AD640491141FAB7E1265D /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/advancing_front.cc */ = {isa = PBXBuildFile; fileRef = 445B0980EF5A4B77B6BF7189 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/advancing_front.cc */; };
-		74F61916AE1B4C42B072B0E0 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/cdt.cc */ = {isa = PBXBuildFile; fileRef = B8904C24701F4D2B8F4CF6BC /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/cdt.cc */; };
-		86DCCA49C143460DB0BB523E /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = F091869FD10A40B696361DE7 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */; };
+		26A0F126B7EE4C6199C8DFC2 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/advancing_front.cc */ = {isa = PBXBuildFile; fileRef = 8210AF15ABC64850A1DA0D1B /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/advancing_front.cc */; };
+		ACF8F87E75A04B5E823B65FC /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/common/shapes.cc */ = {isa = PBXBuildFile; fileRef = 6AA49AD67DF84AA28C3AA713 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/common/shapes.cc */; };
+		B443793AB3C74720A9E20CA8 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = F428142EDA714202AD5A5745 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */; };
+		C59DC27B28AB4DB890B8FCDD /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep_context.cc */ = {isa = PBXBuildFile; fileRef = 7BF361D7879643A08F52E01D /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep_context.cc */; };
+		C89DDA4A3B014B82946896A2 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/cdt.cc */ = {isa = PBXBuildFile; fileRef = 96B86BAB74A8455D947EFFFA /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/cdt.cc */; };
+		EF7EB096B3DD4941AAF0F3B1 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep.cc */ = {isa = PBXBuildFile; fileRef = 15CB8C7CADD343FCBBB4EBF3 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
-		345D426B6F994DC19A50DBE3 /* Release */ = {
+		1AA01967AA944ED098E6A51D /* Release */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = Release;
 		};
-		3BF2350F17E04966A8C8F8AB /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = Debug;
-		};
-		8A526F02567B4718B9174058 /* RelWithDebInfo */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = RelWithDebInfo;
-		};
-		EF4B63D8C4294748A0803999 /* MinSizeRel */ = {
+		3ED4119B2362491F85E3ABF8 /* MinSizeRel */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = MinSizeRel;
 		};
+		7521066DEA6D4434905F6200 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		8A8D3BB9AA1344D8A1895603 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
-		186ECCBB4FA34FDC9BCD97EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1B7BE4375CBF4D62A7A835B8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CAFEE23EBB45465A8CF520AD;
-			remoteInfo = ZERO_CHECK;
-		};
-		2204E63536574F04B5F75960 /* PBXContainerItemProxy */ = {
+		55F0C28F93A449E890D298DD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1B7BE4375CBF4D62A7A835B8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 20DB69A95EE84193A4B0733B;
 			remoteInfo = ext_poly2tri;
 		};
-		8C8D44F242594A6096BAD0B4 /* PBXContainerItemProxy */ = {
+		6B214022A40B4FA9B7AECC8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B7BE4375CBF4D62A7A835B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CAFEE23EBB45465A8CF520AD;
+			remoteInfo = ZERO_CHECK;
+		};
+		BF3ED819DDC64E99A7B3A9BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1B7BE4375CBF4D62A7A835B8 /* Project object */;
 			proxyType = 1;
@@ -98,18 +98,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		003A3A3F5191414BAEDAD461 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep_context.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = sweep_context.cc; path = sweep/sweep_context.cc; sourceTree = SOURCE_ROOT; };
-		0611E81BF27143B6960DF568 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/common/shapes.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = shapes.cc; path = common/shapes.cc; sourceTree = SOURCE_ROOT; };
-		3C956490EE3A470796508562 /* ext_poly2tri */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libext_poly2tri.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		445B0980EF5A4B77B6BF7189 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/advancing_front.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = advancing_front.cc; path = sweep/advancing_front.cc; sourceTree = SOURCE_ROOT; };
-		4523FB9759FD471C834CCD60 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		B8904C24701F4D2B8F4CF6BC /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/cdt.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = cdt.cc; path = sweep/cdt.cc; sourceTree = SOURCE_ROOT; };
-		C00DB49834624A84BA7C0FC4 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = sweep.cc; path = sweep/sweep.cc; sourceTree = SOURCE_ROOT; };
-		F091869FD10A40B696361DE7 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		15CB8C7CADD343FCBBB4EBF3 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = sweep.cc; path = sweep/sweep.cc; sourceTree = SOURCE_ROOT; };
+		4BD638CD5B444351B0695AD5 /* ext_poly2tri */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libext_poly2tri.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AA49AD67DF84AA28C3AA713 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/common/shapes.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = shapes.cc; path = common/shapes.cc; sourceTree = SOURCE_ROOT; };
+		7BF361D7879643A08F52E01D /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep_context.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = sweep_context.cc; path = sweep/sweep_context.cc; sourceTree = SOURCE_ROOT; };
+		8210AF15ABC64850A1DA0D1B /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/advancing_front.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = advancing_front.cc; path = sweep/advancing_front.cc; sourceTree = SOURCE_ROOT; };
+		8C479EC1C1C14BB0A6C7341A /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		96B86BAB74A8455D947EFFFA /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/cdt.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = cdt.cc; path = sweep/cdt.cc; sourceTree = SOURCE_ROOT; };
+		F428142EDA714202AD5A5745 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		06F0304DEA4649549906548D /* Frameworks */ = {
+		71CEF0F6063B4B8DAD10F081 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -119,74 +119,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		18BE1D046DB946D8AAE03ACB /* ALL_BUILD */ = {
-			isa = PBXGroup;
-			children = (
-				54C874BB6C134B3CA8C433C0 /* CMake Rules */,
-				4523FB9759FD471C834CCD60 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */,
-			);
-			name = ALL_BUILD;
-			sourceTree = "<group>";
-		};
-		4DF810C44DE441319A239529 /* Source Files */ = {
-			isa = PBXGroup;
-			children = (
-				0611E81BF27143B6960DF568 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/common/shapes.cc */,
-				445B0980EF5A4B77B6BF7189 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/advancing_front.cc */,
-				B8904C24701F4D2B8F4CF6BC /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/cdt.cc */,
-				C00DB49834624A84BA7C0FC4 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep.cc */,
-				003A3A3F5191414BAEDAD461 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep_context.cc */,
-			);
-			name = "Source Files";
-			sourceTree = "<group>";
-		};
-		54C874BB6C134B3CA8C433C0 /* CMake Rules */ = {
+		074FD501DC3A4CA29F3989AF /* CMake Rules */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = "CMake Rules";
 			sourceTree = "<group>";
 		};
-		6B0A9567C0604C008B8832A8 /* External */ = {
+		12CE751E0E874D40A4D86B3C /* ALL_BUILD */ = {
 			isa = PBXGroup;
 			children = (
-				ADBE4171B3BC4C8188653D5B /* ext_poly2tri */,
+				074FD501DC3A4CA29F3989AF /* CMake Rules */,
+				8C479EC1C1C14BB0A6C7341A /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		2208DF5F7B184B7192A8FBCD /* External */ = {
+			isa = PBXGroup;
+			children = (
+				9BC99B04298E43F1B907886D /* ext_poly2tri */,
 			);
 			name = External;
 			sourceTree = "<group>";
 		};
-		87D606F4DA8742D38DDCE5AF /* Frameworks */ = {
+		27BF32B07E804A60AFCBA6E2 = {
 			isa = PBXGroup;
 			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A059A66B4BF34F30BAB20018 = {
-			isa = PBXGroup;
-			children = (
-				6B0A9567C0604C008B8832A8 /* External */,
-				18BE1D046DB946D8AAE03ACB /* ALL_BUILD */,
-				E9D5186AD2134A2BA42A9D7A /* Products */,
-				87D606F4DA8742D38DDCE5AF /* Frameworks */,
+				2208DF5F7B184B7192A8FBCD /* External */,
+				12CE751E0E874D40A4D86B3C /* ALL_BUILD */,
+				4E26022D819A43818C0C373C /* Products */,
+				F228ADF402C745FC83B7FA7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		ADBE4171B3BC4C8188653D5B /* ext_poly2tri */ = {
+		4E26022D819A43818C0C373C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4DF810C44DE441319A239529 /* Source Files */,
-				F091869FD10A40B696361DE7 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */,
+				4BD638CD5B444351B0695AD5 /* ext_poly2tri */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9BC99B04298E43F1B907886D /* ext_poly2tri */ = {
+			isa = PBXGroup;
+			children = (
+				CE8AB61463934AA5A7FD3FBA /* Source Files */,
+				F428142EDA714202AD5A5745 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/CMakeLists.txt */,
 			);
 			name = ext_poly2tri;
 			sourceTree = "<group>";
 		};
-		E9D5186AD2134A2BA42A9D7A /* Products */ = {
+		CE8AB61463934AA5A7FD3FBA /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
-				3C956490EE3A470796508562 /* ext_poly2tri */,
+				6AA49AD67DF84AA28C3AA713 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/common/shapes.cc */,
+				8210AF15ABC64850A1DA0D1B /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/advancing_front.cc */,
+				96B86BAB74A8455D947EFFFA /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/cdt.cc */,
+				15CB8C7CADD343FCBBB4EBF3 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep.cc */,
+				7BF361D7879643A08F52E01D /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep_context.cc */,
 			);
-			name = Products;
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		F228ADF402C745FC83B7FA7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,19 +194,19 @@
 /* Begin PBXNativeTarget section */
 		20DB69A95EE84193A4B0733B /* ext_poly2tri */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C8849561984A4C518492B3B0 /* Build configuration list for PBXNativeTarget "ext_poly2tri" */;
+			buildConfigurationList = 0951602B5F6F4AC788C11682 /* Build configuration list for PBXNativeTarget "ext_poly2tri" */;
 			buildPhases = (
-				92542C990051457A94DA6103 /* Sources */,
-				06F0304DEA4649549906548D /* Frameworks */,
+				EF03105195F641C192D22BFD /* Sources */,
+				71CEF0F6063B4B8DAD10F081 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E15E1460BF144ABDA36B054E /* PBXTargetDependency */,
+				942B900DEE0340B19211F363 /* PBXTargetDependency */,
 			);
 			name = ext_poly2tri;
 			productName = ext_poly2tri;
-			productReference = 3C956490EE3A470796508562 /* ext_poly2tri */;
+			productReference = 4BD638CD5B444351B0695AD5 /* ext_poly2tri */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -218,18 +218,18 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1330;
 			};
-			buildConfigurationList = 6AE4625D3E374A7C8BD67808 /* Build configuration list for PBXProject "poly2tri" */;
+			buildConfigurationList = A0D18F571D734CE1872241B2 /* Build configuration list for PBXProject "poly2tri" */;
 			buildSettings = {
 			};
 			buildStyles = (
-				3BF2350F17E04966A8C8F8AB /* Debug */,
-				345D426B6F994DC19A50DBE3 /* Release */,
-				EF4B63D8C4294748A0803999 /* MinSizeRel */,
-				8A526F02567B4718B9174058 /* RelWithDebInfo */,
+				8A8D3BB9AA1344D8A1895603 /* Debug */,
+				1AA01967AA944ED098E6A51D /* Release */,
+				3ED4119B2362491F85E3ABF8 /* MinSizeRel */,
+				7521066DEA6D4434905F6200 /* RelWithDebInfo */,
 			);
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
-			mainGroup = A059A66B4BF34F30BAB20018;
+			mainGroup = 27BF32B07E804A60AFCBA6E2;
 			projectDirPath = ../../../../cocos2d/external/poly2tri;
 			projectRoot = "";
 			targets = (
@@ -340,40 +340,40 @@ fi
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		92542C990051457A94DA6103 /* Sources */ = {
+		EF03105195F641C192D22BFD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				442DB726E0CD42A69ADB98EE /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/common/shapes.cc */,
-				5B5AD640491141FAB7E1265D /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/advancing_front.cc */,
-				74F61916AE1B4C42B072B0E0 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/cdt.cc */,
-				04DF3C306AAD4E578C69FEE1 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep.cc */,
-				296CBEB561E14750B76AA0AF /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep_context.cc */,
+				ACF8F87E75A04B5E823B65FC /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/common/shapes.cc */,
+				26A0F126B7EE4C6199C8DFC2 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/advancing_front.cc */,
+				C89DDA4A3B014B82946896A2 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/cdt.cc */,
+				EF7EB096B3DD4941AAF0F3B1 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep.cc */,
+				C59DC27B28AB4DB890B8FCDD /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/sweep/sweep_context.cc */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		31CD985FA4D8427F83CEAB51 /* PBXTargetDependency */ = {
+		942B900DEE0340B19211F363 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */;
+			targetProxy = 6B214022A40B4FA9B7AECC8B /* PBXContainerItemProxy */;
+		};
+		A6A758F588E941D88A5B0972 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 20DB69A95EE84193A4B0733B /* ext_poly2tri */;
-			targetProxy = 2204E63536574F04B5F75960 /* PBXContainerItemProxy */;
+			targetProxy = 55F0C28F93A449E890D298DD /* PBXContainerItemProxy */;
 		};
-		32FC9EBB90D44D31941DDC1C /* PBXTargetDependency */ = {
+		CCB9F2FC64034C59A614FD9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */;
-			targetProxy = 8C8D44F242594A6096BAD0B4 /* PBXContainerItemProxy */;
-		};
-		E15E1460BF144ABDA36B054E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */;
-			targetProxy = 186ECCBB4FA34FDC9BCD97EC /* PBXContainerItemProxy */;
+			targetProxy = BF3ED819DDC64E99A7B3A9BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		11C7CB1A1DE94520A392DD8B /* RelWithDebInfo */ = {
+		030566B990BC4D0B84B62EDA /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
@@ -384,7 +384,7 @@ fi
 			};
 			name = RelWithDebInfo;
 		};
-		1E66F6C8A6944C9583C59C68 /* MinSizeRel */ = {
+		13A2DEA20CBF4A2F8D28AFB4 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
@@ -395,7 +395,47 @@ fi
 			};
 			name = MinSizeRel;
 		};
-		3C48E7D9844D4D84B037A3F8 /* RelWithDebInfo */ = {
+		1878C4D7F8AA4A5E8EFC9E79 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		19517E7D2BF14E809AA358F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		1F75D593305447D5881565F0 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -415,7 +455,18 @@ fi
 			};
 			name = RelWithDebInfo;
 		};
-		4564AAD5774148C59135D1C3 /* RelWithDebInfo */ = {
+		215E27267AA044F5A806A182 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri/build";
+			};
+			name = Release;
+		};
+		342933D70EED426EB857CF95 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -441,89 +492,7 @@ fi
 			};
 			name = RelWithDebInfo;
 		};
-		49207FF90BAA4571B1F159C6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		551FD508DF7C4238BA24C2DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri/build";
-			};
-			name = Debug;
-		};
-		60256FC062334BBAA0358B3D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Debug;
-		};
-		87F111017AB74A4E98872E6E /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		884ED66AB822429187068719 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri/build";
-			};
-			name = Release;
-		};
-		A7118BF420EC4865AB1DE94A /* Debug */ = {
+		3ACBE95B880A44A496B4F45B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -543,7 +512,7 @@ fi
 			};
 			name = Debug;
 		};
-		A95C444B7B9E49539F5571A1 /* Release */ = {
+		46137F27A85A43BCB1788FEF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -555,7 +524,7 @@ fi
 				INSTALL_PATH = "";
 				OTHER_LDFLAGS = ("","$(inherited)");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
+				PRODUCT_NAME = ZERO_CHECK;
 				SECTORDER_FLAGS = "";
 				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
 				USE_HEADERMAP = NO;
@@ -563,53 +532,7 @@ fi
 			};
 			name = Release;
 		};
-		BFBA6D1807CC4AB1A161B15C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/lib/Debug";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/..","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				OTHER_CPLUSPLUSFLAGS = "   '-std=c++11' ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ext_poly2tri;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Debug;
-		};
-		DBBC05FAD52642E4994F8A55 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		E6260CD8A2984AD1B41502CC /* Release */ = {
+		70A74EE96CFF480C982DF224 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -635,7 +558,33 @@ fi
 			};
 			name = Release;
 		};
-		F941D2592B4C401D831F35F4 /* MinSizeRel */ = {
+		783F12095699438D982F28EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/lib/Debug";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/poly2tri/..","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "   '-std=c++11' ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ext_poly2tri;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		8C9410B3577645639D72BF1F /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -661,7 +610,27 @@ fi
 			};
 			name = MinSizeRel;
 		};
-		FAEF9798635D441A91B610EF /* RelWithDebInfo */ = {
+		AFA767CC7B5942F9A5178662 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		BFDEB0D632954022B3A1CC8D /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -679,51 +648,82 @@ fi
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
-			name = RelWithDebInfo;
+			name = MinSizeRel;
+		};
+		CB663CA811344029B4A05CC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		CEE35DACDD4F44F5880468DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/poly2tri/build";
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		39C4AF87505B430986681863 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+		0951602B5F6F4AC788C11682 /* Build configuration list for PBXNativeTarget "ext_poly2tri" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				60256FC062334BBAA0358B3D /* Debug */,
-				49207FF90BAA4571B1F159C6 /* Release */,
-				87F111017AB74A4E98872E6E /* MinSizeRel */,
-				3C48E7D9844D4D84B037A3F8 /* RelWithDebInfo */,
+				783F12095699438D982F28EE /* Debug */,
+				70A74EE96CFF480C982DF224 /* Release */,
+				8C9410B3577645639D72BF1F /* MinSizeRel */,
+				342933D70EED426EB857CF95 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		6AE4625D3E374A7C8BD67808 /* Build configuration list for PBXProject "poly2tri" */ = {
+		6236BDD45FEF4F1E8C9F6A40 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				551FD508DF7C4238BA24C2DF /* Debug */,
-				884ED66AB822429187068719 /* Release */,
-				1E66F6C8A6944C9583C59C68 /* MinSizeRel */,
-				11C7CB1A1DE94520A392DD8B /* RelWithDebInfo */,
+				3ACBE95B880A44A496B4F45B /* Debug */,
+				19517E7D2BF14E809AA358F1 /* Release */,
+				BFDEB0D632954022B3A1CC8D /* MinSizeRel */,
+				1878C4D7F8AA4A5E8EFC9E79 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		C8849561984A4C518492B3B0 /* Build configuration list for PBXNativeTarget "ext_poly2tri" */ = {
+		954CFD24DAAC4EBFA63AAFB3 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BFBA6D1807CC4AB1A161B15C /* Debug */,
-				E6260CD8A2984AD1B41502CC /* Release */,
-				F941D2592B4C401D831F35F4 /* MinSizeRel */,
-				4564AAD5774148C59135D1C3 /* RelWithDebInfo */,
+				CB663CA811344029B4A05CC8 /* Debug */,
+				46137F27A85A43BCB1788FEF /* Release */,
+				AFA767CC7B5942F9A5178662 /* MinSizeRel */,
+				1F75D593305447D5881565F0 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F0EE011E2C7447F1A19EA758 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+		A0D18F571D734CE1872241B2 /* Build configuration list for PBXProject "poly2tri" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A7118BF420EC4865AB1DE94A /* Debug */,
-				A95C444B7B9E49539F5571A1 /* Release */,
-				DBBC05FAD52642E4994F8A55 /* MinSizeRel */,
-				FAEF9798635D441A91B610EF /* RelWithDebInfo */,
+				CEE35DACDD4F44F5880468DE /* Debug */,
+				215E27267AA044F5A806A182 /* Release */,
+				13A2DEA20CBF4A2F8D28AFB4 /* MinSizeRel */,
+				030566B990BC4D0B84B62EDA /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

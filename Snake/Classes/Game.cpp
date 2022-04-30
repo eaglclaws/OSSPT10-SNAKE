@@ -19,6 +19,7 @@ limitations under the License.
 
 Game::Game()
 {
+    state = GAME_STATE_INIT;
     board = new Board;
 }
 
@@ -27,16 +28,70 @@ Game::~Game()
     delete board;
 }
 
+void
+Game::init()
+{
+    state = GAME_STATE_INIT;
+    board->init();
+}
+
+void
+Game::play()
+{
+    state = GAME_STATE_PLAY;
+}
+
+void
+Game::pause()
+{
+    state = GAME_STATE_PAUSE;
+}
+
+void
+Game::over()
+{
+    state = GAME_STATE_OVER;
+}
+
+enum game_state
+Game::get_state()
+{
+    return state;
+}
+
 enum board_elements
 Game::board_data(int x, int y)
 {
     return board->data()->at(y).at(x);
 }
 
-bool
+enum board_dir
+Game::get_direction()
+{
+    return board->get_direction();
+}
+
+enum game_state
 Game::update()
 {
-    return board->update();
+    bool board_live = board->update();
+    if (!board_live) {
+        over();
+        return state;
+    } else {
+        return state;
+    }
+}
+
+bool
+Game::place_apple(int x, int y)
+{
+    if (board->data()->at(y).at(x) != EMPTY) {
+        return false;
+    } else {
+        board->data()->at(y).at(x) = APPLE;
+        return true;
+    }
 }
 
 void
@@ -56,6 +111,7 @@ Game::key_event(enum key_press ekey)
         board->set_direction(RIGHT);
         break;
     case KEY_ESC:
+        pause();
         break;
     }
 }

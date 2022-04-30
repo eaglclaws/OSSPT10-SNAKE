@@ -20,10 +20,54 @@ limitations under the License.
 Board::Board()
 {
     board_data = new std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT>;
-    heady = (int)BOARD_HEIGHT/2;
-    headx = (int)BOARD_WIDTH/2;
-    taily = heady;
-    tailx = headx;
+    init();
+}
+
+Board::~Board()
+{
+    struct snake_node *cur = (*tail);
+    while (cur->next != nullptr) {
+        struct snake_node *temp = cur->next;
+        delete cur;
+        cur = temp;
+    }
+    delete cur;
+    delete tail;
+    delete head;
+}
+
+std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT> *
+Board::data()
+{
+    return board_data;
+}
+
+void
+Board::set_direction(enum board_dir dir)
+{
+    current = dir;
+}
+
+enum board_dir
+Board::get_direction()
+{
+    return current;
+}
+
+void
+Board::init()
+{
+    head = new struct snake_node *;
+    tail = new struct snake_node *;
+    (*head) = new struct snake_node;
+    (*head)->next = nullptr;
+    (*tail) = new struct snake_node;
+    (*tail)->next = (*head);
+    (*head)->y = (int)BOARD_HEIGHT/2;
+    (*head)->x = (int)BOARD_WIDTH/2;
+    (*tail)->y = (*head)->y - 1;
+    (*tail)->x = (*head)->x;
+    length = 2;
     current = UP;
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
@@ -40,21 +84,9 @@ Board::Board()
         board_data->at(0).at(i) = WALL;
         board_data->at(BOARD_HEIGHT - 1).at(i) = WALL;
     }
-    board_data->at(heady).at(headx) = HEAD;
+    board_data->at((*head)->y).at((*head)->x) = HEAD;
+    board_data->at((*tail)->y).at((*tail)->x) = TAIL;
 }
-
-std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT> *
-Board::data()
-{
-    return board_data;
-}
-
-void
-Board::set_direction(enum board_dir dir)
-{
-    current = dir;
-}
-
 
 bool
 Board::update()
@@ -80,10 +112,38 @@ Board::update(enum board_dir dir)
         xinc = 1;
         break;
     }
-    board_data->at(heady).at(headx) = SNAKE;
-    headx += xinc;
-    heady += yinc;
-    if (board_data->at(heady).at(headx) != EMPTY) return false;
+    board_data->at((*head)->y).at((*head)->x) = SNAKE;
+    struct snake_node *temp = new struct snake_node;
+    int headx = (*head)->x + xinc;
+    int heady = (*head)->y + yinc;
+    enum board_elements front = board_data->at(heady).at(headx);
+    if (
+        board_data->at(heady).at(headx) == SNAKE ||
+        board_data->at(heady).at(headx) == WALL ||
+        board_data->at(heady).at(headx) == TAIL    
+    ) return false;
+    temp->x = (*head)->x + xinc;
+    temp->y = (*head)->y + yinc;
+    temp->next = nullptr;
+    (*head)->next = temp;
+    (*head) = temp;
     board_data->at(heady).at(headx) = HEAD;
+
+    if (front == APPLE) {
+        length++;
+        return true;
+    }
+    board_data->at((*tail)->y).at((*tail)->x) = EMPTY;
+    temp = (*tail)->next;
+    (*tail)->next = nullptr;
+    delete (*tail);
+    (*tail) = temp;
+    board_data->at((*tail)->y).at((*tail)->x) = TAIL;
     return true;
+}
+
+int
+Board::get_length()
+{
+    return length;
 }

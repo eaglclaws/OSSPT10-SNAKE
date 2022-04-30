@@ -29,6 +29,7 @@ enum board_elements
     WALL,
     HEAD,
     SNAKE,
+    TAIL,
     APPLE
 };
 
@@ -40,18 +41,27 @@ enum board_dir
     RIGHT
 };
 
+struct snake_node
+{
+    struct snake_node *next;
+    int x;
+    int y;
+};
+
 class Board
 {
 private:
     std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT> *board_data;
-    int headx;
-    int heady;
-
-    int tailx;
-    int taily;
+    struct snake_node **head;
+    struct snake_node **tail;
+    int length;
     enum board_dir current;
 public:
     Board();
+    ~Board();
+
+    void
+    init();
 
     std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT> *
     data();
@@ -64,9 +74,15 @@ public:
 
     void
     set_direction(enum board_dir);
-    
+
+    enum board_dir
+    get_direction();
+
     bool
     place_apple(int, int);
+
+    int
+    get_length();
 };
 
 #endif

@@ -20,6 +20,7 @@ limitations under the License.
 
 USING_NS_CC;
 
+#define REFRESH_INTERVAL 0.2 //업데이트 대기 시간 (초)
 const int sprite_size = 16;
 
 Scene *
@@ -42,32 +43,12 @@ GameScene::init()
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     game = new Game;
+    game->place_apple(10, 10);
     sprites = new std::array<std::array<Sprite *, BOARD_WIDTH>, BOARD_HEIGHT>;
     time = 0.0;
     float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
     float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
-            Sprite *temp;
-            const char *file;
-            switch (game->board_data(x, y)) {
-            case EMPTY:
-                temp = nullptr;
-                break;
-            case WALL:
-                file = "wall.png";
-                break;
-            case HEAD:
-                file = "snake_head.png";
-                break;
-            case SNAKE:
-                file = "snake_body.png";
-                break;
-            }
-            temp = Sprite::create(file);
-            sprites->at(y).at(x) = temp;
-        }
-    }
+    update_sprites();
     draw_board();
     scheduleUpdate();
     return true;
@@ -77,13 +58,8 @@ void
 GameScene::update(float delta)
 {
     time += delta;
-    if (time > 0.2) {
-        if (test = (test + 1) % 2) {
-            game->key_event(KEY_LEFT);
-        } else {
-            game->key_event(KEY_UP);
-        }
-        if(!game->update()) Director::getInstance()->stopAnimation();
+    if (time > REFRESH_INTERVAL) {
+        if(game->update() == GAME_STATE_OVER) Director::getInstance()->stopAnimation();
         update_sprites();
         draw_board();
         time = 0.0;
@@ -97,9 +73,17 @@ GameScene::update_sprites()
         for (int x = 0; x < BOARD_WIDTH; x++) {
             Sprite *temp;
             const char *file;
-            //if (sprites->at(y).at(x) != nullptr) {
-            //    delete sprites->at(y).at(x);
-            //}
+            enum board_dir facing;
+            float angle;
+            facing = game->get_direction();
+            angle = 0.0f;
+            if (facing == UP) {
+                angle = -90.0f;
+            } else if (facing == DOWN) {
+                angle = 90.0f;
+            } else if (facing == LEFT) {
+                angle = 180.0f;
+            }
             switch (game->board_data(x, y)) {
             case EMPTY:
                 temp = nullptr;
@@ -111,9 +95,16 @@ GameScene::update_sprites()
             case HEAD:
                 file = "snake_head.png";
                 temp = Sprite::create(file);
+                if (temp == nullptr) printf("Warning!");
+                temp->setRotation(angle);
                 break;
             case SNAKE:
+            case APPLE:
                 file = "snake_body.png";
+                temp = Sprite::create(file);
+                break;
+            case TAIL:
+                file = "snake_tail.png";
                 temp = Sprite::create(file);
                 break;
             }

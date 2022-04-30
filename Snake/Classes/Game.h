@@ -45,14 +45,14 @@ enum key_press {
 class Game {
 private:
     Board *board;
-    
+    enum game_state state;
 public:
     Game();
     ~Game();
 
 /*  현재 game_state 반환 */
     enum game_state
-    state();
+    get_state();
 
 /*  보드를 초기화 또는 리셋 state를 GAME_STATE_INIT로 전환*/
     void
@@ -72,12 +72,15 @@ public:
 
 /*  Board와 Snake의 상태 갱신, 그 side effect에 따라
     state 전환 메소드 호출 */
-    bool
+    enum game_state
     update();
 
 /*  출력을 위해 Board를 노출 (임시) TODO: 이후 배열만 노출 할 것! */
     enum board_elements
     board_data(int, int);
+
+    enum board_dir
+    get_direction();
 
     void
     key_event(enum key_press);

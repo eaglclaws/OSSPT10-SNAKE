@@ -9,20 +9,20 @@
 /* Begin PBXAggregateTarget section */
 		7E0ED86C7F21484899EEE109 /* ALL_BUILD */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 0189EEED5BF2498E96B0307C /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildConfigurationList = DDE382D438984BC19B822275 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
 			buildPhases = (
 				7C3C7BACED8F6A73DB39AE15 /* Generate CMakeFiles/ALL_BUILD */,
 			);
 			dependencies = (
-				7CE72DB9A5C14FEEBD473ECC /* PBXTargetDependency */,
-				2FF469CDCAE641A18D5500E7 /* PBXTargetDependency */,
+				16DFA5D9D77B45B5B4A8C547 /* PBXTargetDependency */,
+				962B2CB7217646D280124F40 /* PBXTargetDependency */,
 			);
 			name = ALL_BUILD;
 			productName = ALL_BUILD;
 		};
 		CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 4BCBAD41C8D040D88594CBE9 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildConfigurationList = 0B033BCC14D547B9B637FA60 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
 			buildPhases = (
 				BFF5AF1B9D49F5F77510DA72 /* Generate CMakeFiles/ZERO_CHECK */,
 			);
@@ -34,76 +34,76 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		4B753341CE4C4EA3910567C6 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTFWrapper.cpp */ = {isa = PBXBuildFile; fileRef = 31929648696A4606A2FE0604 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTFWrapper.cpp */; };
-		9D28CA5C7292492E9921A6A9 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 7E702D0BD42F433BA069F1B1 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */; };
-		FEA5F96CC8CF4344AC4CF458 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTF.c */ = {isa = PBXBuildFile; fileRef = C73B503E0833447B9B918AE5 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTF.c */; };
+		192FBF591D2E4346B2D412A4 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTF.c */ = {isa = PBXBuildFile; fileRef = 1F4D5A6C28C949B886ED31EB /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTF.c */; };
+		D29B7BFD68BF453583C96E44 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 2D6C33C568FA4F30AB5FD553 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */; };
+		D9F101412C6B4D2A81DACC53 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTFWrapper.cpp */ = {isa = PBXBuildFile; fileRef = 3D7BCB1A800C457B9624C3C2 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTFWrapper.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
-		0B4BF5FA2B1642CBACDCBA1E /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = Debug;
-		};
-		0C03471168E843E5AEC57614 /* Release */ = {
+		34AE7BA33FC64E128C26147A /* Release */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = Release;
 		};
-		9C866FFD25F64E3FA3FF437D /* MinSizeRel */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = MinSizeRel;
-		};
-		F6FBBB88675848C6BD720B22 /* RelWithDebInfo */ = {
+		6D9663CFD74D43E5ABB85A91 /* RelWithDebInfo */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = RelWithDebInfo;
 		};
+		8073F76F125D407687DEF53E /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		C99D0D3DBCEB4076AFF6E450 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
-		1426C73C08C64807A2E13228 /* PBXContainerItemProxy */ = {
+		72E1DED99FA942FEBC22D4C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FC35076B2180418E8C9640D8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CAFEE23EBB45465A8CF520AD;
 			remoteInfo = ZERO_CHECK;
 		};
-		882B3164D2F14CF1A92CA367 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FC35076B2180418E8C9640D8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CAFEE23EBB45465A8CF520AD;
-			remoteInfo = ZERO_CHECK;
-		};
-		9D2EEAA7CD3C41EE94C58F5A /* PBXContainerItemProxy */ = {
+		994174304C7D4B6C8DEF9E70 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FC35076B2180418E8C9640D8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2A513CBE2DC34BD3AD6238B5;
 			remoteInfo = ext_convertUTF;
 		};
+		E81AB12428F94E85A4B59D48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC35076B2180418E8C9640D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CAFEE23EBB45465A8CF520AD;
+			remoteInfo = ZERO_CHECK;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		31929648696A4606A2FE0604 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTFWrapper.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ConvertUTFWrapper.cpp; path = ConvertUTFWrapper.cpp; sourceTree = SOURCE_ROOT; };
-		6FA657919AA749F3968B9185 /* ext_convertUTF */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libext_convertUTF.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E702D0BD42F433BA069F1B1 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		C73B503E0833447B9B918AE5 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTF.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = ConvertUTF.c; path = ConvertUTF.c; sourceTree = SOURCE_ROOT; };
-		CB5A1D4F7D6D4327B0943812 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		1F4D5A6C28C949B886ED31EB /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTF.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = ConvertUTF.c; path = ConvertUTF.c; sourceTree = SOURCE_ROOT; };
+		2D6C33C568FA4F30AB5FD553 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		3D7BCB1A800C457B9624C3C2 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTFWrapper.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ConvertUTFWrapper.cpp; path = ConvertUTFWrapper.cpp; sourceTree = SOURCE_ROOT; };
+		83E4921CDBAE471495FD6593 /* ext_convertUTF */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libext_convertUTF.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		99479647AD1D4A2E9861AE73 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3A7EE6DA021841419FFC5BDB /* Frameworks */ = {
+		8A901282D9F74C5598E7D3A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -113,71 +113,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01D897CC072E4B45BA5F69B9 /* ext_convertUTF */ = {
+		15F4CD669AEA445F888BDC61 /* ALL_BUILD */ = {
 			isa = PBXGroup;
 			children = (
-				C02C8A46F9804BC4ADFF0408 /* Source Files */,
-				7E702D0BD42F433BA069F1B1 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */,
+				7E8D0C9E42AA44C383B36D6F /* CMake Rules */,
+				99479647AD1D4A2E9861AE73 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */,
 			);
-			name = ext_convertUTF;
+			name = ALL_BUILD;
 			sourceTree = "<group>";
 		};
-		39A0DEC322774A24AD5A17DE /* External */ = {
+		404DE04F29D34D0EBBA28DA2 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
-				01D897CC072E4B45BA5F69B9 /* ext_convertUTF */,
+				1F4D5A6C28C949B886ED31EB /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTF.c */,
+				3D7BCB1A800C457B9624C3C2 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTFWrapper.cpp */,
 			);
-			name = External;
+			name = "Source Files";
 			sourceTree = "<group>";
 		};
-		544BE155EDD341859F6AEBD2 /* Products */ = {
+		4AA044C736B84D1CBBC64CA2 = {
 			isa = PBXGroup;
 			children = (
-				6FA657919AA749F3968B9185 /* ext_convertUTF */,
+				7280488344A6471ABBC07E1C /* External */,
+				15F4CD669AEA445F888BDC61 /* ALL_BUILD */,
+				4DFB1A8EB7FF4B83B6F9E282 /* Products */,
+				8A0047C1BA7149E6BD967CAD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4DFB1A8EB7FF4B83B6F9E282 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83E4921CDBAE471495FD6593 /* ext_convertUTF */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8F2A90FD320942EDB21CBEB5 /* Frameworks */ = {
+		7280488344A6471ABBC07E1C /* External */ = {
 			isa = PBXGroup;
 			children = (
+				A69A5393B0C146DDBC7F5181 /* ext_convertUTF */,
 			);
-			name = Frameworks;
+			name = External;
 			sourceTree = "<group>";
 		};
-		91FD6B7D57D54E1BA436729A /* CMake Rules */ = {
+		7E8D0C9E42AA44C383B36D6F /* CMake Rules */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = "CMake Rules";
 			sourceTree = "<group>";
 		};
-		B2A248AC455A4D9587985FFA /* ALL_BUILD */ = {
+		8A0047C1BA7149E6BD967CAD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				91FD6B7D57D54E1BA436729A /* CMake Rules */,
-				CB5A1D4F7D6D4327B0943812 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */,
 			);
-			name = ALL_BUILD;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C02C8A46F9804BC4ADFF0408 /* Source Files */ = {
+		A69A5393B0C146DDBC7F5181 /* ext_convertUTF */ = {
 			isa = PBXGroup;
 			children = (
-				C73B503E0833447B9B918AE5 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTF.c */,
-				31929648696A4606A2FE0604 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTFWrapper.cpp */,
+				404DE04F29D34D0EBBA28DA2 /* Source Files */,
+				2D6C33C568FA4F30AB5FD553 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/CMakeLists.txt */,
 			);
-			name = "Source Files";
-			sourceTree = "<group>";
-		};
-		EE5193F5878E42CEB9650996 = {
-			isa = PBXGroup;
-			children = (
-				39A0DEC322774A24AD5A17DE /* External */,
-				B2A248AC455A4D9587985FFA /* ALL_BUILD */,
-				544BE155EDD341859F6AEBD2 /* Products */,
-				8F2A90FD320942EDB21CBEB5 /* Frameworks */,
-			);
+			name = ext_convertUTF;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,19 +185,19 @@
 /* Begin PBXNativeTarget section */
 		2A513CBE2DC34BD3AD6238B5 /* ext_convertUTF */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A9EC0FC584CD45AFB06FA11D /* Build configuration list for PBXNativeTarget "ext_convertUTF" */;
+			buildConfigurationList = 4928B1A2A5ED47759E77715F /* Build configuration list for PBXNativeTarget "ext_convertUTF" */;
 			buildPhases = (
-				777B87DC9A934E1E80171036 /* Sources */,
-				3A7EE6DA021841419FFC5BDB /* Frameworks */,
+				CF837916B20E41FC80C16EB8 /* Sources */,
+				8A901282D9F74C5598E7D3A2 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E967EE3BEA0243B1A53EAFE0 /* PBXTargetDependency */,
+				6D3B32CBAC7142A2A0725BBC /* PBXTargetDependency */,
 			);
 			name = ext_convertUTF;
 			productName = ext_convertUTF;
-			productReference = 6FA657919AA749F3968B9185 /* ext_convertUTF */;
+			productReference = 83E4921CDBAE471495FD6593 /* ext_convertUTF */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -209,18 +209,18 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1330;
 			};
-			buildConfigurationList = 2AA33958A30D472EB1E7EC35 /* Build configuration list for PBXProject "convertUTF" */;
+			buildConfigurationList = C151F09754264503B6EECE98 /* Build configuration list for PBXProject "convertUTF" */;
 			buildSettings = {
 			};
 			buildStyles = (
-				0B4BF5FA2B1642CBACDCBA1E /* Debug */,
-				0C03471168E843E5AEC57614 /* Release */,
-				9C866FFD25F64E3FA3FF437D /* MinSizeRel */,
-				F6FBBB88675848C6BD720B22 /* RelWithDebInfo */,
+				8073F76F125D407687DEF53E /* Debug */,
+				34AE7BA33FC64E128C26147A /* Release */,
+				C99D0D3DBCEB4076AFF6E450 /* MinSizeRel */,
+				6D9663CFD74D43E5ABB85A91 /* RelWithDebInfo */,
 			);
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
-			mainGroup = EE5193F5878E42CEB9650996;
+			mainGroup = 4AA044C736B84D1CBBC64CA2;
 			projectDirPath = ../../../../cocos2d/external/ConvertUTF;
 			projectRoot = "";
 			targets = (
@@ -331,64 +331,99 @@ fi
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		777B87DC9A934E1E80171036 /* Sources */ = {
+		CF837916B20E41FC80C16EB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEA5F96CC8CF4344AC4CF458 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTF.c */,
-				4B753341CE4C4EA3910567C6 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTFWrapper.cpp */,
+				192FBF591D2E4346B2D412A4 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTF.c */,
+				D9F101412C6B4D2A81DACC53 /* /Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/ConvertUTFWrapper.cpp */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2FF469CDCAE641A18D5500E7 /* PBXTargetDependency */ = {
+		16DFA5D9D77B45B5B4A8C547 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */;
+			targetProxy = 72E1DED99FA942FEBC22D4C0 /* PBXContainerItemProxy */;
+		};
+		6D3B32CBAC7142A2A0725BBC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */;
+			targetProxy = E81AB12428F94E85A4B59D48 /* PBXContainerItemProxy */;
+		};
+		962B2CB7217646D280124F40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2A513CBE2DC34BD3AD6238B5 /* ext_convertUTF */;
-			targetProxy = 9D2EEAA7CD3C41EE94C58F5A /* PBXContainerItemProxy */;
-		};
-		7CE72DB9A5C14FEEBD473ECC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */;
-			targetProxy = 882B3164D2F14CF1A92CA367 /* PBXContainerItemProxy */;
-		};
-		E967EE3BEA0243B1A53EAFE0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CAFEE23EBB45465A8CF520AD /* ZERO_CHECK */;
-			targetProxy = 1426C73C08C64807A2E13228 /* PBXContainerItemProxy */;
+			targetProxy = 994174304C7D4B6C8DEF9E70 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1825A33996374B08829F0728 /* RelWithDebInfo */ = {
+		016F0AC3475C473BBBDD9F5C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/lib/RelWithDebInfo";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/.","$(inherited)");
 				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				OTHER_CFLAGS = ("       -DNDEBUG '-std=gnu99' ","$(inherited)");
-				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=c++11' ";
-				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_LDFLAGS = ("","$(inherited)");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ext_convertUTF;
+				PRODUCT_NAME = ALL_BUILD;
 				SECTORDER_FLAGS = "";
 				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
-			name = RelWithDebInfo;
+			name = Release;
 		};
-		1882982F05D34703ACEEB6A6 /* MinSizeRel */ = {
+		3649424ACA5C4FA690E4A068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF/build";
+			};
+			name = Debug;
+		};
+		372252A355B94B509A5C8E98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		38E030D518084C34A453FA06 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF/build";
+			};
+			name = MinSizeRel;
+		};
+		3ADF8071B16B40D0B938BB08 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -415,7 +450,7 @@ fi
 			};
 			name = MinSizeRel;
 		};
-		3E53D256EC8243119E6E9FA4 /* Debug */ = {
+		3D4DD38682B347BAA544113A /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -427,15 +462,15 @@ fi
 				INSTALL_PATH = "";
 				OTHER_LDFLAGS = ("","$(inherited)");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
+				PRODUCT_NAME = ZERO_CHECK;
 				SECTORDER_FLAGS = "";
 				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
-			name = Debug;
+			name = MinSizeRel;
 		};
-		4CD14AA73E7A4D5BAEAEE55F /* RelWithDebInfo */ = {
+		3EFEBA6DFAEB4684AF02F11C /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -455,7 +490,7 @@ fi
 			};
 			name = RelWithDebInfo;
 		};
-		4D1E9917885E4B4AAF3801F4 /* Debug */ = {
+		40C2E54BF451461EAAA58331 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
@@ -464,40 +499,9 @@ fi
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
 				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF/build";
 			};
-			name = Debug;
+			name = RelWithDebInfo;
 		};
-		5EFEF8561A174C21933DA88D /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		67F53F62570040C4B162952E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF/build";
-			};
-			name = Release;
-		};
-		6DB003CF25E8494FA9261500 /* Release */ = {
+		5BC8514E238C42FF903A05A0 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -515,21 +519,28 @@ fi
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
-			name = Release;
+			name = MinSizeRel;
 		};
-		6F3A9D84163147DBBD335930 /* RelWithDebInfo */ = {
+		69056B2829304BEEA8286A23 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/lib/RelWithDebInfo";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/cocos2d/external/ConvertUTF/.","$(inherited)");
 				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = ("       -DNDEBUG '-std=gnu99' ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=c++11' ";
+				OTHER_LIBTOOLFLAGS = ("");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
+				PRODUCT_NAME = ext_convertUTF;
 				SECTORDER_FLAGS = "";
 				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF";
 				USE_HEADERMAP = NO;
@@ -537,58 +548,7 @@ fi
 			};
 			name = RelWithDebInfo;
 		};
-		70F24DA0A8FF414299F31BE2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		9CEA765D2A9F4FDA970BAA4C /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		A25F31BBD83240DABF965C41 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
-				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF/build";
-			};
-			name = MinSizeRel;
-		};
-		A2CBB72A485F4AA8863D6000 /* Release */ = {
+		6B8C555FF89D4DB2A91859DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -615,7 +575,7 @@ fi
 			};
 			name = Release;
 		};
-		B98F281A132C4A3C8D041A4C /* Debug */ = {
+		71397D613DD14404A07D5FE7 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -633,9 +593,9 @@ fi
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
-			name = Debug;
+			name = RelWithDebInfo;
 		};
-		D3934E1CD18649DF9D103D21 /* RelWithDebInfo */ = {
+		7D6267DA749E446BA6A1D513 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
@@ -644,9 +604,9 @@ fi
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk;
 				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF/build";
 			};
-			name = RelWithDebInfo;
+			name = Release;
 		};
-		F7C16893CF054597B028C0BC /* Debug */ = {
+		9F094A04D84347619407E5CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -673,49 +633,89 @@ fi
 			};
 			name = Debug;
 		};
+		E4D645CF853546F592EF9D1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		F5C1692FFC1E4E51AF8FFB33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/eaglclaws/src/git/eaglclaws/OSSPT10-SNAKE/Snake/mac-build/engine/external/ConvertUTF";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0189EEED5BF2498E96B0307C /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+		0B033BCC14D547B9B637FA60 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3E53D256EC8243119E6E9FA4 /* Debug */,
-				6DB003CF25E8494FA9261500 /* Release */,
-				9CEA765D2A9F4FDA970BAA4C /* MinSizeRel */,
-				4CD14AA73E7A4D5BAEAEE55F /* RelWithDebInfo */,
+				E4D645CF853546F592EF9D1F /* Debug */,
+				F5C1692FFC1E4E51AF8FFB33 /* Release */,
+				3D4DD38682B347BAA544113A /* MinSizeRel */,
+				71397D613DD14404A07D5FE7 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		2AA33958A30D472EB1E7EC35 /* Build configuration list for PBXProject "convertUTF" */ = {
+		4928B1A2A5ED47759E77715F /* Build configuration list for PBXNativeTarget "ext_convertUTF" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4D1E9917885E4B4AAF3801F4 /* Debug */,
-				67F53F62570040C4B162952E /* Release */,
-				A25F31BBD83240DABF965C41 /* MinSizeRel */,
-				D3934E1CD18649DF9D103D21 /* RelWithDebInfo */,
+				9F094A04D84347619407E5CA /* Debug */,
+				6B8C555FF89D4DB2A91859DB /* Release */,
+				3ADF8071B16B40D0B938BB08 /* MinSizeRel */,
+				69056B2829304BEEA8286A23 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		4BCBAD41C8D040D88594CBE9 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+		C151F09754264503B6EECE98 /* Build configuration list for PBXProject "convertUTF" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B98F281A132C4A3C8D041A4C /* Debug */,
-				70F24DA0A8FF414299F31BE2 /* Release */,
-				5EFEF8561A174C21933DA88D /* MinSizeRel */,
-				6F3A9D84163147DBBD335930 /* RelWithDebInfo */,
+				3649424ACA5C4FA690E4A068 /* Debug */,
+				7D6267DA749E446BA6A1D513 /* Release */,
+				38E030D518084C34A453FA06 /* MinSizeRel */,
+				40C2E54BF451461EAAA58331 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		A9EC0FC584CD45AFB06FA11D /* Build configuration list for PBXNativeTarget "ext_convertUTF" */ = {
+		DDE382D438984BC19B822275 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F7C16893CF054597B028C0BC /* Debug */,
-				A2CBB72A485F4AA8863D6000 /* Release */,
-				1882982F05D34703ACEEB6A6 /* MinSizeRel */,
-				1825A33996374B08829F0728 /* RelWithDebInfo */,
+				372252A355B94B509A5C8E98 /* Debug */,
+				016F0AC3475C473BBBDD9F5C /* Release */,
+				5BC8514E238C42FF903A05A0 /* MinSizeRel */,
+				3EFEBA6DFAEB4684AF02F11C /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
