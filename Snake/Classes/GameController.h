@@ -16,7 +16,7 @@ private:
 
 public:
 	//GameOverScene에서 GameController로부터 게임 종료 시점의 Score를 받아오기 위함.
-	void getScore();
+	int getScore();
 
 	//Game에서 게임 종료 시점의 Score를 GameController로 받아오기 위함.
 	void setScore();
