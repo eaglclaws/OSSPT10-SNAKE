@@ -29,8 +29,33 @@ enum direction {
     SNAKE_LEFT
 };
 
+struct node {
+    struct node *next;
+    int x;
+    int y;
+};
+
 class Snake {
+private:
+    struct node **snake_head;
+    struct node **snake_tail;
+    int snake_length;
 public:
+    Snake(int, int);
+    ~Snake();
+
+    struct node **
+    head();
+
+    struct node **
+    tail();
+
+    void
+    grow();
+
+    void
+    move();
+
     enum snake_state
     state();
 
@@ -42,4 +67,6 @@ public:
 
     void
     kill_snake();
-}
+};
+
+#endif

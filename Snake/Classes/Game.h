@@ -23,7 +23,15 @@ enum game_state {
     GAME_STATE_PLAY,
     GAME_STATE_PAUSE,
     GAME_STATE_OVER
-}
+};
+
+enum key_press {
+    KEY_UP,
+    KEY_DOWN,
+    KEY_LEFT,
+    KEY_RIGHT,
+    KEY_ESC
+};
 
 /*
     Game 클래스
@@ -35,36 +43,44 @@ enum game_state {
       판단 등)
 */
 class Game {
+private:
+    Board *board;
+    
 public:
+    Game();
+    ~Game();
+
 /*  현재 game_state 반환 */
     enum game_state
     state();
 
 /*  보드를 초기화 또는 리셋 state를 GAME_STATE_INIT로 전환*/
     void
-    game_init();
+    init();
 
 /*  state를 GAME_STATE_PLAY로 전환 */
     void
-    game_play();
+    play();
 
 /*  state를 GAME_STATE_PAUSE로 전환 */
     void
-    game_pause();
+    pause();
 
 /*  state를 GAME_STATE_OVER로 전환 */
     void
-    game_over();
+    over();
 
 /*  Board와 Snake의 상태 갱신, 그 side effect에 따라
     state 전환 메소드 호출 */
-    void
-    game_update();
+    bool
+    update();
 
 /*  출력을 위해 Board를 노출 (임시) TODO: 이후 배열만 노출 할 것! */
-    Board
-    game_board();
+    enum board_elements
+    board_data(int, int);
 
+    void
+    key_event(enum key_press);
 /*
     (y, x)에 사과 놓기 시도. 외부에서 랜덤이 결정 되기 때문에 (y, x)에
     사과를 놓을 수 없다면 false를 반환. 다음과 같이 사용하기를 추천
@@ -76,4 +92,6 @@ public:
 
     int
     player_score();
-}
+};
+
+#endif

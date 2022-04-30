@@ -16,20 +16,57 @@ limitations under the License.
 
 #ifndef __BOARD_H__
 #define __BOARD_H__
-#include "Snake.h"
+#include <array>
+
+#define BOARD_WIDTH 42
+#define BOARD_HEIGHT 42
+
+class Snake;
+
+enum board_elements
+{
+    EMPTY,
+    WALL,
+    HEAD,
+    SNAKE,
+    APPLE
+};
+
+enum board_dir
+{
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT
+};
 
 class Board
 {
-public:
-    bool
-    is_snake_alive();
+private:
+    std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT> *board_data;
+    int headx;
+    int heady;
 
-    void
+    int tailx;
+    int taily;
+    enum board_dir current;
+public:
+    Board();
+
+    std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT> *
+    data();
+
+    bool
+    update(enum board_dir);
+
+    bool
     update();
 
+    void
+    set_direction(enum board_dir);
+    
     bool
     place_apple(int, int);
+};
 
-    int
-    snake_length();
-}
+#endif
