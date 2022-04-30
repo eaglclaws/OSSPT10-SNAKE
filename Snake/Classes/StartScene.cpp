@@ -1,4 +1,6 @@
 #include "StartScene.h"
+#include "GameScene.h"
+#include "ShowRankingScene.h"
 
 
 Scene* StartScene::createScene() {
@@ -17,7 +19,6 @@ bool StartScene::init(){
 
     auto play_button = MenuItemFont::create("Play", CC_CALLBACK_1(StartScene::playGame, this));
     play_button->setColor(Color3B(0, 0, 0));
-    //std::string path = FileUtils::getInstance()->getWritablePath() + "save.csv";
 
     auto load_button = MenuItemFont::create("Load", CC_CALLBACK_1(StartScene::loadGame, this));
     load_button->setColor(Color3B(0, 0, 0));
@@ -28,8 +29,6 @@ bool StartScene::init(){
     auto exit_button = MenuItemFont::create("Exit", CC_CALLBACK_1(StartScene::exitGame, this));
     exit_button->setColor(Color3B(0, 0, 0));
 
-    //if (!FileUtils::getInstance()->isFileExist(path))
-     //   continue_game->setEnabled(false);
 
     auto pMenu = Menu::create(play_button, load_button, ranking_button, exit_button, NULL);
 
@@ -40,19 +39,20 @@ bool StartScene::init(){
 }
 
 void StartScene::playGame(cocos2d::Ref* pSender) {
-
+    auto scene = GameScene::createScene();
+    Director::getInstance()->replaceScene(scene);
 }
 
 
 void StartScene::loadGame(cocos2d::Ref* pSender) {
-
+    
 }
 
 void StartScene::rankingGame(cocos2d::Ref* pSender) {
-
+    
 }
 
 void StartScene::exitGame(cocos2d::Ref* pSender) {
-
+    Director::getInstance()->end();
 }
 
