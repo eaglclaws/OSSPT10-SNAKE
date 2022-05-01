@@ -18,6 +18,7 @@ limitations under the License.
 #define __GAME_SCENE_H__
 
 #include <array>
+#include <random>
 #include "cocos2d.h"
 #include "Board.h"
 #include "Game.h"
@@ -34,6 +35,7 @@ private:
     cocos2d::Vec2 origin;
     float time;
     int test;
+    std::mt19937 *rng;
 public:
     static cocos2d::Scene *
     createScene();

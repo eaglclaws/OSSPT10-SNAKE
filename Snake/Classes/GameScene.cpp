@@ -17,6 +17,8 @@ limitations under the License.
 #include <array>
 #include <vector>
 #include <utility>
+#include <chrono>
+#include <random>
 #include "GameScene.h"
 #include "Board.h"
 #include "GamePauseScene.h"
@@ -45,6 +47,8 @@ GameScene::init()
 {
     if (!Scene::init()) return false;
     
+    unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
+    rng = new std::mt19937(seed1);
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     game = new Game;
@@ -103,7 +107,7 @@ GameScene::init()
     if (GC->isLoadClicked) {
         game->load(GC->loadBoard(), GC->loadSnake(), GC->loadDirection());
     } else {
-        game->place_apple(10, 10);
+        game->place_apple((*rng)() % 40 + 1, (*rng)() % 40 + 1);
     }
     update_sprites();
     draw_board();
@@ -165,7 +169,7 @@ GameScene::update(float delta)
         time = 0.0;
     }
     if (!game->is_apple_placed()) {
-        game->place_apple(30, 30);
+        game->place_apple((*rng)() % 40 + 1, (*rng)() % 40 + 1);
     }
 }
 
