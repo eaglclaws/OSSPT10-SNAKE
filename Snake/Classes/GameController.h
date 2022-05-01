@@ -51,7 +51,7 @@ public:
 	void recordRank();
 
 	//파일에 저장한 랭킹을 불러옴. (RankingScene에서 사용할 수 있게)
-	vector<pair<int, string>> getRecordedRank();
+	static vector<pair<int, string>> getRecordedRank();
 	void resetData();
 };
 

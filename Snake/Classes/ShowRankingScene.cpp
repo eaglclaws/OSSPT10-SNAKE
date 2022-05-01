@@ -2,6 +2,13 @@
 #include "StartScene.h"
 #include "GameController.h"
 
+Scene* ShowRankingScene::createScene() {
+	auto scene = Scene::create();
+	auto layer = ShowRankingScene::create();
+	scene->addChild(layer);
+	return scene;
+}
+
 bool ShowRankingScene::init() {
     if (!LayerColor::initWithColor(cocos2d::Color4B(255, 255, 255, 255))) {
         return false;

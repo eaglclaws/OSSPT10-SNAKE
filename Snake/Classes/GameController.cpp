@@ -119,10 +119,15 @@ void GameController::setScore(int score) {
 	this->score = score;
 }
 
+bool compare(pair<int, string> a, pair<int, string> b)
+{
+    return a.first > b.first;
+}
+
 void GameController::addUser(string user) {
 	pair<int, string> p = make_pair(this->score, user);
 	this->ranking.push_back(p);
-	sort(this->ranking.begin(), this->ranking.end(), greater<>());
+	sort(this->ranking.begin(), this->ranking.end(), compare);
 
 	while (this->ranking.size() > 10) {
 		this->ranking.pop_back();
@@ -131,12 +136,13 @@ void GameController::addUser(string user) {
 	recordRank();
 }
 
+
 void GameController::recordRank() {
 	string data;
 	for (int i = 0; i < this->ranking.size(); i++) {
-		data = data + to_string(this->ranking[i].first) + ',' + this->ranking[i].second;
+		data = data + to_string(this->ranking[i].first) + ',' + this->ranking[i].second + '\n';
 	}
-
+    
 	ofstream fout;
 	fout.open("ranking.txt");
 	fout << data;
