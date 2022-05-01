@@ -3,7 +3,9 @@
 #include "Board.h"
 #include <string>
 #include <fstream>
+#include <algoritm>
 
+using namespace std;
 
 GameController* GameController::instance = nullptr;
 bool GameController::isCreated = false;
@@ -100,12 +102,9 @@ void GameController::saveBoard(int** board) {
 	//save!
 	ofstream fout;
 	fout.open("board.txt");
-=======
-#include <stdio.h>
-#include <algorithm>
-#include <fstream>
-
-using namespace std;
+    fout << data;
+    fout.close();
+}
 
 int GameController::getScore() {
 	return this->score;
@@ -135,12 +134,10 @@ void GameController::recordRank() {
 
 	ofstream fout;
 	fout.open("ranking.txt");
->>>>>>> origin/gamecontroller
 	fout << data;
 	fout.close();
 }
 
-<<<<<<< HEAD
 void GameController::saveSnake(vector<pair<int, int>>* snake) {
 	string data = "";
 	for (int i = 0; i < snake->size(); i++) {
