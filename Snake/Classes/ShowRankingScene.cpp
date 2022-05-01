@@ -15,15 +15,15 @@ bool ShowRankingScene::init() {
     }
     
     GameController* gc = GameController::getInstance();
-    vector<pair<int, string>> ranker = gc->getRecordedRank();
+    vector<pair<int, string>> *ranker = gc->getRecordedRank();
 
-    int size = ranker.size() > 5 ? ranker.size() : 5;
+    int size = ranker->size() > 5 ? ranker->size() : 5;
 
     Label *player[5];
 
     string data;
     for (int i = 0; i < size; i++) {
-        data = to_string(ranker[i].first) + ". " + ranker[i].second;
+        data = to_string(ranker->at(i).first) + ". " + ranker->at(i).second;
 
         player[i] = Label::createWithTTF(data, "fonts/arial.ttf", 10);
         player[i]->setTextColor(Color4B::BLACK);

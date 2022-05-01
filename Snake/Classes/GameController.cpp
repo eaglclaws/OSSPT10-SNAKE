@@ -126,11 +126,11 @@ bool compare(pair<int, string> a, pair<int, string> b)
 
 void GameController::addUser(string user) {
 	pair<int, string> p = make_pair(this->score, user);
-	this->ranking.push_back(p);
-	sort(this->ranking.begin(), this->ranking.end(), compare);
+	this->ranking->push_back(p);
+	sort(this->ranking->begin(), this->ranking->end(), compare);
 
-	while (this->ranking.size() > 10) {
-		this->ranking.pop_back();
+	while (this->ranking->size() > 10) {
+		this->ranking->pop_back();
 	}
 
 	recordRank();
@@ -138,9 +138,9 @@ void GameController::addUser(string user) {
 
 
 void GameController::recordRank() {
-	string data;
-	for (int i = 0; i < this->ranking.size(); i++) {
-		data = data + to_string(this->ranking[i].first) + ',' + this->ranking[i].second + '\n';
+	string data = "";
+	for (int i = 0; i < this->ranking->size(); i++) {
+		data = data + to_string(this->ranking->at(i).first) + ',' + this->ranking->at(i).second + ';';
 	}
     
 	ofstream fout;
@@ -173,7 +173,6 @@ void GameController::setGame(Game* gameInstance) {
 }
 
 void GameController::saveGame() {
-    printf("%p\n", game);
 	int ** board = game->export_board();
 	vector<pair<int, int>>* snake = game->export_snake();
 	int dir = game->export_dir();
@@ -187,28 +186,26 @@ void GameController::gamePlay() {
 	this->game->play();
 }
 
-vector<pair<int, string>> GameController::getRecordedRank() {
-	string readLine;
-	vector<pair<int, string>> data;
+vector<pair<int, string>>* GameController::getRecordedRank() {
+	vector<pair<int, string>> *rank = new vector<pair<int, string>>;
 
+	string data;
 	ifstream fin;
 	fin.open("ranking.txt");
+	getline(fin, data);
+	fin.close();
 
-	int token = 0;
-	int size = 0;
+	int ftoken, stoken, size = data.size();
+	while (data.find(";") != string::npos) {
+		ftoken = data.find(";");
+		ftoken = data.find(",");
 
-	int i = 0;
+		rank->push_back(pair<int, string>(stoi(data.substr(0, stoken)), data.substr(stoken + 1, ftoken - stoken - 1)));
 
-	while (fin.peek() != EOF) {
-		getline(fin, readLine);
-		token, size = readLine.size();
-		token = readLine.find(",");
-
-		data[i].first = stoi(readLine.substr(0, token));
-		data[i].second = readLine.substr(token + 1, size - token - 1);
+		data = data.substr(ftoken + 1, size - ftoken - 1);
 	}
 
-	return data;
+	return rank;
 }
 void GameController::resetData() {
 	ofstream fout;

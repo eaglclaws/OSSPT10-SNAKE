@@ -35,7 +35,7 @@ private:
 	int score;
 
 	//랭킹 기록을 위한 username과 score 쌍들 (나중에 이걸 파일로 저장해야함.)
-	vector<pair<int, string>> ranking;
+	vector<pair<int, string>> *ranking;
 
 public:
 	//GameOverScene에서 GameController로부터 게임 종료 시점의 Score를 받아오기 위함.
@@ -51,7 +51,7 @@ public:
 	void recordRank();
 
 	//파일에 저장한 랭킹을 불러옴. (RankingScene에서 사용할 수 있게)
-	static vector<pair<int, string>> getRecordedRank();
+	static vector<pair<int, string>>* getRecordedRank();
 	void resetData();
 };
 
