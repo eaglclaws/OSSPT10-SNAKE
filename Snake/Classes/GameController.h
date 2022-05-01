@@ -16,7 +16,7 @@ private:
 	static GameController* instance;
 public:
 	static GameController* getInstance();
-	static bool isLoadClicked;
+	bool isLoadClicked;
 	static bool isCreated;
 	static void clicked(bool isLoad);
 

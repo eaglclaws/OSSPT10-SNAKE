@@ -62,6 +62,12 @@ list(APPEND GAME_SOURCE
      Classes/Board.cpp
      Classes/Game.cpp
      Classes/GamePauseLayer.cpp
+     Classes/GameController.cpp
+     Classes/GameOverScene.cpp
+     Classes/GamePauseScene.cpp
+     Classes/ShowRankingScene.cpp
+     Classes/ShowResultScene.cpp
+     Classes/StartScene.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -70,6 +76,13 @@ list(APPEND GAME_HEADER
      Classes/Board.h
      Classes/Game.h
      Classes/GamePauseLayer.h
+     Classes/GameController.h
+     Classes/GameOverScene.h
+     Classes/GamePauseScene.h
+     Classes/ShowRankingScene.h
+     Classes/ShowResultScene.h
+     Classes/StartScene.h
+     Classes/GameResultScene.h
      )
 
 if(ANDROID)

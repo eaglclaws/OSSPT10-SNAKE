@@ -9,7 +9,7 @@ bool GameController::isCreated = false;
 
 void GameController::clicked(bool isLoad) {
 	instance = getInstance();
-	isLoadClicked = isLoad; //load 클릭 시 true | start 클릭 시 false
+	instance->isLoadClicked = isLoad; //load 클릭 시 true | start 클릭 시 false
 }
 
 GameController* GameController::getInstance() {
@@ -22,8 +22,8 @@ GameController* GameController::getInstance() {
 
 
 void GameController::resetGame() {
-	this->game->game_init();
-	this->game->game_play();
+	this->game->init();
+	this->game->play();
 }
 
 
@@ -123,8 +123,8 @@ void GameController::setGame(Game* gameInstance) {
 
 void GameController::saveGame() {
 	int ** board = game->export_board();
-	vector<pair<int, int>>* snake = export_snake();
-	int dir = export_dir();
+	vector<pair<int, int>>* snake = game->export_snake();
+	int dir = game->export_dir();
 
 	this->saveBoard(board);
 	this->saveSnake(snake);

@@ -2,13 +2,13 @@
 #define __GAMEOVERSCENE_H__
 #include "cocos2d.h"
 #include "GameController.h"
-#include "ui\UITextField.h"
+#include "ui/UITextField.h"
 
 
 class GameOverScene : public cocos2d::LayerColor{
 private:
 	GameController* gc;
-	cocos2d::CCTextFieldTTF* input_text;
+	cocos2d::TextFieldTTF* input_text;
 
 public:
 	virtual bool init();

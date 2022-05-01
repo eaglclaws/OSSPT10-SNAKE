@@ -30,7 +30,7 @@ bool GameOverScene::init() {
     score->setTextColor(Color4B::BLACK);
     score->setPositionNormalized(Vec2(0.5, 0.6));
     
-    input_text = CCTextFieldTTF::textFieldWithPlaceHolder("input your ID", "fonts/arial.ttf", 30);
+    input_text = TextFieldTTF::textFieldWithPlaceHolder("input your ID", "fonts/arial.ttf", 30);
 
     input_text->setTextColor(Color4B::BLACK);
     input_text->setPositionNormalized(Vec2(0.5, 0.4));

@@ -53,8 +53,8 @@ void StartScene::loadGame(cocos2d::Ref* pSender) {
 }
 
 void StartScene::rankingGame(cocos2d::Ref* pSender) {
-    auto scene = ShowRankingScene::createScene();
-    cocos2d::Director::getInstance()->replaceScene(scene);
+    //auto scene = ShowRankingScene::createScene();
+    //cocos2d::Director::getInstance()->replaceScene(scene);
 }
 
 void StartScene::exitGame(cocos2d::Ref* pSender) {
