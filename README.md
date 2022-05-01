@@ -52,11 +52,16 @@ build and run by running
 ```
 git clone https://github.com/eaglclaws/OSSPT10-SNAKE
 cd OSSPT10-SNAKE/Snake
+```
+copy the contents of libchipmunk7.0.1.zip (downloadable from releases) to
+
+OSSPT10-SNAKE/Snake/cocos2d/external/chipmunk/prebuilt/linux/64-bit and run
+```
 cocos run -s . -p linux -m release -o ./bin
 ```
 
 ### Mac
-follow the steps for linux, expect replace
+follow the steps for linux, exlcuding extracting libchipmunk and replace
 ```
 cocos run -s . -p linux -m release -o ./bin
 ```
