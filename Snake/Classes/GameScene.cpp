@@ -108,19 +108,19 @@ void
 GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
     switch (keyCode) {
     case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
-        game->key_event(KEY_UP);
+        if (!(game->get_direction() == DOWN)) game->key_event(KEY_UP);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-        game->key_event(KEY_DOWN);
+        if (!(game->get_direction() == UP)) game->key_event(KEY_DOWN);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-        game->key_event(KEY_RIGHT);
+        if (!(game->get_direction() == LEFT)) game->key_event(KEY_RIGHT);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-        game->key_event(KEY_LEFT);
+        if (!(game->get_direction() == RIGHT)) game->key_event(KEY_LEFT);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE:
@@ -140,9 +140,14 @@ GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event*
 void
 GameScene::update(float delta)
 {
+    if (game->get_state() == GAME_STATE_OVER) return;
     time += delta;
     if (time > REFRESH_INTERVAL && !(game->get_state() == GAME_STATE_PAUSE)) {
-        if(game->update() == GAME_STATE_OVER) Director::getInstance()->stopAnimation();
+        if(game->update() == GAME_STATE_OVER) {
+            //게임 종료시 데이터 초기화 구현 완료시 각주 풀 것
+            //GameController::getInstance()->resetData();
+            Director::getInstance()->stopAnimation();
+        }
         update_sprites();
         draw_board();
         addChild(layer, 1);
