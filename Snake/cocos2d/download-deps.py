@@ -52,7 +52,8 @@ from sys import stdout
 from distutils.errors import DistutilsError
 from distutils.dir_util import copy_tree, remove_tree
 
-
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 def delete_folder_except(folder_path, excepts):
     """
     Delete a folder excepts some files/subfolders, `excepts` doesn't recursively which means it can not include
