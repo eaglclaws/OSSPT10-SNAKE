@@ -17,7 +17,7 @@ GamePauseScene* GamePauseScene::create() {
 
     auto restart_button = cocos2d::MenuItemFont::create("Restart", [layer](Ref* psender) {
         GameController::getInstance()->resetGame();
-        layer->setVisible(true);
+        layer->setVisible(false);
     });
     restart_button->setColor(cocos2d::Color3B(0, 0, 0));
 

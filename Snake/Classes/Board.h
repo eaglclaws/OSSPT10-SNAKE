@@ -94,6 +94,7 @@ public:
 
     void
     load(int **, std::vector<std::pair<int, int>> *, int);
+
 };
 
 #endif
