@@ -21,6 +21,7 @@ limitations under the License.
 #include "Board.h"
 #include "GamePauseScene.h"
 #include "GameController.h"
+#include "GameOverScene.h"
 
 USING_NS_CC;
 
@@ -145,14 +146,15 @@ GameScene::update(float delta)
     if (time > REFRESH_INTERVAL && !(game->get_state() == GAME_STATE_PAUSE)) {
         if(game->update() == GAME_STATE_OVER) {
             //게임 종료시 데이터 초기화 구현 완료시 각주 풀 것
+            //GameController::getInstance()->setScore(game->player_score());
             //GameController::getInstance()->resetData();
-            Director::getInstance()->stopAnimation();
+            auto gameover = GameOverScene::createScene();
+            Director::getInstance()->replaceScene(gameover);
         }
         update_sprites();
         draw_board();
         addChild(layer, 1);
         time = 0.0;
-        printf("length: %d\n", game->player_score());
     }
     if (!game->is_apple_placed()) {
         game->place_apple(30, 30);
