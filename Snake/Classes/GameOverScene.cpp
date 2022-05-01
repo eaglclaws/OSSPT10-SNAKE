@@ -23,12 +23,14 @@ bool GameOverScene::init() {
     auto gameover = Label::createWithTTF("Game Over", "fonts/arial.ttf", 40);
     gameover->setTextColor(Color4B::BLACK);
     gameover->setPositionNormalized(Vec2(0.5, 0.8));
-    
+    this->addChild(gameover);
+
     //해야할 부분
-    auto score = Label::createWithTTF("Score", "fonts/arial.ttf", 40);
+    auto score = Label::createWithTTF(to_string(GameController::getInstance()->getScore()), "fonts/arial.ttf", 40);
     score->setTextColor(Color4B::BLACK);
     score->setPositionNormalized(Vec2(0.5, 0.6));
-    
+    this->addChild(score);
+
     input_text = TextFieldTTF::textFieldWithPlaceHolder("input your ID", "fonts/arial.ttf", 30);
 
     input_text->setTextColor(Color4B::BLACK);

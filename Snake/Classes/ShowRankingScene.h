@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __SHOWRANKINGSCENE_H__
+#define __SHOWRANKINGSCENE_H__
+
 #include "cocos2d.h"
 using namespace std;
 USING_NS_CC;
@@ -12,3 +14,5 @@ public:
 
 	void goBack(cocos2d::Ref* pSender);
 };
+
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __SHOWRESULTSCREEN_H__
+#define __SHOWRESULTSCREEN_H__
+
 #include "cocos2d.h"
 
 USING_NS_CC;
@@ -13,3 +15,5 @@ public:
 	void restartGame(cocos2d::Ref* pSender);
 	void exitGame(cocos2d::Ref* pSender);
 };
+
+#endif

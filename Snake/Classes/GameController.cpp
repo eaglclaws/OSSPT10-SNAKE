@@ -198,7 +198,7 @@ vector<pair<int, string>>* GameController::getRecordedRank() {
 	int ftoken, stoken, size = data.size();
 	while (data.find(";") != string::npos) {
 		ftoken = data.find(";");
-		ftoken = data.find(",");
+		stoken = data.find(",");
 
 		rank->push_back(pair<int, string>(stoi(data.substr(0, stoken)), data.substr(stoken + 1, ftoken - stoken - 1)));
 

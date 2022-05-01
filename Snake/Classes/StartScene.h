@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __STARTSCENE_H__
+#define __STARTSCENE_H__
+
 #include "cocos2d.h"
 
 USING_NS_CC;
@@ -15,3 +17,5 @@ public:
 
 	static cocos2d::Scene* createScene();
 };
+
+#endif
