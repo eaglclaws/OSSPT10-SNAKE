@@ -19,7 +19,8 @@ limitations under the License.
 #include <utility>
 #include "GameScene.h"
 #include "Board.h"
-#include "GamePauseLayer.h"
+#include "GamePauseScene.h"
+#include "GameController.h"
 
 USING_NS_CC;
 
@@ -49,7 +50,7 @@ GameScene::init()
     game->place_apple(10, 10);
     sprites = new std::array<std::array<Sprite *, BOARD_WIDTH>, BOARD_HEIGHT>;
     time = 0.0;
-    layer = GamePauseLayer::create();
+    layer = GamePauseScene::create();
     layer->setVisible(false);
     addChild(layer, -1);
     float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
@@ -59,7 +60,7 @@ GameScene::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     int **board_test = new int *[BOARD_HEIGHT];
     for (int i = 0; i < BOARD_HEIGHT; i++) board_test[i] = new int[BOARD_WIDTH];
-    
+   
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
             if (y == 0 || y == BOARD_HEIGHT - 1) {
@@ -119,6 +120,7 @@ GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event*
             game->play();
         } else {
             game->key_event(KEY_ESC);
+            GameController::getInstance()->setGame(game);
             this->layer->setVisible(true);
         }
         break;
@@ -136,6 +138,9 @@ GameScene::update(float delta)
         draw_board();
         addChild(layer, 1);
         time = 0.0;
+    }
+    if (!game->is_apple_placed()) {
+        game->place_apple(30, 30);
     }
 }
 

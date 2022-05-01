@@ -21,7 +21,7 @@ limitations under the License.
 #include "cocos2d.h"
 #include "Board.h"
 #include "Game.h"
-#include "GamePauseLayer.h"
+#include "GamePauseScene.h"
 
 class GameScene : public cocos2d::Scene
 {
@@ -29,7 +29,7 @@ private:
     std::array<std::array<cocos2d::Sprite *, BOARD_WIDTH>, BOARD_HEIGHT> *sprites;
     Board *board;
     Game *game;
-    GamePauseLayer* layer;
+    GamePauseScene* layer;
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
     float time;

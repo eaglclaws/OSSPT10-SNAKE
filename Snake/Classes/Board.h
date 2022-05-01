@@ -55,6 +55,7 @@ private:
     struct snake_node **tail;
     int length;
     enum board_dir current;
+    bool has_apple;
 public:
     Board();
     ~Board();
@@ -94,7 +95,15 @@ public:
 
     void
     load(int **, std::vector<std::pair<int, int>> *, int);
+    
+    void
+    apple_placed();
 
+    void
+    apple_removed();
+
+    bool
+    is_apple_placed();
 };
 
 #endif

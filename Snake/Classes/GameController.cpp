@@ -38,7 +38,7 @@ int** GameController::loadBoard() {
 	ifstream fin;
 	fin.open("board.txt");
 	getline(fin, data);
-
+    fin.close();
 
 	int token, size = data.size();
 	for (int i = 0; i < 40; i++) {
@@ -62,6 +62,7 @@ vector<pair<int, int>>* GameController::loadSnake() {
 	ifstream fin;
 	fin.open("snake.txt");
 	getline(fin, data);
+    fin.close();
 
 	int ftoken, stoken, size = data.size();
 	while (data.find(";") != string::npos) {
@@ -80,6 +81,7 @@ int GameController::loadDirection() {
 	ifstream fin;
 	fin.open("direction.txt");
 	getline(fin, data);
+    fin.close();
 
 	return stoi(data);
 }
@@ -122,6 +124,7 @@ void GameController::setGame(Game* gameInstance) {
 }
 
 void GameController::saveGame() {
+    printf("%p\n", game);
 	int ** board = game->export_board();
 	vector<pair<int, int>>* snake = game->export_snake();
 	int dir = game->export_dir();

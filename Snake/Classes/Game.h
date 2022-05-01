@@ -109,6 +109,9 @@ public:
 
     void
     load(int **, std::vector<std::pair<int, int>> *, int);
+
+    bool
+    is_apple_placed();
 };
 
 #endif

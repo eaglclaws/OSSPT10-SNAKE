@@ -132,6 +132,7 @@ Board::update(enum board_dir dir)
 
     if (front == APPLE) {
         length++;
+        apple_removed();
         return true;
     }
     board_data->at((*tail)->y).at((*tail)->x) = EMPTY;
@@ -234,4 +235,22 @@ Board::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int 
         current = RIGHT;
         break;
     }
+}
+
+void
+Board::apple_placed()
+{
+    has_apple = true;
+}
+
+void
+Board::apple_removed()
+{
+    has_apple = false;
+}
+
+bool
+Board::is_apple_placed()
+{
+    return has_apple;
 }

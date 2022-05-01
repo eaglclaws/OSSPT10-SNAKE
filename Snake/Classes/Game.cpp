@@ -92,8 +92,15 @@ Game::place_apple(int x, int y)
         return false;
     } else {
         board->data()->at(y).at(x) = APPLE;
+        board->apple_placed();
         return true;
     }
+}
+
+bool
+Game::is_apple_placed()
+{
+    return board->is_apple_placed();
 }
 
 void
