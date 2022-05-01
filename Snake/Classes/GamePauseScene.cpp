@@ -11,6 +11,7 @@ GamePauseScene* GamePauseScene::create() {
     }
 
     auto resume_button = cocos2d::MenuItemFont::create("Resume", [layer](Ref* psender) {
+        GameController::getInstance()->gamePlay();
         layer->setVisible(false);
     });
     resume_button->setColor(cocos2d::Color3B(0, 0, 0));
