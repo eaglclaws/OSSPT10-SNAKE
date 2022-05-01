@@ -11,7 +11,7 @@ GameController* GameController::instance = nullptr;
 bool GameController::isCreated = false;
 
 void GameController::clicked(bool isLoad) {
-	instance = getInstance();
+	instance = GameController::getInstance();
 	instance->isLoadClicked = isLoad; //load 클릭 시 true | start 클릭 시 false
 }
 
@@ -19,6 +19,7 @@ GameController* GameController::getInstance() {
 	if (!isCreated) {
 		instance = new GameController();
 		isCreated = true;
+		instance->ranking = getRecordedRank();
 	}
 	return instance;
 }
@@ -42,7 +43,7 @@ int** GameController::loadBoard() {
 	ifstream fin;
 	fin.open("board.txt");
 	getline(fin, data);
-    fin.close();
+	fin.close();
 
 	int token, size = data.size();
 	for (int i = 0; i < BOARD_HEIGHT; i++) {
@@ -66,7 +67,7 @@ vector<pair<int, int>>* GameController::loadSnake() {
 	ifstream fin;
 	fin.open("snake.txt");
 	getline(fin, data);
-    fin.close();
+	fin.close();
 
 	int ftoken, stoken, size = data.size();
 	while (data.find(";") != string::npos) {
@@ -87,7 +88,11 @@ int GameController::loadDirection() {
 	ifstream fin;
 	fin.open("direction.txt");
 	getline(fin, data);
-    fin.close();
+	fin.close();
+
+	if (data.size() == 0)
+		return -1;
+
 
 	return stoi(data);
 }
@@ -176,7 +181,7 @@ void GameController::gamePlay() {
 	this->game->play();
 }
 
-vector<pair<int, string>> GameController::getRocordedRank() {
+vector<pair<int, string>> GameController::getRecordedRank() {
 	string readLine;
 	vector<pair<int, string>> data;
 
@@ -198,4 +203,13 @@ vector<pair<int, string>> GameController::getRocordedRank() {
 	}
 
 	return data;
+}
+void GameController::resetData() {
+	ofstream fout;
+	fout.open("direction.txt");
+	fout.close();
+	fout.open("snake.txt");
+	fout.close();
+	fout.open("board.txt");
+	fout.close();
 }

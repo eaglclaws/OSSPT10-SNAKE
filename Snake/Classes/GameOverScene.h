@@ -7,7 +7,6 @@
 
 class GameOverScene : public cocos2d::LayerColor{
 private:
-	GameController* gc;
 	cocos2d::TextFieldTTF* input_text;
 
 public:
