@@ -46,6 +46,8 @@ instead of
 ```
 source ~/.bashrc
 ```
+if install-deps-linux fails dependancies must be installed manually.
+
 if the following command outputs a version number, system is read to build
 ```
 cocos -v
