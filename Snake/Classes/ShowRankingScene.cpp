@@ -23,7 +23,7 @@ bool ShowRankingScene::init() {
 
     string data;
     for (int i = 0; i < size; i++) {
-        data = to_string(ranker->at(i).first) + ". " + ranker->at(i).second;
+        data = to_string(i + 1) + "th Score : " + to_string(ranker->at(i).first) + "  name : " + ranker->at(i).second;
 
         player[i] = Label::createWithTTF(data, "fonts/arial.ttf", 30);
         player[i]->setTextColor(Color4B::BLACK);
@@ -35,7 +35,8 @@ bool ShowRankingScene::init() {
 
     auto pMenu = Menu::create(goBackButton, NULL);
     pMenu->alignItemsVertically();
-
+    pMenu->setPositionNormalized(Vec2(0.5, 0.1));
+    
     this->addChild(pMenu);
     return true;
 }
