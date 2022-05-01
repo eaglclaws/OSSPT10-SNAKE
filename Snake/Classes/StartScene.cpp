@@ -1,6 +1,7 @@
 #include "StartScene.h"
 #include "GameScene.h"
 #include "ShowRankingScene.h"
+#include "GameController.h"
 
 
 Scene* StartScene::createScene() {
@@ -10,10 +11,8 @@ Scene* StartScene::createScene() {
 	return scene;
 }
 
-
 bool StartScene::init(){
-    if (!LayerColor::initWithColor(Color4B(255, 255, 255, 255)))
-    {
+    if (!LayerColor::initWithColor(Color4B(255, 255, 255, 255))){
         return false;
     }
 
@@ -39,20 +38,25 @@ bool StartScene::init(){
 }
 
 void StartScene::playGame(cocos2d::Ref* pSender) {
+    GameController::clicked(false);
+
     auto scene = GameScene::createScene();
     Director::getInstance()->replaceScene(scene);
 }
 
 
 void StartScene::loadGame(cocos2d::Ref* pSender) {
-    
+    GameController::clicked(true);
+
+    auto scene = GameScene::createScene();
+    Director::getInstance()->replaceScene(scene);
 }
 
 void StartScene::rankingGame(cocos2d::Ref* pSender) {
-    
+    auto scene = ShowRankingScene::createScene();
+    cocos2d::Director::getInstance()->replaceScene(scene);
 }
 
 void StartScene::exitGame(cocos2d::Ref* pSender) {
     Director::getInstance()->end();
 }
-
