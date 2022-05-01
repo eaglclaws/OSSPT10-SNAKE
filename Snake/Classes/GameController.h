@@ -27,5 +27,6 @@ public:
 	void saveGame(); 
 	void resetGame(); // Game init() play() 호출 Scene변경.
 	void gamePlay();
+	void resetData();
 };
 #endif

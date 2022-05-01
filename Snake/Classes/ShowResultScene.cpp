@@ -19,7 +19,7 @@ bool ShowResultScene::init() {
     auto gc = GameController::getInstance();
 
     // score gc에서 가져와야함.
-    auto score = Label::createWithTTF("Score", "fonts/arial.ttf", 30);
+    auto score = Label::createWithTTF(to_string(GameController::getInstance()->getScore()), "fonts/arial.ttf", 30);
     score->setTextColor(Color4B::BLACK);
     score->setPositionNormalized(Vec2(0.5, 0.8));
 
@@ -48,4 +48,3 @@ void ShowResultScene::restartGame(cocos2d::Ref* pSender) {
 void ShowResultScene::exitGame(cocos2d::Ref* pSender) {
     Director::getInstance()->end();
 }
-

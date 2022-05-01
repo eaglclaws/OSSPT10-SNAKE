@@ -19,7 +19,6 @@ bool GameOverScene::init() {
         return false;
     }
 
-    gc = GameController::getInstance();
 
     auto gameover = Label::createWithTTF("Game Over", "fonts/arial.ttf", 40);
     gameover->setTextColor(Color4B::BLACK);
@@ -50,8 +49,7 @@ void GameOverScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2
     case EventKeyboard::KeyCode::KEY_ENTER:
         //gc에 username주는 거 추가. 
         std::string id_input = input_text->getString();
-        
-        //gc->setUserName(id_input)
+        GameController::getInstance()->addUser(id_input);
 
 
         auto scene = ShowResultScene::createScene();

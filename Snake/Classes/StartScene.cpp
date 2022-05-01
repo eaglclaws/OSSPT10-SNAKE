@@ -16,6 +16,12 @@ bool StartScene::init(){
         return false;
     }
 
+    auto header = Label::createWithTTF("Snake Game", "fonts/arial.ttf", 50);
+    header->setTextColor(Color4B::BLACK);
+    header->setPositionNormalized(Vec2(0.5, 0.9));
+    this->addChild(header);
+
+
     auto play_button = MenuItemFont::create("Play", CC_CALLBACK_1(StartScene::playGame, this));
     play_button->setColor(Color3B(0, 0, 0));
 
@@ -46,15 +52,17 @@ void StartScene::playGame(cocos2d::Ref* pSender) {
 
 
 void StartScene::loadGame(cocos2d::Ref* pSender) {
-    GameController::clicked(true);
+    if (GameController::getInstance()->loadDirection() != -1) {
+        GameController::clicked(true);
 
-    auto scene = GameScene::createScene();
-    Director::getInstance()->replaceScene(scene);
+        auto scene = GameScene::createScene();
+        Director::getInstance()->replaceScene(scene);
+    }
 }
 
 void StartScene::rankingGame(cocos2d::Ref* pSender) {
-    //auto scene = ShowRankingScene::createScene();
-    //cocos2d::Director::getInstance()->replaceScene(scene);
+    auto scene = ShowRankingScene::createScene();
+    cocos2d::Director::getInstance()->replaceScene(scene);
 }
 
 void StartScene::exitGame(cocos2d::Ref* pSender) {
