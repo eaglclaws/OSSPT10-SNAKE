@@ -33,6 +33,7 @@ One should download the latest version of cocos2d-x from [here](https://www.coco
 ```
 cd cocos2d-x-4.0
 python download_deps.py
+./install-deps-linux.sh
 python setup.py
 source ~/.bashrc
 ```
@@ -61,7 +62,7 @@ cocos run -s . -p linux -m release -o ./bin
 ```
 
 ### Mac
-follow the steps for linux, exlcuding extracting libchipmunk and replace
+follow the steps for linux, exlcuding extracting libchipmunk and installing linux-deps, then replace
 ```
 cocos run -s . -p linux -m release -o ./bin
 ```
