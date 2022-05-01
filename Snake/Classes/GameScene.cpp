@@ -42,16 +42,21 @@ bool
 GameScene::init()
 {
     if (!Scene::init()) return false;
-
+    
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     game = new Game;
     game->place_apple(10, 10);
     sprites = new std::array<std::array<Sprite *, BOARD_WIDTH>, BOARD_HEIGHT>;
     time = 0.0;
+    layer = GamePauseLayer::create();
+    layer->setVisible(false);
+    addChild(layer, -1);
     float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
     float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
-    
+    auto listener = EventListenerKeyboard::create();
+    listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     int **board_test = new int *[BOARD_HEIGHT];
     for (int i = 0; i < BOARD_HEIGHT; i++) board_test[i] = new int[BOARD_WIDTH];
     
@@ -80,7 +85,7 @@ GameScene::init()
     snake_test->push_back(tmp1);
     snake_test->push_back(tmp2);
     game->load(board_test, snake_test, 3);
-
+    game->place_apple(30, 30);
     update_sprites();
     draw_board();
     scheduleUpdate();
@@ -91,7 +96,6 @@ GameScene::init()
 
 void 
 GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
-
     switch (keyCode) {
     case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
         game->key_event(KEY_UP);
@@ -110,9 +114,13 @@ GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event*
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE:
-        game->key_event(KEY_ESC);
-        this->layer = GamePauseLayer::create();
-        this->layer->setVisible(true);
+        if (game->get_state() == GAME_STATE_PAUSE) {
+            layer->setVisible(false);
+            game->play();
+        } else {
+            game->key_event(KEY_ESC);
+            this->layer->setVisible(true);
+        }
         break;
     }
 }
@@ -122,10 +130,11 @@ void
 GameScene::update(float delta)
 {
     time += delta;
-    if (time > REFRESH_INTERVAL) {
+    if (time > REFRESH_INTERVAL && !(game->get_state() == GAME_STATE_PAUSE)) {
         if(game->update() == GAME_STATE_OVER) Director::getInstance()->stopAnimation();
         update_sprites();
         draw_board();
+        addChild(layer, 1);
         time = 0.0;
     }
 }

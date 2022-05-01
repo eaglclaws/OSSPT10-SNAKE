@@ -184,7 +184,6 @@ Board::export_dir()
 void
 Board::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int dir_save)
 {
-    printf("AT LEAST IN THE FUNCTION\n");
     int load_length = 0;
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
@@ -206,7 +205,6 @@ Board::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int 
             board_data->at(y).at(x) = temp;
         }
     }
-    printf("SEGFAULT GUARD\n");
     struct snake_node *load_snake = new struct snake_node;
     struct snake_node *cur = load_snake;
     for (std::vector<std::pair<int, int>>::iterator it = snake_save->begin(); it != snake_save->end(); it++) {
