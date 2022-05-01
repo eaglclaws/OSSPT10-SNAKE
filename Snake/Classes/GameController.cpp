@@ -1,5 +1,6 @@
 #include "GameController.h"
 #include "Game.h"
+#include "Board.h"
 #include <string>
 #include <fstream>
 
@@ -28,9 +29,9 @@ void GameController::resetGame() {
 
 
 int** GameController::loadBoard() {
-	int** board = new int*[40];
-	for (int i = 0; i < 40; i++)
-		board[i] = new int[40];
+	int** board = new int*[BOARD_HEIGHT];
+	for (int i = 0; i < BOARD_HEIGHT; i++)
+		board[i] = new int[BOARD_WIDTH];
 
 	//load 
 	string data;
@@ -41,8 +42,8 @@ int** GameController::loadBoard() {
     fin.close();
 
 	int token, size = data.size();
-	for (int i = 0; i < 40; i++) {
-		for (int j = 0; j < 40; j++) {
+	for (int i = 0; i < BOARD_HEIGHT; i++) {
+		for (int j = 0; j < BOARD_WIDTH; j++) {
 			token = data.find(",");
 			board[i][j] = stoi(data.substr(0, token));
 			data = data.substr(token + 1, size - token - 1);
@@ -73,6 +74,8 @@ vector<pair<int, int>>* GameController::loadSnake() {
 
 		data = data.substr(ftoken + 1, size - ftoken - 1);
 	}
+
+    return snake;
 }
 
 int GameController::loadDirection() {
@@ -89,8 +92,8 @@ int GameController::loadDirection() {
 void GameController::saveBoard(int** board) {
 	string data;
 	
-	for (int i = 0; i < 40; i++)
-		for (int j = 0; j < 40; j++)
+	for (int i = 0; i < BOARD_HEIGHT; i++)
+		for (int j = 0; j < BOARD_WIDTH; j++)
 			data = data + to_string(board[i][j]) + ",";
 
 	//save!

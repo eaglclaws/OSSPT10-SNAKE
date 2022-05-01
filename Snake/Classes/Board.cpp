@@ -202,6 +202,7 @@ Board::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int 
                 temp = TAIL;
             } else if (sw == 5) {
                 temp = APPLE;
+                has_apple = true;
             }
             board_data->at(y).at(x) = temp;
         }

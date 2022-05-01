@@ -58,6 +58,7 @@ GameScene::init()
     auto listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    /**
     int **board_test = new int *[BOARD_HEIGHT];
     for (int i = 0; i < BOARD_HEIGHT; i++) board_test[i] = new int[BOARD_WIDTH];
    
@@ -87,6 +88,14 @@ GameScene::init()
     snake_test->push_back(tmp2);
     game->load(board_test, snake_test, 3);
     game->place_apple(30, 30);
+    */
+    auto GC = GameController::getInstance();
+    game->init();
+    if (GC->isLoadClicked) {
+        game->load(GC->loadBoard(), GC->loadSnake(), GC->loadDirection());
+    } else {
+        game->place_apple(10, 10);
+    }
     update_sprites();
     draw_board();
     scheduleUpdate();
