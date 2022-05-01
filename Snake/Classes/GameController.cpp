@@ -16,17 +16,19 @@ void GameController::setScore(int score) {
 void GameController::addUser(string user) {
 	pair<int, string> p = make_pair(this->score, user);
 	this->ranking.push_back(p);
-	sort(ranking.begin(), ranking.end(), greater<>());
+	sort(this->ranking.begin(), this->ranking.end(), greater<>());
 
-	while (ranking.size() > 10) {
-		ranking.pop_back();
+	while (this->ranking.size() > 10) {
+		this->ranking.pop_back();
 	}
+
+	recordRank;
 }
 
 void GameController::recordRank() {
 	string data;
-	for (int i = 0; i < ranking.size(); i++) {
-		data = data + to_string(ranking[i].first) + ',' + ranking[i].second;
+	for (int i = 0; i < this->ranking.size(); i++) {
+		data = data + to_string(this->ranking[i].first) + ',' + this->ranking[i].second;
 	}
 
 	ofstream fout;
