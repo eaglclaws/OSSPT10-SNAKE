@@ -26,5 +26,6 @@ public:
 	void setGame(Game* gameInstance);
 	void saveGame(); 
 	void resetGame(); // Game init() play() 호출 Scene변경.
+	void gamePlay();
 };
 #endif

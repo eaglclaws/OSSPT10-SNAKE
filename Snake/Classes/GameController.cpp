@@ -136,3 +136,7 @@ void GameController::saveGame() {
 	this->saveSnake(snake);
 	this->saveDirection(dir);
 }
+
+void GameController::gamePlay() {
+	this->game->play();
+}
