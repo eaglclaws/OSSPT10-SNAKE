@@ -22,7 +22,7 @@ void GameController::addUser(string user) {
 		this->ranking.pop_back();
 	}
 
-	recordRank;
+	recordRank();
 }
 
 void GameController::recordRank() {
@@ -37,4 +37,26 @@ void GameController::recordRank() {
 	fout.close();
 }
 
+vector<pair<int, string>> GameController::getRocordedRank() {
+	string readLine;
+	vector<pair<int, string>> data;
 
+	ifstream fin;
+	fin.open("ranking.txt");
+
+	int token = 0;
+	int size = 0;
+
+	int i = 0;
+
+	while (fin.peek() != EOF) {
+		getline(fin, readLine);
+		token, size = readLine.size();
+		token = readLine.find(",");
+
+		data[i].first = stoi(readLine.substr(0, token));
+		data[i].second = readLine.substr(token + 1, size - token - 1);
+	}
+
+	return data;
+}
