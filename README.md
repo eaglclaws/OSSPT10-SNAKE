@@ -24,6 +24,7 @@ CAU Open Source Software Project Team 10 term project
 * libssl-dev
 * libgtk-3-dev
 * binutils
+* libxxf86vm-dev
 
 ## Build Instructions
 This application requires [cocos2d-x](cocos.com) to run, instructions to install are as follows
