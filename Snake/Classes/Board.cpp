@@ -185,6 +185,7 @@ Board::export_dir()
 void
 Board::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int dir_save)
 {
+    has_apple = false;
     int load_length = -2;
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
