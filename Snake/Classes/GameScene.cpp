@@ -96,7 +96,12 @@ GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event*
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE:
+        
         game->key_event(KEY_ESC);
+
+        // 이 부분 변경됨.
+        GameController::setGame(game);
+
         this->layer = GamePauseLayer::create();
         this->layer->setVisible(true);
         break;
