@@ -3,7 +3,7 @@
 #include "Board.h"
 #include <string>
 #include <fstream>
-#include <algoritm>
+#include <algorithm>
 
 using namespace std;
 

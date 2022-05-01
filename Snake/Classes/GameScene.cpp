@@ -154,8 +154,8 @@ GameScene::update(float delta)
     if (time > REFRESH_INTERVAL && !(game->get_state() == GAME_STATE_PAUSE)) {
         if(game->update() == GAME_STATE_OVER) {
             //게임 종료시 데이터 초기화 구현 완료시 각주 풀 것
-            //GameController::getInstance()->setScore(game->player_score());
-            //GameController::getInstance()->resetData();
+            GameController::getInstance()->setScore(game->player_score());
+            GameController::getInstance()->resetData();
             auto gameover = GameOverScene::createScene();
             Director::getInstance()->replaceScene(gameover);
         }
