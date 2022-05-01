@@ -143,6 +143,12 @@ Game::export_dir()
     return board->export_dir();
 }
 
+int
+Game::player_score()
+{
+    return board->get_length();
+}
+
 void
 Game::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int dir_save)
 {

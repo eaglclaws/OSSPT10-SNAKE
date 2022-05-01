@@ -68,7 +68,7 @@ Board::init()
     (*head)->x = (int)BOARD_WIDTH/2;
     (*tail)->y = (*head)->y - 1;
     (*tail)->x = (*head)->x;
-    length = 2;
+    length = 0;
     current = UP;
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
@@ -185,7 +185,7 @@ Board::export_dir()
 void
 Board::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int dir_save)
 {
-    int load_length = 0;
+    int load_length = -2;
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
             enum board_elements temp;
@@ -218,6 +218,7 @@ Board::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int 
         cur->next = new struct snake_node;
         cur = cur->next;
     }
+    length = load_length;
     (*tail) = load_snake;
     (*head) = cur;
     if (cur == nullptr) (*head) = (*tail);

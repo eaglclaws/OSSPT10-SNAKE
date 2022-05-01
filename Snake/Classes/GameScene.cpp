@@ -152,6 +152,7 @@ GameScene::update(float delta)
         draw_board();
         addChild(layer, 1);
         time = 0.0;
+        printf("length: %d\n", game->player_score());
     }
     if (!game->is_apple_placed()) {
         game->place_apple(30, 30);

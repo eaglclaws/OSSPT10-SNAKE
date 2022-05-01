@@ -30,7 +30,7 @@ GamePauseScene* GamePauseScene::create() {
     });
     save_button->setColor(cocos2d::Color3B(0, 0, 0));
 
-    auto exit_button = cocos2d::MenuItemFont::create("Exit", [layer](Ref* psender) {
+    auto exit_button = cocos2d::MenuItemFont::create("Return to title", [layer](Ref* psender) {
         auto scene = StartScene::createScene();
         cocos2d::Director::getInstance()->replaceScene(scene);
     });
