@@ -16,8 +16,7 @@ limitations under the License.
 
 #ifndef __BOARD_H__
 #define __BOARD_H__
-#include <array>
-
+#include <vector>
 #define BOARD_WIDTH 42
 #define BOARD_HEIGHT 42
 
@@ -83,6 +82,18 @@ public:
 
     int
     get_length();
+    
+    int **
+    export_board();
+    
+    std::vector<std::pair<int, int>> *
+    export_snake();
+    
+    int
+    export_dir();
+
+    void
+    load(int **, std::vector<std::pair<int, int>> *, int);
 };
 
 #endif

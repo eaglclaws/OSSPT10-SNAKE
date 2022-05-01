@@ -16,6 +16,8 @@ limitations under the License.
 
 #ifndef __GAME_H_
 #define __GAME_H_
+#include <vector>
+#include <utility>
 #include "Board.h"
 
 enum game_state {
@@ -95,6 +97,18 @@ public:
 
     int
     player_score();
+
+    int**
+    export_board();
+
+    std::vector<std::pair<int, int>> *
+    export_snake();
+
+    int
+    export_dir();
+
+    void
+    load(int **, std::vector<std::pair<int, int>> *, int);
 };
 
 #endif

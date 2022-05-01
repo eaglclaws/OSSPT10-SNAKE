@@ -15,6 +15,8 @@ limitations under the License.
 */
 #include <stdio.h>
 #include <array>
+#include <vector>
+#include <utility>
 #include "GameScene.h"
 #include "Board.h"
 
@@ -48,9 +50,40 @@ GameScene::init()
     time = 0.0;
     float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
     float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
+    
+    int **board_test = new int *[BOARD_HEIGHT];
+    for (int i = 0; i < BOARD_HEIGHT; i++) board_test[i] = new int[BOARD_WIDTH];
+    
+    for (int y = 0; y < BOARD_HEIGHT; y++) {
+        for (int x = 0; x < BOARD_WIDTH; x++) {
+            if (y == 0 || y == BOARD_HEIGHT - 1) {
+                board_test[y][x] = 1;
+            } else if (x == 0 || x == BOARD_WIDTH - 1) {
+                board_test[y][x] = 1;
+            } else {
+                board_test[y][x] = 0;
+            }
+        }
+    }
+    board_test[11][10] = 2;
+    board_test[10][10] = board_test[9][10] = 3;
+    board_test[8][10] = 4;
+
+    std::vector<std::pair<int, int>> *snake_test = new std::vector<std::pair<int, int>>;
+    std::pair<int, int> temp(10,8);
+    std::pair<int, int> tmp(10,9);
+    std::pair<int, int> tmp1(10,10);
+    std::pair<int, int> tmp2(10,11);
+    snake_test->push_back(temp);
+    snake_test->push_back(tmp);
+    snake_test->push_back(tmp1);
+    snake_test->push_back(tmp2);
+    game->load(board_test, snake_test, 3);
+
     update_sprites();
     draw_board();
     scheduleUpdate();
+
     return true;
 }
 
