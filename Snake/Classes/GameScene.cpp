@@ -59,6 +59,14 @@ GameScene::init()
     auto listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    for (int y = 0; y < BOARD_HEIGHT; y++) {
+        for (int x = 0; x < BOARD_WIDTH; x++) {
+            sprites->at(y).at(x) = Sprite::create("empty.png");
+            sprites->at(y).at(x)->setVisible(true);
+            addChild(sprites->at(y).at(x), 0);
+        }
+    }
+    
     /**
     int **board_test = new int *[BOARD_HEIGHT];
     for (int i = 0; i < BOARD_HEIGHT; i++) board_test[i] = new int[BOARD_WIDTH];
@@ -181,29 +189,31 @@ GameScene::update_sprites()
             }
             switch (game->board_data(x, y)) {
             case EMPTY:
-                temp = nullptr;
+                file = "empty.png";
+                //temp = nullptr;
                 break;
             case WALL:
                 file = "wall.png";
-                temp = Sprite::create(file);
+                //temp = Sprite::create(file);
                 break;
             case HEAD:
                 file = "snake_head.png";
-                temp = Sprite::create(file);
-                if (temp == nullptr) printf("Warning!");
-                temp->setRotation(angle);
+                //temp = Sprite::create(file);
+                //if (temp == nullptr) printf("Warning!");
+                //temp->setRotation(angle);
                 break;
             case SNAKE:
             case APPLE:
                 file = "snake_body.png";
-                temp = Sprite::create(file);
+                //temp = Sprite::create(file);
                 break;
             case TAIL:
                 file = "snake_tail.png";
-                temp = Sprite::create(file);
+                //temp = Sprite::create(file);
                 break;
             }
-            sprites->at(y).at(x) = temp;
+            sprites->at(y).at(x)->setRotation(angle);
+            sprites->at(y).at(x)->setTexture(file);
         }
     } 
 }
@@ -220,12 +230,12 @@ GameScene::draw_board()
     float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
     float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
 
-    removeAllChildren();
+    //removeAllChildren();
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
             if (sprites->at(y).at(x) != nullptr) {
                 sprites->at(y).at(x)->setPosition(Vec2(origin.x + x * sprite_size + xoffset, origin.y + y * sprite_size + yoffset));
-                addChild(sprites->at(y).at(x), 0);
+                //sprites->at(y).at(x)->setVisible(true);
             }
         }
     }
