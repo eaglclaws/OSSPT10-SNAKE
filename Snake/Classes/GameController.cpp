@@ -21,6 +21,8 @@ bool compare(const pair<int, string>& a, const pair<int, string>& b) {
 }
 
 void GameController::addUser(string user) {
+	ranking = getRocordedRank();
+
 	pair<int, string> p = make_pair(this->score, user);
 	this->ranking.push_back(p);
 	sort(this->ranking.begin(), this->ranking.end(), compare);
@@ -55,15 +57,21 @@ vector<pair<int, string>> GameController::getRocordedRank() {
 	int size = 0;
 
 	int i = 0;
+	int first = 0;;
+	string second;
 
-	while (fin.peek() != EOF) {
-		getline(fin, readLine);
+	while (getline(fin, readLine)) {
+
 		token, size = readLine.size();
 		token = readLine.find(",");
 
-		data[i].first = stoi(readLine.substr(0, token));
-		data[i].second = readLine.substr(token + 1, size - token - 1);
+		first = stoi(readLine.substr(0, token));
+		second = readLine.substr(token + 1, size - token - 1);
+
+		data.push_back(make_pair(first, second));
+		i++;
 	}
 
+	fin.close();
 	return data;
 }
