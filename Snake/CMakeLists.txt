@@ -61,6 +61,7 @@ list(APPEND GAME_SOURCE
      Classes/GameScene.cpp
      Classes/Board.cpp
      Classes/Game.cpp
+     Classes/GamePauseLayer.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -68,6 +69,7 @@ list(APPEND GAME_HEADER
      Classes/GameScene.h
      Classes/Board.h
      Classes/Game.h
+     Classes/GamePauseLayer.h
      )
 
 if(ANDROID)
