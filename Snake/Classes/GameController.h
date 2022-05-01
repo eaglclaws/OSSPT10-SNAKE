@@ -29,7 +29,7 @@ public:
 	void recordRank();
 
 	//파일에 저장한 랭킹을 불러옴. (RankingScene에서 사용할 수 있게)
-	string getRocordedRank();
+	vector<pair<int, string>> getRocordedRank();
 };
 
 #endif
