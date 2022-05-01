@@ -19,6 +19,7 @@ limitations under the License.
 #include <utility>
 #include "GameScene.h"
 #include "Board.h"
+#include "GamePauseLayer.h"
 
 USING_NS_CC;
 
@@ -86,6 +87,36 @@ GameScene::init()
 
     return true;
 }
+
+
+void 
+GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
+
+    switch (keyCode) {
+    case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
+        game->key_event(KEY_UP);
+        break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+        game->key_event(KEY_DOWN);
+        break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+        game->key_event(KEY_RIGHT);
+        break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+        game->key_event(KEY_LEFT);
+        break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE:
+        game->key_event(KEY_ESC);
+        this->layer = GamePauseLayer::create();
+        this->layer->setVisible(true);
+        break;
+    }
+}
+
 
 void
 GameScene::update(float delta)

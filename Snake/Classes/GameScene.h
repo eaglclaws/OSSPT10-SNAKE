@@ -21,6 +21,7 @@ limitations under the License.
 #include "cocos2d.h"
 #include "Board.h"
 #include "Game.h"
+#include "GamePauseLayer.h"
 
 class GameScene : public cocos2d::Scene
 {
@@ -28,6 +29,7 @@ private:
     std::array<std::array<cocos2d::Sprite *, BOARD_WIDTH>, BOARD_HEIGHT> *sprites;
     Board *board;
     Game *game;
+    GamePauseLayer* layer;
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
     float time;
@@ -38,7 +40,10 @@ public:
 
     virtual bool
     init();
-
+	
+	virtual void 
+	onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
+	
     void
     menuCloseCallback(cocos2d::Ref *pSender);
 
@@ -49,6 +54,7 @@ public:
     update_sprites();
 
     CREATE_FUNC(GameScene);
+    
 private:
     void
     draw_board();
