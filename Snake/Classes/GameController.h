@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __GAMECONTROLLER_H__
+#define __GAMECONTROLLER_H__
 #include <string>
 #include <vector>
 #include <utility>
@@ -27,6 +28,8 @@ public:
 	//랭킹이 프로그램을 종료해도 날아가지 않도록 텍스트 파일에 기록
 	void recordRank();
 
-	//종료 조건:자기 몸 건드렸는지, 벽에 닿았는지 (추후 수정) //종료조건은 이미 구현 됐고, 여기서는 application의 state변화를 이끌어 내는 것!
-	void endGameCondition();
+	//파일에 저장한 랭킹을 불러옴. (RankingScene에서 사용할 수 있게)
+	string getRocordedRank();
 };
+
+#endif
