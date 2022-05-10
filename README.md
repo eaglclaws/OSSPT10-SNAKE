@@ -33,7 +33,7 @@ This application requires [cocos2d-x](cocos.com) to run, instructions to install
 Download the latest version of cocos2d-x from [here](https://www.cocos.com/en/cocos2dx/download) and extract its contents. Once extracted, run the following
 ```
 cd cocos2d-x-4.0
-python download_deps.py
+python download-deps.py
 ./install-deps-linux.sh
 python setup.py
 source ~/.bashrc
