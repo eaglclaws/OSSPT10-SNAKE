@@ -25,7 +25,9 @@ CAU Open Source Software Project Team 10 term project
 * libgtk-3-dev
 * binutils
 * libxxf86vm-dev
-
+### Windows
+* MSVC v142
+* 
 ## Build Instructions
 This application requires [cocos2d-x](cocos.com) to run, instructions to install are as follows
 
@@ -73,5 +75,18 @@ with
 ```
 cocos run -s . -p mac -m release -o ./bin
 ```
+
+### Windows
+```
+git clone https://github.com/eaglclaws/OSSPT10-SNAKE
+cd OSSPT10-SNAKE/Snake
+mkdir win-build
+cd win-build
+cmake .. -A win32
+cmake --build . --config Release
+cd bin
+.\Snake.exe
+```
+
 ### Binaries
 this repo also provides binary files for mac and linux, try these before building and if they do not work clone the repository and build for the respective system.
