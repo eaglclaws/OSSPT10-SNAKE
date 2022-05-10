@@ -17,9 +17,9 @@
 *.smod
 
 # Compiled Static libraries
-*.lai
-*.la
-*.lib
+#*.lai
+#*.la
+#*.lib
 
 # Executables
 *.exe
