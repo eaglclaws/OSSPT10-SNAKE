@@ -77,6 +77,10 @@ cocos run -s . -p mac -m release -o ./bin
 ```
 
 ### Windows
+In "Visual Studio installer" click "수정(M)" -> "C++를 사용한 데스크톱 개발" -> "MSVC v142 - VS 2019 C++ x64/x86 빌드..." -> "수정(M)"
+
+then, 
+
 ```
 git clone https://github.com/eaglclaws/OSSPT10-SNAKE
 cd OSSPT10-SNAKE/Snake
@@ -84,7 +88,7 @@ mkdir win-build
 cd win-build
 cmake .. -A win32
 cmake --build . --config Release
-cd bin
+cd bin\Snake\Release
 .\Snake.exe
 ```
 
