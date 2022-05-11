@@ -35,83 +35,25 @@ enum key_press {
     KEY_ESC
 };
 
-/*
-    Game 클래스
-    Board 클래스와 Snake 클래스를 관리해주는 최상위 클래스
-
-    * 게임 진행 중 Board와 Snake를 직접 수정할 필요가 없기 때문에 모든
-      관리를 Game 클래스에 위임함. 실제로 Board와 Snake에 대한 수정은
-      game_update 메소드 내에서 가능함. (Board의 갱신, Snake의 생존 여부
-      판단 등)
-*/
 class Game {
-private:
-    Board *board;
-    enum game_state state;
 public:
-    Game();
-    ~Game();
-
-/*  현재 game_state 반환 */
-    enum game_state
-    get_state();
-
-/*  보드를 초기화 또는 리셋 state를 GAME_STATE_INIT로 전환*/
-    void
-    init();
-
-/*  state를 GAME_STATE_PLAY로 전환 */
-    void
-    play();
-
-/*  state를 GAME_STATE_PAUSE로 전환 */
-    void
-    pause();
-
-/*  state를 GAME_STATE_OVER로 전환 */
-    void
-    over();
-
-/*  Board와 Snake의 상태 갱신, 그 side effect에 따라
-    state 전환 메소드 호출 */
-    enum game_state
-    update();
-
-/*  출력을 위해 Board를 노출 (임시) TODO: 이후 배열만 노출 할 것! */
-    enum board_elements
-    board_data(int, int);
-
-    enum board_dir
-    get_direction();
-
-    void
-    key_event(enum key_press);
-/*
-    (y, x)에 사과 놓기 시도. 외부에서 랜덤이 결정 되기 때문에 (y, x)에
-    사과를 놓을 수 없다면 false를 반환. 다음과 같이 사용하기를 추천
-    Game game = new Game;
-    while (!game.place_apple(y, x)) { code here } 
-*/
-    bool
-    place_apple(int, int);
-
-    int
-    player_score();
-
-    int**
-    export_board();
-
-    std::vector<std::pair<int, int>> *
-    export_snake();
-
-    int
-    export_dir();
-
-    void
-    load(int **, std::vector<std::pair<int, int>> *, int);
-
-    bool
-    is_apple_placed();
+    virtual ~Game() = 0;
+    virtual enum game_state get_state() = 0;
+    virtual void init() = 0;
+    virtual void play() = 0;
+    virtual void pause() = 0;
+    virtual void over() = 0;
+    virtual enum game_state update() = 0;
+    virtual enum board_elements board_data(int, int) = 0;
+    virtual enum board_dir get_direction() = 0;
+    virtual void key_event(enum key_press) = 0;
+    virtual bool place_apple(int, int) = 0;
+    virtual int player_score() = 0;
+    virtual int **export_board() = 0;
+    virtual std::vector<std::pair<int, int>> *export_snake() = 0;
+    virtual int export_dir() = 0;
+    virtual void load(int **, std::vector<std::pair<int, int>> *, int) = 0;
+    virtual bool is_apple_placed() = 0;
 };
-
+inline Game::~Game() {}
 #endif
