@@ -18,6 +18,7 @@ limitations under the License.
 #include <utility>
 #include "Game.h"
 #include "Board.h"
+#include "SoloGame.h"
 
 SoloGame::SoloGame()
 {

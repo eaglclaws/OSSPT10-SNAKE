@@ -21,13 +21,13 @@ limitations under the License.
 #include "Game.h"
 #include "Board.h"
 
-class SoloGame {
+class SoloGame : public Game {
 private:
     Board *board;
     enum game_state state;
 public:
-    Game();
-    ~Game() override;
+    SoloGame();
+    ~SoloGame() override;
     //Get Methods
     bool is_apple_placed() override;
     enum game_state get_state() override;
