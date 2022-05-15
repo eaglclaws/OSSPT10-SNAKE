@@ -60,7 +60,7 @@ list(APPEND GAME_SOURCE
      Classes/HelloWorldScene.cpp
      Classes/GameScene.cpp
      Classes/Board.cpp
-     Classes/Game.cpp
+     Classes/SoloGame.cpp
      Classes/GameController.cpp
      Classes/GameOverScene.cpp
      Classes/GamePauseScene.cpp
@@ -74,6 +74,7 @@ list(APPEND GAME_HEADER
      Classes/GameScene.h
      Classes/Board.h
      Classes/Game.h
+     Classes/SoloGame.h
      Classes/GameController.h
      Classes/GameOverScene.h
      Classes/GamePauseScene.h

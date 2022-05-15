@@ -30,3 +30,5 @@
 .DS_Store
 
 mac-build/
+win-build/
+linux-build/
