@@ -25,6 +25,7 @@ limitations under the License.
 #include "GamePauseScene.h"
 #include "GameController.h"
 #include "GameOverScene.h"
+#include "GameFactory.h"
 
 USING_NS_CC;
 
@@ -47,12 +48,12 @@ bool
 GameScene::init()
 {
     if (!Scene::init()) return false;
-    
+    GameFactory *GF = new GameFactory;
     unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
     rng = new std::mt19937(seed1);
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
-    game = new SoloGame;
+    game = GF->createGame(SOLO);
     game->place_apple(10, 10);
     sprites = new std::array<std::array<Sprite *, BOARD_WIDTH>, BOARD_HEIGHT>;
     time = 0.0;
