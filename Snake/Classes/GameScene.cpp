@@ -153,7 +153,6 @@ GameScene::update_sprites()
 {
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
-            Sprite *temp;
             const char *file;
             enum board_dir facing;
             float angle;
@@ -169,26 +168,19 @@ GameScene::update_sprites()
             switch (game->board_data(x, y)) {
             case EMPTY:
                 file = "empty.png";
-                //temp = nullptr;
                 break;
             case WALL:
                 file = "wall.png";
-                //temp = Sprite::create(file);
                 break;
             case HEAD:
                 file = "snake_head.png";
-                //temp = Sprite::create(file);
-                //if (temp == nullptr) printf("Warning!");
-                //temp->setRotation(angle);
                 break;
             case SNAKE:
             case APPLE:
                 file = "snake_body.png";
-                //temp = Sprite::create(file);
                 break;
             case TAIL:
                 file = "snake_tail.png";
-                //temp = Sprite::create(file);
                 break;
             }
             sprites->at(y).at(x)->setRotation(angle);
@@ -209,12 +201,10 @@ GameScene::draw_board()
     float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
     float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
 
-    //removeAllChildren();
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
             if (sprites->at(y).at(x) != nullptr) {
                 sprites->at(y).at(x)->setPosition(Vec2(origin.x + x * sprite_size + xoffset, origin.y + y * sprite_size + yoffset));
-                //sprites->at(y).at(x)->setVisible(true);
             }
         }
     }
