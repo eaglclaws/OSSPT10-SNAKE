@@ -50,26 +50,25 @@ GameScene::init()
     //Scene 초기화
     if (!Scene::init()) return false;
     //필수 변수 지정 TODO: 생성자에 넣어두는 편이 나을까?
-    //local variables
     GameFactory *GF = new GameFactory;
     auto GC = GameController::getInstance();
     unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
     auto listener = EventListenerKeyboard::create();
-    float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
-    float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
-    //private attributes
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     rng = new std::mt19937(seed1);
     layer = GamePauseScene::create();
     time = 0.0;
-    sprites = new std::array<std::array<Sprite *, BOARD_WIDTH>, BOARD_HEIGHT>;
     game = GF->createGame(SOLO);
+    bwidth = BOARD_WIDTH;
+    bheight = BOARD_HEIGHT;
+    sprites = new std::vector<std::vector<Sprite *>>;
+    sprites->reserve(bheight); for (int i = 0; i < bheight; i++) sprites->at(i).reserve(bwidth);
     //Scene utility procedures
     layer->setVisible(false);
     addChild(layer, -1);
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    for (int y = 0; y < bheight; y++) {
+        for (int x = 0; x < bwidth; x++) {
             sprites->at(y).at(x) = Sprite::create("empty.png");
             sprites->at(y).at(x)->setVisible(true);
             addChild(sprites->at(y).at(x), 0);
@@ -151,8 +150,8 @@ GameScene::update(float delta)
 void
 GameScene::update_sprites()
 {
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    for (int y = 0; y < bheight; y++) {
+        for (int x = 0; x < bwidth; x++) {
             const char *file;
             enum board_dir facing;
             float angle;
@@ -198,11 +197,11 @@ GameScene::menuCloseCallback(Ref *pSender)
 void
 GameScene::draw_board()
 {
-    float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
-    float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
+    float xoffset = visibleSize.width / 2 - sprite_size * bwidth / 2;
+    float yoffset = visibleSize.height / 2 - sprite_size * bheight / 2;
 
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    for (int y = 0; y < bheight; y++) {
+        for (int x = 0; x < bwidth; x++) {
             if (sprites->at(y).at(x) != nullptr) {
                 sprites->at(y).at(x)->setPosition(Vec2(origin.x + x * sprite_size + xoffset, origin.y + y * sprite_size + yoffset));
             }
