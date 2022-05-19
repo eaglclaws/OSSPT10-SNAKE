@@ -47,74 +47,46 @@ problemLoading(const char *filename)
 bool
 GameScene::init()
 {
+    //Scene 초기화
     if (!Scene::init()) return false;
+    //필수 변수 지정 TODO: 생성자에 넣어두는 편이 나을까?
     GameFactory *GF = new GameFactory;
+    auto GC = GameController::getInstance();
     unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
-    rng = new std::mt19937(seed1);
+    auto listener = EventListenerKeyboard::create();
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
-    game = GF->createGame(SOLO);
-    game->place_apple(10, 10);
-    sprites = new std::array<std::array<Sprite *, BOARD_WIDTH>, BOARD_HEIGHT>;
-    time = 0.0;
+    rng = new std::mt19937(seed1);
     layer = GamePauseScene::create();
+    time = 0.0;
+    game = GF->createGame(SOLO);
+    bwidth = BOARD_WIDTH;
+    bheight = BOARD_HEIGHT;
+    sprites = new std::vector<std::vector<Sprite *>>;
+    sprites->reserve(bheight); for (int i = 0; i < bheight; i++) sprites->at(i).reserve(bwidth);
+    //Scene utility procedures
     layer->setVisible(false);
     addChild(layer, -1);
-    float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
-    float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
-    auto listener = EventListenerKeyboard::create();
-    listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    for (int y = 0; y < bheight; y++) {
+        for (int x = 0; x < bwidth; x++) {
             sprites->at(y).at(x) = Sprite::create("empty.png");
             sprites->at(y).at(x)->setVisible(true);
             addChild(sprites->at(y).at(x), 0);
         }
     }
-    
-    /**
-    int **board_test = new int *[BOARD_HEIGHT];
-    for (int i = 0; i < BOARD_HEIGHT; i++) board_test[i] = new int[BOARD_WIDTH];
-   
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
-            if (y == 0 || y == BOARD_HEIGHT - 1) {
-                board_test[y][x] = 1;
-            } else if (x == 0 || x == BOARD_WIDTH - 1) {
-                board_test[y][x] = 1;
-            } else {
-                board_test[y][x] = 0;
-            }
-        }
-    }
-    board_test[11][10] = 2;
-    board_test[10][10] = board_test[9][10] = 3;
-    board_test[8][10] = 4;
-
-    std::vector<std::pair<int, int>> *snake_test = new std::vector<std::pair<int, int>>;
-    std::pair<int, int> temp(10,8);
-    std::pair<int, int> tmp(10,9);
-    std::pair<int, int> tmp1(10,10);
-    std::pair<int, int> tmp2(10,11);
-    snake_test->push_back(temp);
-    snake_test->push_back(tmp);
-    snake_test->push_back(tmp1);
-    snake_test->push_back(tmp2);
-    game->load(board_test, snake_test, 3);
-    game->place_apple(30, 30);
-    */
-    auto GC = GameController::getInstance();
+    listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    //Game initialization
     game->init();
     if (GC->isLoadClicked) {
         game->load(GC->loadBoard(), GC->loadSnake(), GC->loadDirection());
     } else {
         game->place_apple((*rng)() % 40 + 1, (*rng)() % 40 + 1);
     }
+    //First Scene update
     update_sprites();
     draw_board();
     scheduleUpdate();
-
     return true;
 }
 
@@ -178,9 +150,8 @@ GameScene::update(float delta)
 void
 GameScene::update_sprites()
 {
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
-            Sprite *temp;
+    for (int y = 0; y < bheight; y++) {
+        for (int x = 0; x < bwidth; x++) {
             const char *file;
             enum board_dir facing;
             float angle;
@@ -196,26 +167,19 @@ GameScene::update_sprites()
             switch (game->board_data(x, y)) {
             case EMPTY:
                 file = "empty.png";
-                //temp = nullptr;
                 break;
             case WALL:
                 file = "wall.png";
-                //temp = Sprite::create(file);
                 break;
             case HEAD:
                 file = "snake_head.png";
-                //temp = Sprite::create(file);
-                //if (temp == nullptr) printf("Warning!");
-                //temp->setRotation(angle);
                 break;
             case SNAKE:
             case APPLE:
                 file = "snake_body.png";
-                //temp = Sprite::create(file);
                 break;
             case TAIL:
                 file = "snake_tail.png";
-                //temp = Sprite::create(file);
                 break;
             }
             sprites->at(y).at(x)->setRotation(angle);
@@ -233,15 +197,13 @@ GameScene::menuCloseCallback(Ref *pSender)
 void
 GameScene::draw_board()
 {
-    float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
-    float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
+    float xoffset = visibleSize.width / 2 - sprite_size * bwidth / 2;
+    float yoffset = visibleSize.height / 2 - sprite_size * bheight / 2;
 
-    //removeAllChildren();
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    for (int y = 0; y < bheight; y++) {
+        for (int x = 0; x < bwidth; x++) {
             if (sprites->at(y).at(x) != nullptr) {
                 sprites->at(y).at(x)->setPosition(Vec2(origin.x + x * sprite_size + xoffset, origin.y + y * sprite_size + yoffset));
-                //sprites->at(y).at(x)->setVisible(true);
             }
         }
     }
