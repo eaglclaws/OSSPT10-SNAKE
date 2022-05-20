@@ -152,18 +152,8 @@ GameScene::update_sprites()
 {
     for (int y = 0; y < bheight; y++) {
         for (int x = 0; x < bwidth; x++) {
-            const char *file;
-            enum board_dir facing;
-            float angle;
-            facing = game->get_direction();
-            angle = 0.0f;
-            if (facing == UP) {
-                angle = -90.0f;
-            } else if (facing == DOWN) {
-                angle = 90.0f;
-            } else if (facing == LEFT) {
-                angle = 180.0f;
-            }
+            const char* file;
+
             switch (game->board_data(x, y)) {
             case EMPTY:
                 file = "empty.png";
@@ -182,10 +172,30 @@ GameScene::update_sprites()
                 file = "snake_tail.png";
                 break;
             }
-            sprites->at(y).at(x)->setRotation(angle);
             sprites->at(y).at(x)->setTexture(file);
         }
-    } 
+    }
+
+    enum board_dir facing;
+    float angle = 0.0f;
+    std::pair<int, int> pos;
+
+    for (int i = 0; i < GameController::get_players(); i++) {
+        enum PlayerSelect player = static_cast<PlayerSelect>(i);
+        facing = game->get_direction(player);
+        if (facing == UP) {
+            angle = -90.0f;
+        }
+        else if (facing == DOWN) {
+            angle = 90.0f;
+        }
+        else if (facing == LEFT) {
+            angle = 180.0f;
+        }
+        pos = game->get_head_pos(player);
+
+        sprites->at(pos.second).at(pos.first)->setRotation(angle);
+    }
 }
 
 void
