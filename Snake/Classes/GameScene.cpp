@@ -171,7 +171,11 @@ GameScene::update_sprites()
 {
     for (int y = 0; y < bheight; y++) {
         for (int x = 0; x < bwidth; x++) {
+<<<<<<< HEAD
             const char *file;          
+=======
+            const char* file;
+>>>>>>> 9611b4a02f260f902d4b7bdaa3fd5cefebfa54b0
 
             switch (game->board_data(x, y)) {
             case EMPTY:

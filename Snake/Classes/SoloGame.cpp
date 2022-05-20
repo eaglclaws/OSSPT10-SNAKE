@@ -84,6 +84,7 @@ bool SoloGame::place_apple(int x, int y)
         return false;
     } else {
         board->data()->at(y).at(x) = APPLE;
+        board->set_apple_pos(x, y); //apple 위치 저장
         board->apple_placed();
         return true;
     }

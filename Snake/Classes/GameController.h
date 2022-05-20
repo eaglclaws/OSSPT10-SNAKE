@@ -16,6 +16,7 @@ private:
 	void saveSnake(vector<pair<int, int>>* snake);
 	void saveDirection(int dir);
 	static GameController* instance;
+	static int players;
 public:
 	static GameController* getInstance();
 	bool isLoadClicked;
@@ -53,6 +54,7 @@ public:
 	//파일에 저장한 랭킹을 불러옴. (RankingScene에서 사용할 수 있게)
 	static vector<pair<int, string>>* getRecordedRank();
 	void resetData();
+	static int get_players() { return players; };
 };
 
 #endif
