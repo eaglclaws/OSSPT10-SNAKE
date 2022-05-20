@@ -24,6 +24,9 @@ limitations under the License.
 #include "Board.h"
 #include "Game.h"
 #include "GamePauseScene.h"
+#include "EnumList.h"
+
+enum class PlayerSelect;
 
 class GameScene : public cocos2d::Scene
 {
