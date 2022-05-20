@@ -46,8 +46,6 @@ public:
     enum board_elements board_data(int, int) override;
 
     enum board_dir get_direction() override;
-
-    void key_event(enum key_press) override;
     
     bool place_apple(int, int) override;
 

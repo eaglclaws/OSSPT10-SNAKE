@@ -96,27 +96,6 @@ bool AutoGame::is_apple_placed()
     return board->is_apple_placed();
 }
 
-void AutoGame::key_event(enum key_press ekey)
-{
-    switch (ekey) {
-    case KEY_UP:
-        board->set_direction(UP);
-        break;
-    case KEY_DOWN:
-        board->set_direction(DOWN);
-        break;
-    case KEY_LEFT:
-        board->set_direction(LEFT);
-        break;
-    case KEY_RIGHT:
-        board->set_direction(RIGHT);
-        break;
-    case KEY_ESC:
-        pause();
-        break;
-    }
-}
-
 int AutoGame::player_score()
 {
     return board->get_length();
