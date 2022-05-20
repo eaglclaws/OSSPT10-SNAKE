@@ -53,6 +53,7 @@ public:
 
     bool is_apple_placed() override;
 
+    //알고리즘 완성 후에 함수의 형태는 변형될 수 있음.
     void auto_play();
 };
 

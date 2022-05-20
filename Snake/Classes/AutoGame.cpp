@@ -101,6 +101,7 @@ int AutoGame::player_score()
     return board->get_length();
 }
 
+//알고리즘 완성 후에 함수의 형태는 변형될 수 있음.
 void AutoGame::auto_play()
 {
     //put algorithm here
