@@ -154,3 +154,31 @@ Game::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int d
 {
     board->load(board_save, snake_save, dir_save);
 }
+
+void
+Game::key_event(enum key_press ekey, enum player_select player)
+{
+    switch (ekey) {
+    case KEY_UP:
+        board->set_direction(UP);
+        break;
+    case KEY_DOWN:
+        board->set_direction(DOWN);
+        break;
+    case KEY_LEFT:
+        board->set_direction(LEFT);
+        break;
+    case KEY_RIGHT:
+        board->set_direction(RIGHT);
+        break;
+    case KEY_ESC:
+        pause();
+        break;
+    }
+}
+
+std::pair<int, int> 
+Game::get_head_pos(enum player_select player)
+{
+    return board->get_snake_head(player);
+}

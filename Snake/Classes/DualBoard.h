@@ -1,28 +1,11 @@
 #ifndef __DUALBOARD_H__
 #define __DUALBOARD_H__
 #include <vector>
+#include "EnumList.h"
 #define DUALBOARD_WIDTH 82
 #define DUALBOARD_HEIGHT 42
 
 class Snake;
-
-enum board_elements
-{
-    EMPTY,
-    WALL,
-    HEAD,
-    SNAKE,
-    TAIL,
-    APPLE
-};
-
-enum board_dir
-{
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-};
 
 struct snake_node
 {
@@ -35,10 +18,10 @@ class DualBoard
 {
 private:
     std::array<std::array<board_elements, DUALBOARD_WIDTH>, DUALBOARD_HEIGHT>* board_data;
-    struct snake_node** head_player_one;
-    struct snake_node** tail_player_one;
-    struct snake_node** head_player_two;
-    struct snake_node** tail_player_two;
+    struct snake_node** head_player1;
+    struct snake_node** tail_player1;
+    struct snake_node** head_player2;
+    struct snake_node** tail_player2;
     int length;
     enum board_dir current_player_one;
     enum board_dir current_player_two;
@@ -88,7 +71,9 @@ public:
         getBoardWidth() { return DUALBOARD_WIDTH; }
     int
         getBoardHeight() { return DUALBOARD_WIDTH; }
-    
+    std::pair<int, int>
+        get_snake_head(enum PlayerSelect);
+
 };
 
 #endif
