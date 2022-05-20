@@ -117,27 +117,12 @@ void AutoGame::key_event(enum key_press ekey)
     }
 }
 
-int** AutoGame::export_board()
-{
-    return board->export_board();
-}
-
-std::vector<std::pair<int, int>>* AutoGame::export_snake()
-{
-    return board->export_snake();
-}
-
-int AutoGame::export_dir()
-{
-    return board->export_dir();
-}
-
 int AutoGame::player_score()
 {
     return board->get_length();
 }
 
-void AutoGame::load(int** board_save, std::vector<std::pair<int, int>>* snake_save, int dir_save)
+void AutoGame::auto_play()
 {
-    board->load(board_save, snake_save, dir_save);
+    //put algorithm here
 }

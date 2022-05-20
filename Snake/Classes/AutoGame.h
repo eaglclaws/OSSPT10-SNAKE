@@ -53,15 +53,9 @@ public:
 
     int player_score() override;
 
-    int** export_board() override;
-
-    std::vector<std::pair<int, int>>* export_snake() override;
-
-    int export_dir() override;
-
-    void load(int**, std::vector<std::pair<int, int>>*, int) override;
-
     bool is_apple_placed() override;
+
+    void auto_play();
 };
 
 #endif
