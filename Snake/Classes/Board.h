@@ -17,6 +17,7 @@ limitations under the License.
 #ifndef __BOARD_H__
 #define __BOARD_H__
 #include <vector>
+#include <utility>
 #define BOARD_WIDTH 42
 #define BOARD_HEIGHT 42
 
@@ -56,6 +57,7 @@ private:
     int length;
     enum board_dir current;
     bool has_apple;
+    std::pair<int, int> apple_pos;
 public:
     Board();
     ~Board();
@@ -104,6 +106,12 @@ public:
 
     bool
     is_apple_placed();
+
+    std::pair<int, int>
+    get_apple_pos();
+
+    void
+    set_apple_pos(int, int);
 };
 
 #endif

@@ -18,6 +18,8 @@ limitations under the License.
 #include <vector>
 #include "Board.h"
 
+using namespace std;
+
 Board::Board()
 {
     board_data = new std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT>;
@@ -256,4 +258,16 @@ bool
 Board::is_apple_placed()
 {
     return has_apple;
+}
+
+std::pair<int, int>
+Board::get_apple_pos()
+{
+    return apple_pos;
+}
+
+void
+Board::set_apple_pos(int x, int y)
+{
+    apple_pos = make_pair(x, y);
 }
