@@ -18,27 +18,27 @@ limitations under the License.
 #include "AutoGame2.h"
 
 //Unnecessary methods
-AutoGame2::std::vector<std::pair<int, int>> *export_snake()
+std::vector<std::pair<int, int>> *AutoGame2::export_snake()
 {
     std::terminate();
 }
-AutoGame2::int export_dir()
+int AutoGame2::export_dir()
 {
     std::terminate();
 }
-AutoGame2::int **export_board()
+int **AutoGame2::export_board()
 {
     std::terminate();
 }
-AutoGame2::void load(int **, std::vector<std::pair<int, int>> *, int)
+void AutoGame2::load(int **, std::vector<std::pair<int, int>> *, int)
 {
     std::terminate();
 }
-AutoGame2::std::pair<int, int> get_head_pos(enum PlayerSelect)
+std::pair<int, int> AutoGame2::get_head_pos(enum PlayerSelect)
 {
     std::terminate();
 }
-AutoGame2::board_dir get_direction(enum PlayerSelect)
+board_dir AutoGame2::get_direction(enum PlayerSelect)
 {
     std::terminate();
 }
