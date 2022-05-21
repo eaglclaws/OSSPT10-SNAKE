@@ -47,7 +47,7 @@ public:
     virtual enum board_elements board_data(int, int) = 0;
     virtual enum board_dir get_direction() = 0;
     virtual void key_event(enum key_press) = 0;
-    virtual bool place_apple(int, int) = 0;
+    virtual bool place_apple(int, int) = 0; //TODO: Eventually deprecate this method
     virtual int player_score() = 0;
     virtual int **export_board() = 0;
     virtual std::vector<std::pair<int, int>> *export_snake() = 0;
