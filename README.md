@@ -89,6 +89,7 @@ if the following command outputs a version number, system is read to build
 cocos -v
 ```
 
+build and run by running
 ```
 git clone https://github.com/eaglclaws/OSSPT10-SNAKE
 cd OSSPT10-SNAKE/Snake
