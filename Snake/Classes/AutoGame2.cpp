@@ -16,8 +16,36 @@ limitations under the License.
 
 #include <exception>
 #include "AutoGame2.h"
-
+//State modification methods
+void AutoGame2::init()
+{
+    state = GAME_STATE_INIT;
+}
+void AutoGame2::play()
+{
+    state = GAME_STATE_PLAY;
+}
+void AutoGame2::pause()
+{
+    state = GAME_STATE_PAUSE;
+}
+void AutoGame2::over()
+{
+    state = GAME_STATE_OVER;
+}
+enum game_state AutoGame2::update() {/*TODO*/}
+bool AutoGame2::place_apple(int, int) {/*TODO*/}
+//State report methods
+enum game_state AutoGame2::get_state() {/*TODO*/}
+enum board_elements AutoGame2::board_data(int, int) {/*TODO*/}
+enum board_dir AutoGame2::get_direction() {/*TODO*/}
+int AutoGame2::player_score() {/*TODO*/}
+bool AutoGame2::is_apple_placed() {/*TODO*/}
 //Unnecessary methods
+void AutoGame2::key_event(enum key_press)
+{
+    std::terminate();
+}
 std::vector<std::pair<int, int>> *AutoGame2::export_snake()
 {
     std::terminate();

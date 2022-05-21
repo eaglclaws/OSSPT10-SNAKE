@@ -40,6 +40,7 @@ private:
         int get_snake_length();
         bool is_apple_placed();
     };
+    enum game_state state;
 public:
     AutoGame2();
     //State modification methods
@@ -48,7 +49,6 @@ public:
     void pause() override;
     void over() override;
     enum game_state update() override;
-    void key_event(enum key_press) override;
     bool place_apple(int, int) override; //TODO: Eventually deprecate this method
     //State report methods
     enum game_state get_state() override;
@@ -57,6 +57,7 @@ public:
     int player_score() override;
     bool is_apple_placed() override;
     //Unnecessary methods
+    void key_event(enum key_press) override;
     std::vector<std::pair<int, int>> *export_snake() override;
     int export_dir() override;
     int **export_board() override;
