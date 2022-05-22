@@ -20,6 +20,8 @@ limitations under the License.
 #include "AutoGame.h"
 #include "Board.h"
 
+using namespace std;
+
 AutoGame::AutoGame()
 {
     state = AutoGame_STATE_INIT;
@@ -105,4 +107,36 @@ int AutoGame::player_score()
 void AutoGame::auto_play()
 {
     //put algorithm here
+    switch (board->get_direction()) {
+    case UP:
+        if (*(board->head)->y < board->get_apple_pos().second) {
+            if (*(board->head)->x < board->get_apple_pos().first)
+                board->set_direction(RIGHT);
+            else if (*(board->head)->x == board->get_apple_pos().first)
+            else
+                board->set_direction(LEFT);
+        }
+        else if (*(board->head)->y == board->get_apple_pos().second) {
+            if (*(board->head)->x < board->get_apple_pos().first)
+                board->set_direction(RIGHT);
+            else
+                board->set_direction(LEFT);
+        }
+        else {
+            if (*(board->head)->x < board->get_apple_pos().first) {
+                board->set_direction(RIGHT);
+                board->set_direction(RIGHT);
+            }
+            else if (*(board->head)->x == board->get_apple_pos().first) {
+                board->set_direction(RIGHT);
+                board->set_direction(RIGHT);//한칸 가고 바로
+                board->set_direction(RIGHT);
+            }
+            else {
+                board->set_direction(LEFT);
+                board->set_direction(LEFT);
+            }
+        }
+    }
+
 }
