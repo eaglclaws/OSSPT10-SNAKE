@@ -84,6 +84,7 @@ GameScene::init()
         game->place_apple((*rng)() % 40 + 1, (*rng)() % 40 + 1);
     }
     //First Scene update
+    game->auto_play();
     update_sprites();
     draw_board();
     scheduleUpdate();
@@ -137,6 +138,7 @@ GameScene::update(float delta)
             auto gameover = GameOverScene::createScene();
             Director::getInstance()->replaceScene(gameover);
         }
+        game->auto_play();
         update_sprites();
         draw_board();
         addChild(layer, 1);

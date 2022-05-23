@@ -77,6 +77,9 @@ public:
     void
     set_direction(enum board_dir);
 
+    struct snake_node**
+    get_head();
+
     enum board_dir
     get_direction();
 

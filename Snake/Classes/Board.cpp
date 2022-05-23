@@ -271,3 +271,9 @@ Board::set_apple_pos(int x, int y)
 {
     apple_pos = make_pair(x, y);
 }
+
+struct snake_node**
+Board::get_head()
+{
+    return head;
+}
