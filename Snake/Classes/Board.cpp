@@ -89,6 +89,7 @@ Board::init()
     }
     board_data->at((*head)->y).at((*head)->x) = HEAD;
     board_data->at((*tail)->y).at((*tail)->x) = TAIL;
+    
 }
 
 bool
@@ -270,4 +271,9 @@ void
 Board::set_apple_pos(int x, int y)
 {
     apple_pos = make_pair(x, y);
+}
+
+std::pair<int, int>
+Board::get_snake_head() {
+    return std::pair<int, int>((*head)->x, (*head)->y);
 }

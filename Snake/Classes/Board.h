@@ -18,35 +18,11 @@ limitations under the License.
 #define __BOARD_H__
 #include <vector>
 #include <utility>
+#include "EnumList.h"
 #define BOARD_WIDTH 42
 #define BOARD_HEIGHT 42
 
 class Snake;
-
-enum board_elements
-{
-    EMPTY,
-    WALL,
-    HEAD,
-    SNAKE,
-    TAIL,
-    APPLE
-};
-
-enum board_dir
-{
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-};
-
-struct snake_node
-{
-    struct snake_node *next;
-    int x;
-    int y;
-};
 
 class Board
 {
@@ -112,6 +88,15 @@ public:
 
     void
     set_apple_pos(int, int);
+
+    int
+    get_width() { return BOARD_HEIGHT; }
+
+    int
+    get_height() { return BOARD_WIDTH; }
+
+    std::pair<int, int> 
+    get_snake_head();
 };
 
 #endif
