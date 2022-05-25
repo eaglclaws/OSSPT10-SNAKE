@@ -4,11 +4,14 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
+#include "EnumList.h"
 
 using namespace std;
 
 GameController* GameController::instance = nullptr;
 bool GameController::isCreated = false;
+enum PlayerSelect GameController::winner = NONE;
+int GameController::players = 0;
 
 void GameController::clicked(bool isLoad) {
 	instance = GameController::getInstance();
@@ -20,6 +23,7 @@ GameController* GameController::getInstance() {
 		instance = new GameController();
 		isCreated = true;
 		instance->ranking = getRecordedRank();
+		
 	}
 	return instance;
 }
@@ -215,4 +219,16 @@ void GameController::resetData() {
 	fout.close();
 	fout.open("board.txt");
 	fout.close();
+}
+
+void GameController::set_winner(enum PlayerSelect win) {
+	winner = win;
+}
+
+enum PlayerSelect GameController::get_winner() {
+	return winner;
+}
+
+void GameController::set_players(int player) {
+	players = player;
 }

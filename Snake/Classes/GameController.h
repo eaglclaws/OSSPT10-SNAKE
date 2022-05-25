@@ -6,6 +6,8 @@
 #include "Game.h"
 #include <vector>
 #include <utility>
+#include "EnumList.h"
+#include "GameFactory.h"
 
 using namespace std;
 
@@ -17,6 +19,8 @@ private:
 	void saveDirection(int dir);
 	static GameController* instance;
 	static int players;
+	static enum PlayerSelect winner;
+	static enum game_T game_type;
 public:
 	static GameController* getInstance();
 	bool isLoadClicked;
@@ -55,6 +59,9 @@ public:
 	static vector<pair<int, string>>* getRecordedRank();
 	void resetData();
 	static int get_players() { return players; };
+	static void set_winner(enum PlayerSelect);
+	static enum PlayerSelect get_winner();
+	static void set_players(int);
 };
 
 #endif
