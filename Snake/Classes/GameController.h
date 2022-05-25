@@ -58,7 +58,7 @@ public:
 	//파일에 저장한 랭킹을 불러옴. (RankingScene에서 사용할 수 있게)
 	static vector<pair<int, string>>* getRecordedRank();
 	void resetData();
-	static int get_players() { return players; };
+	static int get_players();
 	static void set_winner(enum PlayerSelect);
 	static enum PlayerSelect get_winner();
 	static void set_players(int);

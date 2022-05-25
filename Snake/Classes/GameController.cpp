@@ -229,6 +229,9 @@ enum PlayerSelect GameController::get_winner() {
 	return winner;
 }
 
+int GameController::get_players(){
+	return players;
+}
 void GameController::set_players(int player) {
 	players = player;
 }

@@ -148,7 +148,7 @@ bool SoloGame::place_apple() {
     unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
     std::mt19937* rng = new std::mt19937(seed1);
 
-    int x = (*rng)() % 80 + 1, y = (*rng)() % 40 + 1;
+    int x = (*rng)() % 40 + 1, y = (*rng)() % 40 + 1;
 
     if (board->data()->at(y).at(x) != EMPTY) {
         return false;

@@ -60,8 +60,8 @@ GameScene::init()
     layer = GamePauseScene::create();
     time = 0.0;
     game = GF->createGame(SOLO);
-    bwidth = BOARD_WIDTH;
-    bheight = BOARD_HEIGHT;
+    bwidth = game->get_board_width();
+    bheight = game->get_board_height();
     sprites = new std::vector<std::vector<Sprite *>>;
     sprites->reserve(bheight); for (int i = 0; i < bheight; i++) sprites->at(i).reserve(bwidth);
     //Scene utility procedures
