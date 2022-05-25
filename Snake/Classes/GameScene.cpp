@@ -24,6 +24,7 @@ limitations under the License.
 #include "GamePauseScene.h"
 #include "GameController.h"
 #include "GameOverScene.h"
+#include "SoloGame.h"
 
 USING_NS_CC;
 
@@ -51,7 +52,7 @@ GameScene::init()
     rng = new std::mt19937(seed1);
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
-    game = new Game;
+    game = new SoloGame;
     game->place_apple(10, 10);
     sprites = new std::array<std::array<Sprite *, BOARD_WIDTH>, BOARD_HEIGHT>;
     time = 0.0;

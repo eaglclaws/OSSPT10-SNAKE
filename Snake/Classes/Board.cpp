@@ -18,6 +18,8 @@ limitations under the License.
 #include <vector>
 #include "Board.h"
 
+using namespace std;
+
 Board::Board()
 {
     board_data = new std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT>;
@@ -26,9 +28,9 @@ Board::Board()
 
 Board::~Board()
 {
-    struct snake_node *cur = (*tail);
+    struct snake_node* cur = (*tail);
     while (cur->next != nullptr) {
-        struct snake_node *temp = cur->next;
+        struct snake_node* temp = cur->next;
         delete cur;
         cur = temp;
     }
@@ -37,7 +39,7 @@ Board::~Board()
     delete head;
 }
 
-std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT> *
+std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT>*
 Board::data()
 {
     return board_data;
@@ -50,7 +52,7 @@ Board::set_direction(enum board_dir dir)
 }
 
 enum board_dir
-Board::get_direction()
+    Board::get_direction()
 {
     return current;
 }
@@ -58,14 +60,14 @@ Board::get_direction()
 void
 Board::init()
 {
-    head = new struct snake_node *;
-    tail = new struct snake_node *;
+    head = new struct snake_node*;
+    tail = new struct snake_node*;
     (*head) = new struct snake_node;
     (*head)->next = nullptr;
     (*tail) = new struct snake_node;
     (*tail)->next = (*head);
-    (*head)->y = (int)BOARD_HEIGHT/2;
-    (*head)->x = (int)BOARD_WIDTH/2;
+    (*head)->y = (int)BOARD_HEIGHT / 2;
+    (*head)->x = (int)BOARD_WIDTH / 2;
     (*tail)->y = (*head)->y - 1;
     (*tail)->x = (*head)->x;
     length = 0;
@@ -87,6 +89,7 @@ Board::init()
     }
     board_data->at((*head)->y).at((*head)->x) = HEAD;
     board_data->at((*tail)->y).at((*tail)->x) = TAIL;
+
 }
 
 bool
@@ -114,15 +117,15 @@ Board::update(enum board_dir dir)
         break;
     }
     board_data->at((*head)->y).at((*head)->x) = SNAKE;
-    struct snake_node *temp = new struct snake_node;
+    struct snake_node* temp = new struct snake_node;
     int headx = (*head)->x + xinc;
     int heady = (*head)->y + yinc;
     enum board_elements front = board_data->at(heady).at(headx);
     if (
         board_data->at(heady).at(headx) == SNAKE ||
         board_data->at(heady).at(headx) == WALL ||
-        board_data->at(heady).at(headx) == TAIL    
-    ) return false;
+        board_data->at(heady).at(headx) == TAIL
+        ) return false;
     temp->x = (*head)->x + xinc;
     temp->y = (*head)->y + yinc;
     temp->next = nullptr;
@@ -150,10 +153,10 @@ Board::get_length()
     return length;
 }
 
-int **
+int**
 Board::export_board()
 {
-    int **temp = new int *[BOARD_WIDTH];
+    int** temp = new int* [BOARD_WIDTH];
     for (int i = 0; i < BOARD_WIDTH; i++) temp[i] = new int[BOARD_HEIGHT];
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
@@ -163,12 +166,12 @@ Board::export_board()
     return temp;
 }
 
-std::vector<std::pair<int, int>> *
+std::vector<std::pair<int, int>>*
 Board::export_snake()
 {
-    std::vector<std::pair<int, int>> *temp = new std::vector<std::pair<int, int>>;
-    struct snake_node *cur = (*tail);
-    while(cur != nullptr) {
+    std::vector<std::pair<int, int>>* temp = new std::vector<std::pair<int, int>>;
+    struct snake_node* cur = (*tail);
+    while (cur != nullptr) {
         std::pair<int, int> ele(cur->x, cur->y);
         temp->push_back(ele);
         cur = cur->next;
@@ -183,7 +186,7 @@ Board::export_dir()
 }
 
 void
-Board::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int dir_save)
+Board::load(int** board_save, std::vector<std::pair<int, int>>* snake_save, int dir_save)
 {
     has_apple = false;
     int load_length = -2;
@@ -193,29 +196,34 @@ Board::load(int **board_save, std::vector<std::pair<int, int>> *snake_save, int 
             int sw = board_save[y][x];
             if (sw == 0) {
                 temp = EMPTY;
-            } else if (sw == 1) {
+            }
+            else if (sw == 1) {
                 temp = WALL;
-            } else if (sw == 2) {
+            }
+            else if (sw == 2) {
                 temp = HEAD;
-            } else if (sw == 3) {
+            }
+            else if (sw == 3) {
                 temp = SNAKE;
-            } else if (sw == 4) {
+            }
+            else if (sw == 4) {
                 temp = TAIL;
-            } else if (sw == 5) {
+            }
+            else if (sw == 5) {
                 temp = APPLE;
                 has_apple = true;
             }
             board_data->at(y).at(x) = temp;
         }
     }
-    struct snake_node *load_snake = new struct snake_node;
-    struct snake_node *cur = load_snake;
+    struct snake_node* load_snake = new struct snake_node;
+    struct snake_node* cur = load_snake;
     for (std::vector<std::pair<int, int>>::iterator it = snake_save->begin(); it != snake_save->end(); it++) {
         load_length++;
         cur->x = it->first;
         cur->y = it->second;
         cur->next = nullptr;
-        if (it + 1 == snake_save->end()) continue; 
+        if (it + 1 == snake_save->end()) continue;
         cur->next = new struct snake_node;
         cur = cur->next;
     }
@@ -256,4 +264,21 @@ bool
 Board::is_apple_placed()
 {
     return has_apple;
+}
+
+std::pair<int, int>
+Board::get_apple_pos()
+{
+    return apple_pos;
+}
+
+void
+Board::set_apple_pos(int x, int y)
+{
+    apple_pos = make_pair(x, y);
+}
+
+std::pair<int, int>
+Board::get_snake_head() {
+    return std::pair<int, int>((*head)->x, (*head)->y);
 }

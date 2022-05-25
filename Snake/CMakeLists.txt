@@ -67,6 +67,7 @@ list(APPEND GAME_SOURCE
      Classes/ShowRankingScene.cpp
      Classes/ShowResultScene.cpp
      Classes/StartScene.cpp
+     Classes/SoloGame.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -80,7 +81,9 @@ list(APPEND GAME_HEADER
      Classes/ShowRankingScene.h
      Classes/ShowResultScene.h
      Classes/StartScene.h
-     Classes/GameResultScene.h
+     Classes/GameResultScene.h 
+     Classes/SoloGame.h
+     Classes/EnumList.h
      )
 
 if(ANDROID)

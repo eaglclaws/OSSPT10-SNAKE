@@ -17,93 +17,86 @@ limitations under the License.
 #ifndef __BOARD_H__
 #define __BOARD_H__
 #include <vector>
+#include <utility>
+#include "EnumList.h"
 #define BOARD_WIDTH 42
 #define BOARD_HEIGHT 42
 
 class Snake;
 
-enum board_elements
-{
-    EMPTY,
-    WALL,
-    HEAD,
-    SNAKE,
-    TAIL,
-    APPLE
-};
-
-enum board_dir
-{
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-};
-
-struct snake_node
-{
-    struct snake_node *next;
-    int x;
-    int y;
-};
-
 class Board
 {
 private:
-    std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT> *board_data;
-    struct snake_node **head;
-    struct snake_node **tail;
+    std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT>* board_data;
+    struct snake_node** head;
+    struct snake_node** tail;
     int length;
     enum board_dir current;
     bool has_apple;
+    std::pair<int, int> apple_pos;
 public:
     Board();
     ~Board();
 
     void
-    init();
+        init();
 
-    std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT> *
-    data();
-
-    bool
-    update(enum board_dir);
+    std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT>*
+        data();
 
     bool
-    update();
+        update(enum board_dir);
+
+    bool
+        update();
 
     void
-    set_direction(enum board_dir);
+        set_direction(enum board_dir);
 
     enum board_dir
-    get_direction();
+        get_direction();
 
     bool
-    place_apple(int, int);
+        place_apple(int, int);
 
     int
-    get_length();
-    
-    int **
-    export_board();
-    
-    std::vector<std::pair<int, int>> *
-    export_snake();
-    
+        get_length();
+
+    int**
+        export_board();
+
+    std::vector<std::pair<int, int>>*
+        export_snake();
+
     int
-    export_dir();
+        export_dir();
 
     void
-    load(int **, std::vector<std::pair<int, int>> *, int);
-    
-    void
-    apple_placed();
+        load(int**, std::vector<std::pair<int, int>>*, int);
 
     void
-    apple_removed();
+        apple_placed();
+
+    void
+        apple_removed();
 
     bool
-    is_apple_placed();
+        is_apple_placed();
+
+    std::pair<int, int>
+        get_apple_pos();
+
+    void
+        set_apple_pos(int, int);
+
+    int
+        get_width() { return BOARD_HEIGHT; }
+
+    int
+        get_height() { return BOARD_WIDTH; }
+
+    std::pair<int, int>
+        get_snake_head();
 };
 
 #endif
