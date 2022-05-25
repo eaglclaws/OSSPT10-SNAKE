@@ -60,7 +60,6 @@ list(APPEND GAME_SOURCE
      Classes/HelloWorldScene.cpp
      Classes/GameScene.cpp
      Classes/Board.cpp
-     Classes/Game.cpp
      Classes/GameController.cpp
      Classes/GameOverScene.cpp
      Classes/GamePauseScene.cpp
