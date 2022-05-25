@@ -171,6 +171,9 @@ int SoloGame::get_board_width() {
     return board->get_width();
 }
 void SoloGame::key_event(enum key_press ekey, enum PlayerSelect player) {
+    if (player != PLAYER1)
+        return;
+
     switch (ekey) {
     case KEY_UP:
         board->set_direction(UP);
@@ -189,6 +192,8 @@ void SoloGame::key_event(enum key_press ekey, enum PlayerSelect player) {
         break;
     }
 }
-board_dir SoloGame::get_direction(enum PlayerSelect) {
-    return board->get_direction();
+board_dir SoloGame::get_direction(enum PlayerSelect player) {
+    if (player == PLAYER1)
+        return board->get_direction();
+    return NONE_DIR;
 }
