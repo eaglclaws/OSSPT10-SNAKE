@@ -53,7 +53,7 @@ GameScene::init()
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     game = new SoloGame;
-    game->place_apple(10, 10);
+    game->place_apple();
     sprites = new std::array<std::array<Sprite *, BOARD_WIDTH>, BOARD_HEIGHT>;
     time = 0.0;
     layer = GamePauseScene::create();
@@ -108,7 +108,7 @@ GameScene::init()
     if (GC->isLoadClicked) {
         game->load(GC->loadBoard(), GC->loadSnake(), GC->loadDirection());
     } else {
-        game->place_apple((*rng)() % 40 + 1, (*rng)() % 40 + 1);
+        game->place_apple();
     }
     update_sprites();
     draw_board();
@@ -170,7 +170,7 @@ GameScene::update(float delta)
         time = 0.0;
     }
     if (!game->is_apple_placed()) {
-        game->place_apple((*rng)() % 40 + 1, (*rng)() % 40 + 1);
+        game->place_apple();
     }
 }
 

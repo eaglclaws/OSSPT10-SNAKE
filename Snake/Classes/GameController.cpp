@@ -27,7 +27,7 @@ GameController* GameController::getInstance() {
 
 void GameController::resetGame() {
 	this->game->init();
-    game->place_apple(25, 5);
+    game->place_apple();
 	this->game->play();
 }
 
