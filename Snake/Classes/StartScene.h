@@ -7,7 +7,9 @@ USING_NS_CC;
 
 class StartScene : public LayerColor{
 private:
-	void playGame(cocos2d::Ref* pSender);
+	void singleGame(cocos2d::Ref* pSender);
+	void dualGame(cocos2d::Ref* pSender);
+	void autoGame(cocos2d::Ref* pSender);
 	void loadGame(cocos2d::Ref* pSender);
 	void rankingGame(cocos2d::Ref* pSender);
 	void exitGame(cocos2d::Ref* pSender);
