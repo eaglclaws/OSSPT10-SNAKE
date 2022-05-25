@@ -46,7 +46,6 @@ public:
     void over() override;
     void load(int **, std::vector<std::pair<int, int>> *, int) override;
     void key_event(enum key_press) override;
-    bool place_apple(int, int) override;
 
     bool place_apple() override;
     std::pair<int, int> get_head_pos(enum PlayerSelect) override;
