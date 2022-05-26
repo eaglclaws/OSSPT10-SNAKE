@@ -112,6 +112,23 @@ GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event*
         if (!(game->get_direction(PLAYER1) == RIGHT)) game->key_event(KEY_LEFT, PLAYER1);
         break;
 
+    case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_W: case cocos2d::EventKeyboard::KeyCode::KEY_W:
+        if (!(game->get_direction(PLAYER2) == DOWN)) game->key_event(KEY_W, PLAYER2);
+        break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_S: case cocos2d::EventKeyboard::KeyCode::KEY_S:
+        if (!(game->get_direction(PLAYER2) == UP)) game->key_event(KEY_S, PLAYER2);
+        break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_D: case cocos2d::EventKeyboard::KeyCode::KEY_D:
+        if (!(game->get_direction(PLAYER2) == LEFT)) game->key_event(KEY_D, PLAYER2);
+        break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_A: case cocos2d::EventKeyboard::KeyCode::KEY_A:
+        if (!(game->get_direction(PLAYER2) == RIGHT)) game->key_event(KEY_A, PLAYER2);
+        break;
+
+
     case cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE:
         if (game->get_state() == GAME_STATE_PAUSE) {
             layer->setVisible(false);

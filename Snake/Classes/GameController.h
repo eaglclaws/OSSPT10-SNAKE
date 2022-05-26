@@ -62,6 +62,8 @@ public:
 	static void set_players(int);
 	static enum game_T get_game_type();
 	static void set_game_type(enum game_T);
+	static void set_winner(enum PlayerSelect);
+	static enum PlayerSelect get_winner();
 };
 
 #endif

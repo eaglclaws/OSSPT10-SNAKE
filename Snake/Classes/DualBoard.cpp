@@ -1,32 +1,17 @@
-/*
-Copyright 2022 고석현
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 #include <array>
 #include <vector>
-#include "Board.h"
+#include "DualBoard.h"
 
 using namespace std;
 
-Board::Board()
+DualBoard::DualBoard()
 {
-    board_data = new std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT>;
+    apple_amount = 0;
+    board_data = new std::array<std::array<board_elements, DUALBOARD_WIDTH>, DUALBOARD_HEIGHT>;
     init();
 }
 
-Board::~Board()
+DualBoard::~DualBoard()
 {
     struct snake_node* cur = (*tail);
     while (cur->next != nullptr) {
@@ -39,26 +24,26 @@ Board::~Board()
     delete head;
 }
 
-std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT>*
-Board::data()
+std::array<std::array<board_elements, DUALBOARD_WIDTH>, DUALBOARD_HEIGHT>*
+DualBoard::data()
 {
     return board_data;
 }
 
 void
-Board::set_direction(enum board_dir dir)
+DualBoard::set_direction(enum board_dir dir)
 {
     current = dir;
 }
 
 enum board_dir
-    Board::get_direction()
+    DualBoard::get_direction()
 {
     return current;
 }
 
 void
-Board::init()
+DualBoard::init()
 {
     head = new struct snake_node*;
     tail = new struct snake_node*;
@@ -66,40 +51,40 @@ Board::init()
     (*head)->next = nullptr;
     (*tail) = new struct snake_node;
     (*tail)->next = (*head);
-    (*head)->y = (int)BOARD_HEIGHT * 0.5;
-    (*head)->x = (int)BOARD_WIDTH * 0.5;
+    (*head)->y = (int)DUALBOARD_HEIGHT * 0.5;
+    (*head)->x = (int)DUALBOARD_WIDTH * 0.5;
     (*tail)->y = (*head)->y - 1;
     (*tail)->x = (*head)->x;
     length = 0;
     current = UP;
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    for (int y = 0; y < DUALBOARD_HEIGHT; y++) {
+        for (int x = 0; x < DUALBOARD_WIDTH; x++) {
             board_data->at(y).at(x) = EMPTY;
         }
     }
 
-    for (int i = 0; i < BOARD_HEIGHT; i++) {
+    for (int i = 0; i < DUALBOARD_HEIGHT; i++) {
         board_data->at(i).at(0) = WALL;
-        board_data->at(i).at(BOARD_WIDTH - 1) = WALL;
+        board_data->at(i).at(DUALBOARD_WIDTH - 1) = WALL;
     }
 
-    for (int i = 0; i < BOARD_WIDTH; i++) {
+    for (int i = 0; i < DUALBOARD_WIDTH; i++) {
         board_data->at(0).at(i) = WALL;
-        board_data->at(BOARD_HEIGHT - 1).at(i) = WALL;
+        board_data->at(DUALBOARD_HEIGHT - 1).at(i) = WALL;
     }
     board_data->at((*head)->y).at((*head)->x) = HEAD;
     board_data->at((*tail)->y).at((*tail)->x) = TAIL;
-
+    apple_amount = 0;
 }
 
 bool
-Board::update()
+DualBoard::update()
 {
     return update(current);
 }
 
 bool
-Board::update(enum board_dir dir)
+DualBoard::update(enum board_dir dir)
 {
     int xinc = 0, yinc = 0;
     switch (dir) {
@@ -135,6 +120,7 @@ Board::update(enum board_dir dir)
 
     if (front == APPLE) {
         length++;
+        apple_amount--;
         apple_removed();
         return true;
     }
@@ -148,18 +134,18 @@ Board::update(enum board_dir dir)
 }
 
 int
-Board::get_length()
+DualBoard::get_length()
 {
     return length;
 }
 
 int**
-Board::export_board()
+DualBoard::export_board()
 {
-    int** temp = new int* [BOARD_WIDTH];
-    for (int i = 0; i < BOARD_WIDTH; i++) temp[i] = new int[BOARD_HEIGHT];
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    int** temp = new int* [DUALBOARD_WIDTH];
+    for (int i = 0; i < DUALBOARD_WIDTH; i++) temp[i] = new int[DUALBOARD_HEIGHT];
+    for (int y = 0; y < DUALBOARD_HEIGHT; y++) {
+        for (int x = 0; x < DUALBOARD_WIDTH; x++) {
             temp[y][x] = (int)board_data->at(y).at(x);
         }
     }
@@ -167,7 +153,7 @@ Board::export_board()
 }
 
 std::vector<std::pair<int, int>>*
-Board::export_snake()
+DualBoard::export_snake()
 {
     std::vector<std::pair<int, int>>* temp = new std::vector<std::pair<int, int>>;
     struct snake_node* cur = (*tail);
@@ -180,18 +166,18 @@ Board::export_snake()
 }
 
 int
-Board::export_dir()
+DualBoard::export_dir()
 {
     return (int)current;
 }
 
 void
-Board::load(int** board_save, std::vector<std::pair<int, int>>* snake_save, int dir_save)
+DualBoard::load(int** board_save, std::vector<std::pair<int, int>>* snake_save, int dir_save)
 {
     has_apple = false;
     int load_length = -2;
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    for (int y = 0; y < DUALBOARD_HEIGHT; y++) {
+        for (int x = 0; x < DUALBOARD_WIDTH; x++) {
             enum board_elements temp;
             int sw = board_save[y][x];
             if (sw == 0) {
@@ -249,36 +235,98 @@ Board::load(int** board_save, std::vector<std::pair<int, int>>* snake_save, int 
 }
 
 void
-Board::apple_placed()
+DualBoard::apple_placed()
 {
+    apple_amount = 2;
     has_apple = true;
 }
 
 void
-Board::apple_removed()
+DualBoard::apple_removed()
 {
     has_apple = false;
 }
 
 bool
-Board::is_apple_placed()
+DualBoard::is_apple_placed()
 {
     return has_apple;
 }
 
 std::pair<int, int>
-Board::get_apple_pos()
+DualBoard::get_apple_pos()
 {
     return apple_pos;
 }
 
 void
-Board::set_apple_pos(int x, int y)
+DualBoard::set_apple_pos(int x, int y)
 {
     apple_pos = make_pair(x, y);
 }
 
 std::pair<int, int>
-Board::get_snake_head() {
+DualBoard::get_snake_head() {
     return std::pair<int, int>((*head)->x, (*head)->y);
+}
+
+std::pair<int, int>
+DualBoard::get_snake_head(enum PlayerSelect player) {
+    switch (player)
+    {
+    case PLAYER1:
+        return std::pair<int, int>((*head)->x, (*head)->y);
+        break;
+    case PLAYER2:
+        return std::pair<int, int>((*head)->x, (*head)->y);
+        break;
+    case NONE:
+        break;
+    default:
+        break;
+    }
+}
+
+void
+DualBoard::set_direction(enum board_dir dir, enum PlayerSelect player) {
+    switch (player)
+    {
+    case PLAYER1:
+        current = dir;
+        break;
+    case PLAYER2:
+        current = dir;
+        break;
+    case NONE:
+        break;
+    default:
+        break;
+    }
+}
+
+enum board_dir
+DualBoard::get_direction(enum PlayerSelect player) {
+    switch (player)
+    {
+    case PLAYER1:
+        return current;
+        break;
+    case PLAYER2:
+        return current;
+        break;
+    case NONE:
+        break;
+    default:
+        break;
+    }
+}
+
+bool
+DualBoard::update(enum board_dir, enum PlayerSelect) {
+    return true;
+}
+
+int 
+DualBoard::get_apple_amount() {
+    return apple_amount;
 }
