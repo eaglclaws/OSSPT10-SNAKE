@@ -6,6 +6,7 @@
 #include "Game.h"
 #include <vector>
 #include <utility>
+#include "GameFactory.h"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ private:
 	static GameController* instance;
 	static int players;
 	static enum PlayerSelect winner;
+	static enum game_T game_type;
 public:
 	static GameController* getInstance();
 	bool isLoadClicked;
@@ -58,6 +60,8 @@ public:
 
 	static int get_players() { return players; };
 	static void set_players(int);
+	static enum game_T get_game_type();
+	static void set_game_type(enum game_T);
 };
 
 #endif

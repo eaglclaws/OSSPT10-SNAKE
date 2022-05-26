@@ -25,6 +25,7 @@ limitations under the License.
 #include "GameController.h"
 #include "GameOverScene.h"
 #include "SoloGame.h"
+#include "GameFactory.h"
 
 USING_NS_CC;
 
@@ -50,7 +51,11 @@ GameScene::init()
     
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
-    game = new SoloGame;
+
+    auto GC = GameController::getInstance();
+    GameFactory* GF = new GameFactory;
+
+    game = GF->createGame(GC->get_game_type());
     game->place_apple();
     bwidth = game->get_board_width();
     bheight = game->get_board_height();
@@ -72,9 +77,8 @@ GameScene::init()
             addChild(sprites->at(y).at(x), 0);
         }
     }
-    
-    auto GC = GameController::getInstance();
-    GC->set_players(1);
+   
+
     game->init();
     if (GC->isLoadClicked) {
         game->load(GC->loadBoard(), GC->loadSnake(), GC->loadDirection());

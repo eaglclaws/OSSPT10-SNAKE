@@ -10,6 +10,7 @@ using namespace std;
 GameController* GameController::instance = nullptr;
 bool GameController::isCreated = false;
 int GameController::players = 0;
+enum game_T GameController::game_type;
 
 void GameController::clicked(bool isLoad) {
 	instance = GameController::getInstance();
@@ -220,4 +221,11 @@ void GameController::resetData() {
 
 void GameController::set_players(int player) {
 	players = player;
+}
+
+enum game_T GameController::get_game_type() {
+	return game_type;
+}
+void GameController::set_game_type(enum game_T game_t) {
+	game_type = game_t;
 }

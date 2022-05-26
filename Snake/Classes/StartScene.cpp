@@ -52,6 +52,9 @@ bool StartScene::init(){
 
 void StartScene::singleGame(cocos2d::Ref* pSender) {
     GameController::clicked(false);
+    auto gc = GameController::getInstance();
+    gc->set_game_type(SOLO);
+    gc->set_players(1);
 
     auto scene = GameScene::createScene();
     Director::getInstance()->replaceScene(scene);
@@ -59,6 +62,9 @@ void StartScene::singleGame(cocos2d::Ref* pSender) {
 
 void StartScene::dualGame(cocos2d::Ref* pSender) {
     GameController::clicked(false);
+    auto gc = GameController::getInstance();
+    gc->set_game_type(DUAL);
+    gc->set_players(1);
 
     auto scene = GameScene::createScene();
     Director::getInstance()->replaceScene(scene);
