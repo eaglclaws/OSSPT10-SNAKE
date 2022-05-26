@@ -19,9 +19,18 @@ DualBoard::~DualBoard()
         delete cur;
         cur = temp;
     }
+    cur = (*sec_tail);
+    while (cur->next != nullptr) {
+        struct snake_node* temp = cur->next;
+        delete cur;
+        cur = temp;
+    }
+
     delete cur;
     delete tail;
     delete head;
+    delete sec_tail;
+    delete sec_head;
 }
 
 std::array<std::array<board_elements, DUALBOARD_WIDTH>, DUALBOARD_HEIGHT>*
@@ -51,12 +60,28 @@ DualBoard::init()
     (*head)->next = nullptr;
     (*tail) = new struct snake_node;
     (*tail)->next = (*head);
-    (*head)->y = (int)DUALBOARD_HEIGHT * 0.5;
-    (*head)->x = (int)DUALBOARD_WIDTH * 0.5;
-    (*tail)->y = (*head)->y - 1;
+    (*head)->y = DUALBOARD_HEIGHT - 3;
+    (*head)->x = 1;
+    (*tail)->y = (*head)->y + 1;
     (*tail)->x = (*head)->x;
     length = 0;
-    current = UP;
+    current = DOWN;
+
+    sec_head = new struct snake_node*;
+    sec_tail = new struct snake_node*;
+    (*sec_head) = new struct snake_node;
+    (*sec_head)->next = nullptr;
+    (*sec_tail) = new struct snake_node;
+    (*sec_tail)->next = (*sec_head);
+    (*sec_head)->y = 4;
+    (*sec_head)->x = DUALBOARD_WIDTH - 2;
+    (*sec_tail)->y = (*sec_head)->y - 1;
+    (*sec_tail)->x = (*sec_head)->x;
+    sec_length = 0;
+    sec_current = UP;
+
+    winner == NONE;
+
     for (int y = 0; y < DUALBOARD_HEIGHT; y++) {
         for (int x = 0; x < DUALBOARD_WIDTH; x++) {
             board_data->at(y).at(x) = EMPTY;
@@ -74,13 +99,19 @@ DualBoard::init()
     }
     board_data->at((*head)->y).at((*head)->x) = HEAD;
     board_data->at((*tail)->y).at((*tail)->x) = TAIL;
+
+    board_data->at((*sec_head)->y).at((*sec_head)->x) = HEAD;
+    board_data->at((*sec_tail)->y).at((*sec_tail)->x) = TAIL;
+
     apple_amount = 0;
 }
 
 bool
 DualBoard::update()
 {
-    return update(current);
+    bool p1 = update(current, PLAYER1);
+    bool p2 = update(sec_current, PLAYER2);
+    return (p1 && p2);
 }
 
 bool
@@ -111,8 +142,8 @@ DualBoard::update(enum board_dir dir)
         board_data->at(heady).at(headx) == WALL ||
         board_data->at(heady).at(headx) == TAIL
         ) return false;
-    temp->x = (*head)->x + xinc;
-    temp->y = (*head)->y + yinc;
+    temp->x = headx;
+    temp->y = heady;
     temp->next = nullptr;
     (*head)->next = temp;
     (*head) = temp;
@@ -278,7 +309,7 @@ DualBoard::get_snake_head(enum PlayerSelect player) {
         return std::pair<int, int>((*head)->x, (*head)->y);
         break;
     case PLAYER2:
-        return std::pair<int, int>((*head)->x, (*head)->y);
+        return std::pair<int, int>((*sec_head)->x, (*sec_head)->y);
         break;
     case NONE:
         break;
@@ -295,7 +326,7 @@ DualBoard::set_direction(enum board_dir dir, enum PlayerSelect player) {
         current = dir;
         break;
     case PLAYER2:
-        current = dir;
+        sec_current = dir;
         break;
     case NONE:
         break;
@@ -312,7 +343,7 @@ DualBoard::get_direction(enum PlayerSelect player) {
         return current;
         break;
     case PLAYER2:
-        return current;
+        return sec_current;
         break;
     case NONE:
         break;
@@ -322,7 +353,112 @@ DualBoard::get_direction(enum PlayerSelect player) {
 }
 
 bool
-DualBoard::update(enum board_dir, enum PlayerSelect) {
+DualBoard::update(enum board_dir dir, enum PlayerSelect player) {
+    int xinc = 0, yinc = 0;
+    struct snake_node* temp = new struct snake_node;
+    int headx = 0, heady = 0;
+    enum board_elements front;
+
+    switch (dir) {
+    case UP:
+        yinc = 1;
+        break;
+    case DOWN:
+        yinc = -1;
+        break;
+    case LEFT:
+        xinc = -1;
+        break;
+    case RIGHT:
+        xinc = 1;
+        break;
+    }
+    switch (player)
+    {
+    case PLAYER1:
+        board_data->at((*head)->y).at((*head)->x) = SNAKE;
+        headx = (*head)->x + xinc;
+        heady = (*head)->y + yinc;
+
+        break;
+    case PLAYER2:
+        board_data->at((*sec_head)->y).at((*sec_head)->x) = SNAKE;
+        headx = (*sec_head)->x + xinc;
+        heady = (*sec_head)->y + yinc;
+
+        break;
+    case NONE:
+        break;
+    default:
+        break;
+    }
+   
+    front = board_data->at(heady).at(headx);
+    if (
+        board_data->at(heady).at(headx) == SNAKE ||
+        board_data->at(heady).at(headx) == WALL ||
+        board_data->at(heady).at(headx) == TAIL
+        ) {
+        if (winner != NONE)
+            winner = NONE;
+        else if (player == PLAYER1)
+            winner = PLAYER2;
+        else if (player == PLAYER2)
+            winner = PLAYER1;
+        return false;
+    }
+    board_data->at(heady).at(headx) = HEAD;
+    temp->x = headx;
+    temp->y = heady;
+    temp->next = nullptr;
+
+    switch (player)
+    {
+    case PLAYER1:
+        (*head)->next = temp;
+        (*head) = temp;
+
+        if (front == APPLE) {
+            length++;
+            apple_amount--;
+            apple_removed();
+            return true;
+        }
+
+
+        board_data->at((*tail)->y).at((*tail)->x) = EMPTY;
+        temp = (*tail)->next;
+        (*tail)->next = nullptr;
+        delete (*tail);
+        (*tail) = temp; if ((*tail) == (*head)) return true;
+        board_data->at((*tail)->y).at((*tail)->x) = TAIL;
+        break;
+    case PLAYER2:
+        (*sec_head)->next = temp;
+        (*sec_head) = temp;
+
+        if (front == APPLE) {
+            sec_length++;
+            apple_amount--;
+            apple_removed();
+            return true;
+        }
+
+
+        board_data->at((*sec_tail)->y).at((*sec_tail)->x) = EMPTY;
+        temp = (*sec_tail)->next;
+        (*sec_tail)->next = nullptr;
+        delete (*sec_tail);
+        (*sec_tail) = temp; if ((*sec_tail) == (*sec_head)) return true;
+        board_data->at((*sec_tail)->y).at((*sec_tail)->x) = TAIL;
+
+        break;
+    case NONE:
+        break;
+    default:
+        break;
+    }
+    
     return true;
 }
 

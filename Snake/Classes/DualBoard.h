@@ -13,11 +13,17 @@ private:
     std::array<std::array<board_elements, DUALBOARD_WIDTH>, DUALBOARD_HEIGHT>* board_data;
     struct snake_node** head;
     struct snake_node** tail;
+    struct snake_node** sec_head;
+    struct snake_node** sec_tail;
     int length;
+    int sec_length;
     enum board_dir current;
+    enum board_dir sec_current;
     bool has_apple;
     std::pair<int, int> apple_pos;
     int apple_amount;
+    enum PlayerSelect winner;
+    bool winner_flag;
 
 public:
     DualBoard();
@@ -96,6 +102,9 @@ public:
         update(enum board_dir, enum PlayerSelect);
     int
         get_apple_amount();
+
+    enum PlayerSelect
+        get_winner() { return winner; }
 };
 
 #endif

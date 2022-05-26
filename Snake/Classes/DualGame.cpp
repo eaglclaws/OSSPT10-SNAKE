@@ -83,21 +83,6 @@ enum game_state DualGame::update()
         return state;
     }
 }
-//bool DualGame::place_apple() {
-//    unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
-//    std::mt19937* rng = new std::mt19937(seed1);
-//
-//    int x = (*rng)() % 80 + 1, y = (*rng)() % 40 + 1;
-//
-//    if (board->data()->at(y).at(x) != EMPTY) {
-//        return false;
-//    }
-//    else {
-//        board->data()->at(y).at(x) = APPLE;
-//        board->apple_placed();
-//        return true;
-//    }
-//}
 
 bool DualGame::place_apple() {
     unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
@@ -199,7 +184,30 @@ int DualGame::get_board_width()
 }
 
 void DualGame::key_event(enum key_press ekey) {
-    
+    switch (ekey)
+    {
+    case KEY_UP:
+        break;
+    case KEY_DOWN:
+        break;
+    case KEY_LEFT:
+        break;
+    case KEY_RIGHT:
+        break;
+    case KEY_W:
+        break;
+    case KEY_A:
+        break;
+    case KEY_S:
+        break;
+    case KEY_D:
+        break;
+    case KEY_ESC:
+        pause();
+        break;
+    default:
+        break;
+    }
 }
 
 void DualGame::load(int**, std::vector<std::pair<int, int>>*, int) {
@@ -210,28 +218,28 @@ void DualGame::key_event(enum key_press ekey, enum PlayerSelect player)
 {
     switch (ekey) {
     case KEY_UP:
-        board->set_direction(UP, PLAYER1);
+        board->set_direction(UP, player);
         break;
     case KEY_DOWN:
-        board->set_direction(DOWN, PLAYER1);
+        board->set_direction(DOWN, player);
         break;
     case KEY_LEFT:
-        board->set_direction(LEFT, PLAYER1);
+        board->set_direction(LEFT, player);
         break;
     case KEY_RIGHT:
-        board->set_direction(RIGHT, PLAYER1);
+        board->set_direction(RIGHT, player);
         break;
     case KEY_W:
-        board->set_direction(UP, PLAYER2);
+        board->set_direction(UP, player);
         break;
     case KEY_S:
-        board->set_direction(DOWN, PLAYER2);
+        board->set_direction(DOWN, player);
         break;
     case KEY_A:
-        board->set_direction(LEFT, PLAYER2);
+        board->set_direction(LEFT, player);
         break;
     case KEY_D:
-        board->set_direction(RIGHT, PLAYER2);
+        board->set_direction(RIGHT, player);
         break;
 
     case KEY_ESC:
