@@ -9,6 +9,7 @@ using namespace std;
 
 GameController* GameController::instance = nullptr;
 bool GameController::isCreated = false;
+int GameController::players = 0;
 
 void GameController::clicked(bool isLoad) {
 	instance = GameController::getInstance();
@@ -215,4 +216,8 @@ void GameController::resetData() {
 	fout.close();
 	fout.open("board.txt");
 	fout.close();
+}
+
+void GameController::set_players(int player) {
+	players = player;
 }

@@ -74,6 +74,7 @@ GameScene::init()
     }
     
     auto GC = GameController::getInstance();
+    GC->set_players(1);
     game->init();
     if (GC->isLoadClicked) {
         game->load(GC->loadBoard(), GC->loadSnake(), GC->loadDirection());
@@ -149,48 +150,51 @@ GameScene::update_sprites()
 {
     for (int y = 0; y < bheight; y++) {
         for (int x = 0; x < bwidth; x++) {
-            Sprite *temp;
             const char *file;
-            enum board_dir facing;
-            float angle;
-            facing = game->get_direction();
-            angle = 0.0f;
-            if (facing == UP) {
-                angle = -90.0f;
-            } else if (facing == DOWN) {
-                angle = 90.0f;
-            } else if (facing == LEFT) {
-                angle = 180.0f;
-            }
+            
             switch (game->board_data(x, y)) {
             case EMPTY:
                 file = "empty.png";
-                //temp = nullptr;
                 break;
             case WALL:
                 file = "wall.png";
-                //temp = Sprite::create(file);
                 break;
             case HEAD:
                 file = "snake_head.png";
-                //temp = Sprite::create(file);
-                //if (temp == nullptr) printf("Warning!");
-                //temp->setRotation(angle);
+
                 break;
             case SNAKE:
             case APPLE:
                 file = "snake_body.png";
-                //temp = Sprite::create(file);
                 break;
             case TAIL:
                 file = "snake_tail.png";
-                //temp = Sprite::create(file);
                 break;
             }
-            sprites->at(y).at(x)->setRotation(angle);
             sprites->at(y).at(x)->setTexture(file);
         }
     } 
+
+    enum board_dir facing;
+    float angle = 0.0f;
+    std::pair<int, int> pos;
+
+    for (int i = 0; i < GameController::getInstance()->get_players(); i++) {
+        enum PlayerSelect player = static_cast<PlayerSelect>(i);
+        facing = game->get_direction(player);
+        if (facing == UP) {
+            angle = -90.0f;
+        }
+        else if (facing == DOWN) {
+            angle = 90.0f;
+        }
+        else if (facing == LEFT) {
+            angle = 180.0f;
+        }
+        pos = game->get_head_pos(player);
+
+        sprites->at(pos.second).at(pos.first)->setRotation(angle);
+    }
 }
 
 void
