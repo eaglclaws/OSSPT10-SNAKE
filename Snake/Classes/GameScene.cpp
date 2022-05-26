@@ -26,6 +26,7 @@ limitations under the License.
 #include "GameOverScene.h"
 #include "SoloGame.h"
 #include "GameFactory.h"
+#include "DualResultScene.h"
 
 USING_NS_CC;
 
@@ -151,10 +152,21 @@ GameScene::update(float delta)
     if (time > REFRESH_INTERVAL && !(game->get_state() == GAME_STATE_PAUSE)) {
         if(game->update() == GAME_STATE_OVER) {
             //게임 종료시 데이터 초기화 구현 완료시 각주 풀 것
-            GameController::getInstance()->setScore(game->player_score());
-            GameController::getInstance()->resetData();
-            auto gameover = GameOverScene::createScene();
-            Director::getInstance()->replaceScene(gameover);
+            auto GC = GameController::getInstance();
+
+            GC->setScore(game->player_score());
+            GC->resetData();
+            GC->set_winner(game->get_winner());
+            enum game_T game_type = GC->get_game_type();
+            
+            if (game_type == SOLO) {
+                auto gameover = GameOverScene::createScene();
+                Director::getInstance()->replaceScene(gameover);
+            }
+            else if (game_type == DUAL) {
+                auto gameover = DualResultScene::createScene();
+                Director::getInstance()->replaceScene(gameover);
+            }
         }
         update_sprites();
         draw_board();
@@ -201,6 +213,7 @@ GameScene::update_sprites()
     std::pair<int, int> pos;
 
     for (int i = 0; i < GameController::getInstance()->get_players(); i++) {
+        angle = 0.0f;
         enum PlayerSelect player = static_cast<PlayerSelect>(i);
         facing = game->get_direction(player);
         if (facing == UP) {

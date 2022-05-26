@@ -76,7 +76,7 @@ enum game_state DualGame::update()
     bool board_live = board->update();
     if (!board_live) {
         over();
-        //winner = board->get_winner();
+        winner = board->get_winner();
         return state;
     }
     else {
@@ -254,4 +254,8 @@ std::pair<int, int> DualGame::get_head_pos(enum PlayerSelect player) {
 
 enum board_dir DualGame::get_direction(enum PlayerSelect player) {
     return board->get_direction(player);
+}
+
+enum PlayerSelect DualGame::get_winner() {
+    return winner;
 }

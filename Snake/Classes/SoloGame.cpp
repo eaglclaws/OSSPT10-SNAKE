@@ -185,3 +185,7 @@ board_dir SoloGame::get_direction(enum PlayerSelect player) {
         return board->get_direction();
     return NONE_DIR;
 }
+
+enum PlayerSelect SoloGame::get_winner() {
+    return NONE;
+}

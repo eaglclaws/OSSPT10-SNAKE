@@ -40,6 +40,7 @@ public:
     int get_board_width() override;
     void key_event(enum key_press, enum PlayerSelect) override;
     std::pair<int, int> get_head_pos(enum PlayerSelect) override;
+    enum PlayerSelect get_winner() override;
 };
 
 #endif

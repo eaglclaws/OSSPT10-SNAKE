@@ -80,7 +80,7 @@ DualBoard::init()
     sec_length = 0;
     sec_current = UP;
 
-    winner == NONE;
+    winner = NONE;
 
     for (int y = 0; y < DUALBOARD_HEIGHT; y++) {
         for (int x = 0; x < DUALBOARD_WIDTH; x++) {

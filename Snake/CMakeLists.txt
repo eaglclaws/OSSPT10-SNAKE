@@ -67,6 +67,10 @@ list(APPEND GAME_SOURCE
      Classes/ShowResultScene.cpp
      Classes/StartScene.cpp
      Classes/SoloGame.cpp
+     Classes/GameFactory.cpp
+     Classes/DualGame.cpp
+     Classes/DualBoard.cpp
+     Classes/DualResultScene.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -83,6 +87,10 @@ list(APPEND GAME_HEADER
      Classes/GameResultScene.h 
      Classes/SoloGame.h
      Classes/EnumList.h
+     Classes/GameFactory.h
+     Classes/DualGame.h
+     Classes/DualBoard.h
+     Classes/DualResultScene.h
      )
 
 if(ANDROID)

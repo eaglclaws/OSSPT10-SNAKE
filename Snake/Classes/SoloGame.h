@@ -53,6 +53,7 @@ public:
     int get_board_width() override;
     void key_event(enum key_press, enum PlayerSelect) override;
     board_dir get_direction(enum PlayerSelect) override;
+    enum PlayerSelect get_winner() override;
 };
 
 #endif

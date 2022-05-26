@@ -3,13 +3,6 @@
 
 class Game;
 
-enum game_T {
-    SOLO,
-    DUAL,
-    AUTO1,
-    AUTO2
-};
-
 class GameFactory {
 public:
     Game *createGame(enum game_T);

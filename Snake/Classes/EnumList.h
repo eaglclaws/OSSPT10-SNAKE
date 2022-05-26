@@ -52,4 +52,12 @@ struct snake_node
     int y;
 };
 
+enum game_T {
+    SOLO,
+    DUAL,
+    AUTO1,
+    AUTO2
+};
+
+
 #endif

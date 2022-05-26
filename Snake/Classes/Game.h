@@ -46,6 +46,7 @@ public:
     virtual int get_board_width() = 0;
     virtual void key_event(enum key_press, enum PlayerSelect) = 0;
     virtual board_dir get_direction(enum PlayerSelect) = 0;
+    virtual enum PlayerSelect get_winner() = 0;
 };
 inline Game::~Game() {}
 #endif
