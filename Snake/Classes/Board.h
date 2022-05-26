@@ -90,10 +90,10 @@ public:
         set_apple_pos(int, int);
 
     int
-        get_width() { return BOARD_HEIGHT; }
+        get_width() { return BOARD_WIDTH; }
 
     int
-        get_height() { return BOARD_WIDTH; }
+        get_height() { return BOARD_HEIGHT; }
 
     std::pair<int, int>
         get_snake_head();

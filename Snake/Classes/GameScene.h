@@ -18,6 +18,7 @@ limitations under the License.
 #define __GAME_SCENE_H__
 
 #include <array>
+#include <vector>
 #include <random>
 #include "cocos2d.h"
 #include "Board.h"
@@ -27,7 +28,7 @@ limitations under the License.
 class GameScene : public cocos2d::Scene
 {
 private:
-    std::array<std::array<cocos2d::Sprite *, BOARD_WIDTH>, BOARD_HEIGHT> *sprites;
+    std::vector<std::vector<cocos2d::Sprite *>> *sprites;
     Board *board;
     Game *game;
     GamePauseScene* layer;
@@ -36,6 +37,8 @@ private:
     float time;
     int test;
     std::mt19937 *rng;
+    int bwidth;
+    int bheight;
 public:
     static cocos2d::Scene *
     createScene();

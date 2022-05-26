@@ -48,61 +48,31 @@ GameScene::init()
 {
     if (!Scene::init()) return false;
     
-    unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
-    rng = new std::mt19937(seed1);
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     game = new SoloGame;
     game->place_apple();
-    sprites = new std::array<std::array<Sprite *, BOARD_WIDTH>, BOARD_HEIGHT>;
+    bwidth = game->get_board_width();
+    bheight = game->get_board_height();
+    sprites = new std::vector<std::vector<Sprite*>>(bheight);
+    for (int i = 0; i < bheight; i++) sprites->at(i) = std::vector<Sprite*>(bwidth);
+
     time = 0.0;
     layer = GamePauseScene::create();
     layer->setVisible(false);
     addChild(layer, -1);
-    float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
-    float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
+
     auto listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    for (int y = 0; y < bheight; y++) {
+        for (int x = 0; x < bwidth; x++) {
             sprites->at(y).at(x) = Sprite::create("empty.png");
             sprites->at(y).at(x)->setVisible(true);
             addChild(sprites->at(y).at(x), 0);
         }
     }
     
-    /**
-    int **board_test = new int *[BOARD_HEIGHT];
-    for (int i = 0; i < BOARD_HEIGHT; i++) board_test[i] = new int[BOARD_WIDTH];
-   
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
-            if (y == 0 || y == BOARD_HEIGHT - 1) {
-                board_test[y][x] = 1;
-            } else if (x == 0 || x == BOARD_WIDTH - 1) {
-                board_test[y][x] = 1;
-            } else {
-                board_test[y][x] = 0;
-            }
-        }
-    }
-    board_test[11][10] = 2;
-    board_test[10][10] = board_test[9][10] = 3;
-    board_test[8][10] = 4;
-
-    std::vector<std::pair<int, int>> *snake_test = new std::vector<std::pair<int, int>>;
-    std::pair<int, int> temp(10,8);
-    std::pair<int, int> tmp(10,9);
-    std::pair<int, int> tmp1(10,10);
-    std::pair<int, int> tmp2(10,11);
-    snake_test->push_back(temp);
-    snake_test->push_back(tmp);
-    snake_test->push_back(tmp1);
-    snake_test->push_back(tmp2);
-    game->load(board_test, snake_test, 3);
-    game->place_apple(30, 30);
-    */
     auto GC = GameController::getInstance();
     game->init();
     if (GC->isLoadClicked) {
@@ -122,19 +92,19 @@ void
 GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
     switch (keyCode) {
     case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
-        if (!(game->get_direction() == DOWN)) game->key_event(KEY_UP);
+        if (!(game->get_direction(PLAYER1) == DOWN)) game->key_event(KEY_UP, PLAYER1);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-        if (!(game->get_direction() == UP)) game->key_event(KEY_DOWN);
+        if (!(game->get_direction(PLAYER1) == UP)) game->key_event(KEY_DOWN, PLAYER1);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-        if (!(game->get_direction() == LEFT)) game->key_event(KEY_RIGHT);
+        if (!(game->get_direction(PLAYER1) == LEFT)) game->key_event(KEY_RIGHT, PLAYER1);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-        if (!(game->get_direction() == RIGHT)) game->key_event(KEY_LEFT);
+        if (!(game->get_direction(PLAYER1) == RIGHT)) game->key_event(KEY_LEFT, PLAYER1);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE:
@@ -177,8 +147,8 @@ GameScene::update(float delta)
 void
 GameScene::update_sprites()
 {
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    for (int y = 0; y < bheight; y++) {
+        for (int x = 0; x < bwidth; x++) {
             Sprite *temp;
             const char *file;
             enum board_dir facing;
@@ -232,12 +202,12 @@ GameScene::menuCloseCallback(Ref *pSender)
 void
 GameScene::draw_board()
 {
-    float xoffset = visibleSize.width / 2 - sprite_size * BOARD_WIDTH / 2;
-    float yoffset = visibleSize.height / 2 - sprite_size * BOARD_HEIGHT / 2;
+    float xoffset = visibleSize.width / 2 - sprite_size * bwidth / 2;
+    float yoffset = visibleSize.height / 2 - sprite_size * bheight / 2;
 
     //removeAllChildren();
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
+    for (int y = 0; y < bheight; y++) {
+        for (int x = 0; x < bwidth; x++) {
             if (sprites->at(y).at(x) != nullptr) {
                 sprites->at(y).at(x)->setPosition(Vec2(origin.x + x * sprite_size + xoffset, origin.y + y * sprite_size + yoffset));
                 //sprites->at(y).at(x)->setVisible(true);
