@@ -20,6 +20,7 @@ limitations under the License.
 #include <chrono>
 #include <random>
 #include "GameScene.h"
+#include "SoloGame.h"
 #include "Board.h"
 #include "GamePauseScene.h"
 #include "GameController.h"
@@ -48,6 +49,7 @@ problemLoading(const char *filename)
 bool
 GameScene::init()
 {
+    //Scene 초기화
     if (!Scene::init()) return false;
     
     visibleSize = Director::getInstance()->getVisibleSize();
@@ -64,13 +66,16 @@ GameScene::init()
     for (int i = 0; i < bheight; i++) sprites->at(i) = std::vector<Sprite*>(bwidth);
 
     time = 0.0;
+
+    listener = EventListenerKeyboard::create();
     layer = GamePauseScene::create();
+ 
     layer->setVisible(false);
     addChild(layer, -1);
 
-    auto listener = EventListenerKeyboard::create();
     listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
     for (int y = 0; y < bheight; y++) {
         for (int x = 0; x < bwidth; x++) {
             sprites->at(y).at(x) = Sprite::create("empty.png");
@@ -78,7 +83,6 @@ GameScene::init()
             addChild(sprites->at(y).at(x), 0);
         }
     }
-   
 
     game->init();
     if (GC->isLoadClicked) {
@@ -86,16 +90,17 @@ GameScene::init()
     } else {
         game->place_apple();
     }
+
     update_sprites();
     draw_board();
     scheduleUpdate();
-
     return true;
 }
 
 
 void 
 GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
+    
     switch (keyCode) {
     case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
         if (!(game->get_direction(PLAYER1) == DOWN)) game->key_event(KEY_UP, PLAYER1);
@@ -149,7 +154,11 @@ GameScene::update(float delta)
 {
     if (game->get_state() == GAME_STATE_OVER) return;
     time += delta;
+    
     if (time > REFRESH_INTERVAL && !(game->get_state() == GAME_STATE_PAUSE)) {
+        if (pressed) {
+            listener->setEnabled(false);
+        }
         if(game->update() == GAME_STATE_OVER) {
             //게임 종료시 데이터 초기화 구현 완료시 각주 풀 것
             auto GC = GameController::getInstance();
@@ -172,9 +181,15 @@ GameScene::update(float delta)
         draw_board();
         addChild(layer, 1);
         time = 0.0;
+        pressed = false;
     }
     if (!game->is_apple_placed()) {
         game->place_apple();
+    }
+    if (!pressed) {
+        listener->setEnabled(true);
+    } else {
+        listener->setEnabled(false);
     }
 }
 
@@ -184,7 +199,7 @@ GameScene::update_sprites()
     for (int y = 0; y < bheight; y++) {
         for (int x = 0; x < bwidth; x++) {
             const char *file;
-            
+         
             switch (game->board_data(x, y)) {
             case EMPTY:
                 file = "empty.png";
@@ -194,7 +209,6 @@ GameScene::update_sprites()
                 break;
             case HEAD:
                 file = "snake_head.png";
-
                 break;
             case SNAKE:
             case APPLE:
@@ -205,6 +219,7 @@ GameScene::update_sprites()
                 break;
             }
             sprites->at(y).at(x)->setTexture(file);
+            sprites->at(y).at(x)->setRotation(angle);
         }
     } 
 
@@ -243,12 +258,10 @@ GameScene::draw_board()
     float xoffset = visibleSize.width / 2 - sprite_size * bwidth / 2;
     float yoffset = visibleSize.height / 2 - sprite_size * bheight / 2;
 
-    //removeAllChildren();
     for (int y = 0; y < bheight; y++) {
         for (int x = 0; x < bwidth; x++) {
             if (sprites->at(y).at(x) != nullptr) {
                 sprites->at(y).at(x)->setPosition(Vec2(origin.x + x * sprite_size + xoffset, origin.y + y * sprite_size + yoffset));
-                //sprites->at(y).at(x)->setVisible(true);
             }
         }
     }

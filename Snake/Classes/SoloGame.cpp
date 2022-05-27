@@ -80,6 +80,19 @@ enum game_state SoloGame::update()
     }
 }
 
+
+bool SoloGame::place_apple(int x, int y)
+{
+    if (board->data()->at(y).at(x) != EMPTY) {
+        return false;
+    } else {
+        board->data()->at(y).at(x) = APPLE;
+        board->set_apple_pos(x, y); //apple 위치 저장
+        board->apple_placed();
+        return true;
+    }
+}
+
 bool SoloGame::is_apple_placed()
 {
     return board->is_apple_placed();
@@ -189,3 +202,4 @@ board_dir SoloGame::get_direction(enum PlayerSelect player) {
 enum PlayerSelect SoloGame::get_winner() {
     return NONE;
 }
+

@@ -47,6 +47,7 @@ public:
     void load(int **, std::vector<std::pair<int, int>> *, int) override;
     void key_event(enum key_press) override;
 
+
     bool place_apple() override;
     std::pair<int, int> get_head_pos(enum PlayerSelect) override;
     int get_board_height() override;
@@ -54,6 +55,8 @@ public:
     void key_event(enum key_press, enum PlayerSelect) override;
     board_dir get_direction(enum PlayerSelect) override;
     enum PlayerSelect get_winner() override;
+    bool place_apple(int, int) override;
+
 };
 
 #endif

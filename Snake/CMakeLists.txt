@@ -78,6 +78,8 @@ list(APPEND GAME_HEADER
      Classes/GameScene.h
      Classes/Board.h
      Classes/Game.h
+     Classes/SoloGame.h
+     Classes/GameFactory.h
      Classes/GameController.h
      Classes/GameOverScene.h
      Classes/GamePauseScene.h

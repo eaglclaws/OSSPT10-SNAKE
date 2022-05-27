@@ -20,6 +20,7 @@ private:
 	static int players;
 	static enum PlayerSelect winner;
 	static enum game_T game_type;
+
 public:
 	static GameController* getInstance();
 	bool isLoadClicked;
