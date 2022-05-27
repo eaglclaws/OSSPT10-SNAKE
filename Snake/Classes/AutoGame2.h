@@ -18,14 +18,26 @@ limitations under the License.
 #define __AUTO_GAME_2_H__
 
 #include "Game.h"
+#include <deque>
+#include <tuple>
 
 class AutoGame2 : public Game {
 private:
     class AutoBoard {
     private:
-        std::vector<std::vector<board_elements>> *board;
+        struct point {
+            point(int a, int b)
+            {
+                x = b;
+                y = a;
+            }
+            int x;
+            int y;
+        };
+        std::vector<std::vector<enum board_elements>> board;
         int width;
         int height;
+        std::deque<struct point *> snake;
         enum board_dir current;
         struct snake_node **head;
         struct snake_node **tail;
@@ -41,6 +53,7 @@ private:
         bool is_apple_placed();
     };
     enum game_state state;
+    AutoGame2::AutoBoard *board;
 public:
     AutoGame2();
     //State modification methods

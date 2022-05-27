@@ -17,6 +17,63 @@ limitations under the License.
 #include <exception>
 #include "AutoGame2.h"
 //State modification methods
+AutoGame2::AutoBoard::AutoBoard(int y, int x)
+{
+    height = y;
+    width = x;
+    board = std::vector<std::vector<enum board_elements>>(height);
+    for (int i = 0; i < height; i++) {
+        board.at(i) = std::vector<enum board_elements>(width);
+        for (int j = 0; j < width; j++) {
+            board.at(i).at(j) = EMPTY;
+        }
+    }
+
+    for (int i = 0; i < width; i++) {
+        board.at(0).at(i) = WALL;
+        board.at(height - 1).at(i) = WALL;
+    }
+
+    for (int i = 0; i < height; i++) {
+        board.at(i).at(0) = WALL;
+        board.at(i).at(width - 1) = WALL;
+    }
+
+    snake = std::deque<struct point *>();
+    snake.push_back(new point(height / 2, width / 2));
+    board.at(snake.front->y).at(snake.front->x) = HEAD;
+    board.at(10).at(10) = APPLE;
+}
+enum AutoGame2::AutoBoard::board_elements at(int y, int x)
+{
+    return board.at(y).at(x);
+}
+void AutoGame2::AutoBoard::set_dir(enum board_dir)
+{
+    /*TODO*/
+}
+void AutoGame2::AutoBoard::update()
+{
+    /*TODO*/
+}
+void AutoGame2::AutoBoard::place_apple()
+{
+    /*TODO*/
+}
+int AutoGame2::AutoBoard::get_snake_length()
+{
+    /*TODO*/
+}
+bool AutoGame2::AutoBoard::is_apple_placed()
+{
+    /*TODO*/
+}
+
+AutoGame2::AutoGame2()
+{
+    state = GAME_STATE_INIT;
+    board = new AutoBoard;
+}
 void AutoGame2::init()
 {
     state = GAME_STATE_INIT;
@@ -33,18 +90,39 @@ void AutoGame2::over()
 {
     state = GAME_STATE_OVER;
 }
-enum game_state AutoGame2::update() {/*TODO*/}
-bool AutoGame2::place_apple(int, int) {/*TODO*/}
+enum game_state AutoGame2::update()
+{
+    /*TODO*/
+}
+bool AutoGame2::place_apple(int, int)
+{
+    /*TODO*/
+}
 //State report methods
-enum game_state AutoGame2::get_state() {/*TODO*/}
-enum board_elements AutoGame2::board_data(int, int) {/*TODO*/}
-enum board_dir AutoGame2::get_direction() {/*TODO*/}
-int AutoGame2::player_score() {/*TODO*/}
-bool AutoGame2::is_apple_placed() {/*TODO*/}
+enum game_state AutoGame2::get_state()
+{
+    /*TODO*/
+}
+enum board_elements AutoGame2::board_data(int y, int x)
+{
+    return board->at(y, x);
+}
+enum board_dir AutoGame2::get_direction()
+{
+    /*TODO*/
+}
+int AutoGame2::player_score()
+{
+    /*TODO*/
+}
+bool AutoGame2::is_apple_placed()
+{
+    /*TODO*/
+}
 //Unnecessary methods
 void AutoGame2::key_event(enum key_press)
 {
-    std::terminate();
+    return;
 }
 std::vector<std::pair<int, int>> *AutoGame2::export_snake()
 {
