@@ -53,7 +53,7 @@ GameScene::init()
     GameFactory *GF = new GameFactory;
     auto GC = GameController::getInstance();
     unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
-    auto listener = EventListenerKeyboard::create();
+    listener = EventListenerKeyboard::create();
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     rng = new std::mt19937(seed1);
@@ -62,8 +62,8 @@ GameScene::init()
     game = GF->createGame(SOLO);
     bwidth = BOARD_WIDTH;
     bheight = BOARD_HEIGHT;
-    sprites = new std::vector<std::vector<Sprite *>>;
-    sprites->reserve(bheight); for (int i = 0; i < bheight; i++) sprites->at(i).reserve(bwidth);
+    sprites = new std::vector<std::vector<Sprite *>>(bheight);
+    for (int i = 0; i < bheight; i++) sprites->at(i) = std::vector<Sprite *>(bwidth);
     //Scene utility procedures
     layer->setVisible(false);
     addChild(layer, -1);
@@ -93,20 +93,25 @@ GameScene::init()
 
 void 
 GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
+    
     switch (keyCode) {
     case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
+        pressed = true;
         if (!(game->get_direction() == DOWN)) game->key_event(KEY_UP);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+        pressed = true;
         if (!(game->get_direction() == UP)) game->key_event(KEY_DOWN);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+        pressed = true;
         if (!(game->get_direction() == LEFT)) game->key_event(KEY_RIGHT);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+        pressed = true;
         if (!(game->get_direction() == RIGHT)) game->key_event(KEY_LEFT);
         break;
 
@@ -129,7 +134,11 @@ GameScene::update(float delta)
 {
     if (game->get_state() == GAME_STATE_OVER) return;
     time += delta;
+    
     if (time > REFRESH_INTERVAL && !(game->get_state() == GAME_STATE_PAUSE)) {
+        if (pressed) {
+            listener->setEnabled(false);
+        }
         if(game->update() == GAME_STATE_OVER) {
             //게임 종료시 데이터 초기화 구현 완료시 각주 풀 것
             GameController::getInstance()->setScore(game->player_score());
@@ -141,9 +150,15 @@ GameScene::update(float delta)
         draw_board();
         addChild(layer, 1);
         time = 0.0;
+        pressed = false;
     }
     if (!game->is_apple_placed()) {
         game->place_apple((*rng)() % 40 + 1, (*rng)() % 40 + 1);
+    }
+    if (!pressed) {
+        listener->setEnabled(true);
+    } else {
+        listener->setEnabled(false);
     }
 }
 
@@ -153,7 +168,18 @@ GameScene::update_sprites()
     for (int y = 0; y < bheight; y++) {
         for (int x = 0; x < bwidth; x++) {
             const char* file;
-
+            enum board_dir facing;
+            float angle = 0.0f;
+            facing = game->get_direction();
+            if (facing == UP) {
+                angle = -90.0f;
+            }
+            else if (facing == DOWN) {
+                angle = 90.0f;
+            }
+            else if (facing == LEFT) {
+                angle = 180.0f;
+            }
             switch (game->board_data(x, y)) {
             case EMPTY:
                 file = "empty.png";
@@ -173,9 +199,10 @@ GameScene::update_sprites()
                 break;
             }
             sprites->at(y).at(x)->setTexture(file);
+            sprites->at(y).at(x)->setRotation(angle);
         }
     }
-
+/*
     enum board_dir facing;
     float angle = 0.0f;
     std::pair<int, int> pos;
@@ -196,6 +223,7 @@ GameScene::update_sprites()
 
         sprites->at(pos.second).at(pos.first)->setRotation(angle);
     }
+*/
 }
 
 void

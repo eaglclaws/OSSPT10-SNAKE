@@ -54,8 +54,8 @@ public:
     virtual int export_dir() = 0;
     virtual void load(int **, std::vector<std::pair<int, int>> *, int) = 0;
     virtual bool is_apple_placed() = 0;
-    virtual std::pair<int, int> get_head_pos(enum PlayerSelect) = 0;
-    virtual board_dir get_direction(enum PlayerSelect) = 0;
+//    virtual std::pair<int, int> get_head_pos(enum PlayerSelect) = 0;
+//    virtual board_dir get_direction(enum PlayerSelect) = 0;
 };
 inline Game::~Game() {}
 #endif
