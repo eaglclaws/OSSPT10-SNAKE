@@ -25,7 +25,9 @@ limitations under the License.
 #include "GamePauseScene.h"
 #include "GameController.h"
 #include "GameOverScene.h"
+#include "SoloGame.h"
 #include "GameFactory.h"
+#include "DualResultScene.h"
 
 USING_NS_CC;
 
@@ -49,24 +51,31 @@ GameScene::init()
 {
     //Scene 초기화
     if (!Scene::init()) return false;
-    //필수 변수 지정 TODO: 생성자에 넣어두는 편이 나을까?
-    GameFactory *GF = new GameFactory;
-    auto GC = GameController::getInstance();
-    unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
-    auto listener = EventListenerKeyboard::create();
+    
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
-    rng = new std::mt19937(seed1);
-    layer = GamePauseScene::create();
+
+    auto GC = GameController::getInstance();
+    GameFactory* GF = new GameFactory;
+
+    game = GF->createGame(GC->get_game_type());
+    game->place_apple();
+    bwidth = game->get_board_width();
+    bheight = game->get_board_height();
+    sprites = new std::vector<std::vector<Sprite*>>(bheight);
+    for (int i = 0; i < bheight; i++) sprites->at(i) = std::vector<Sprite*>(bwidth);
+
     time = 0.0;
-    game = GF->createGame(SOLO);
-    bwidth = BOARD_WIDTH;
-    bheight = BOARD_HEIGHT;
-    sprites = new std::vector<std::vector<Sprite *>>;
-    sprites->reserve(bheight); for (int i = 0; i < bheight; i++) sprites->at(i).reserve(bwidth);
-    //Scene utility procedures
+
+    listener = EventListenerKeyboard::create();
+    layer = GamePauseScene::create();
+ 
     layer->setVisible(false);
     addChild(layer, -1);
+
+    listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
     for (int y = 0; y < bheight; y++) {
         for (int x = 0; x < bwidth; x++) {
             sprites->at(y).at(x) = Sprite::create("empty.png");
@@ -74,16 +83,14 @@ GameScene::init()
             addChild(sprites->at(y).at(x), 0);
         }
     }
-    listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    //Game initialization
+
     game->init();
     if (GC->isLoadClicked) {
         game->load(GC->loadBoard(), GC->loadSnake(), GC->loadDirection());
     } else {
-        game->place_apple((*rng)() % 40 + 1, (*rng)() % 40 + 1);
+        game->place_apple();
     }
-    //First Scene update
+
     update_sprites();
     draw_board();
     scheduleUpdate();
@@ -93,22 +100,48 @@ GameScene::init()
 
 void 
 GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
+    
     switch (keyCode) {
     case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
-        if (!(game->get_direction() == DOWN)) game->key_event(KEY_UP);
+        pressed = true;
+        if (!(game->get_direction(PLAYER1) == DOWN)) game->key_event(KEY_UP, PLAYER1);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-        if (!(game->get_direction() == UP)) game->key_event(KEY_DOWN);
+        pressed = true;
+        if (!(game->get_direction(PLAYER1) == UP)) game->key_event(KEY_DOWN, PLAYER1);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-        if (!(game->get_direction() == LEFT)) game->key_event(KEY_RIGHT);
+        pressed = true;
+        if (!(game->get_direction(PLAYER1) == LEFT)) game->key_event(KEY_RIGHT, PLAYER1);
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-        if (!(game->get_direction() == RIGHT)) game->key_event(KEY_LEFT);
+        pressed = true;
+        if (!(game->get_direction(PLAYER1) == RIGHT)) game->key_event(KEY_LEFT, PLAYER1);
         break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_W: case cocos2d::EventKeyboard::KeyCode::KEY_W:
+        pressed = true;
+        if (!(game->get_direction(PLAYER2) == DOWN)) game->key_event(KEY_W, PLAYER2);
+        break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_S: case cocos2d::EventKeyboard::KeyCode::KEY_S:
+        pressed = true;
+        if (!(game->get_direction(PLAYER2) == UP)) game->key_event(KEY_S, PLAYER2);
+        break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_D: case cocos2d::EventKeyboard::KeyCode::KEY_D:
+        pressed = true;
+        if (!(game->get_direction(PLAYER2) == LEFT)) game->key_event(KEY_D, PLAYER2);
+        break;
+
+    case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_A: case cocos2d::EventKeyboard::KeyCode::KEY_A:
+        pressed = true;
+        if (!(game->get_direction(PLAYER2) == RIGHT)) game->key_event(KEY_A, PLAYER2);
+        break;
+
 
     case cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE:
         if (game->get_state() == GAME_STATE_PAUSE) {
@@ -129,21 +162,42 @@ GameScene::update(float delta)
 {
     if (game->get_state() == GAME_STATE_OVER) return;
     time += delta;
+    
     if (time > REFRESH_INTERVAL && !(game->get_state() == GAME_STATE_PAUSE)) {
+        if (pressed) {
+            listener->setEnabled(false);
+        }
         if(game->update() == GAME_STATE_OVER) {
             //게임 종료시 데이터 초기화 구현 완료시 각주 풀 것
-            GameController::getInstance()->setScore(game->player_score());
-            GameController::getInstance()->resetData();
-            auto gameover = GameOverScene::createScene();
-            Director::getInstance()->replaceScene(gameover);
+            auto GC = GameController::getInstance();
+
+            GC->setScore(game->player_score());
+            GC->resetData();
+            GC->set_winner(game->get_winner());
+            enum game_T game_type = GC->get_game_type();
+            
+            if (game_type == SOLO) {
+                auto gameover = GameOverScene::createScene();
+                Director::getInstance()->replaceScene(gameover);
+            }
+            else if (game_type == DUAL) {
+                auto gameover = DualResultScene::createScene();
+                Director::getInstance()->replaceScene(gameover);
+            }
         }
         update_sprites();
         draw_board();
         addChild(layer, 1);
         time = 0.0;
+        pressed = false;
     }
     if (!game->is_apple_placed()) {
-        game->place_apple((*rng)() % 40 + 1, (*rng)() % 40 + 1);
+        game->place_apple();
+    }
+    if (!pressed) {
+        listener->setEnabled(true);
+    } else {
+        listener->setEnabled(false);
     }
 }
 
@@ -152,8 +206,8 @@ GameScene::update_sprites()
 {
     for (int y = 0; y < bheight; y++) {
         for (int x = 0; x < bwidth; x++) {
-            const char* file;
-
+            const char *file;
+         
             switch (game->board_data(x, y)) {
             case EMPTY:
                 file = "empty.png";
@@ -174,13 +228,14 @@ GameScene::update_sprites()
             }
             sprites->at(y).at(x)->setTexture(file);
         }
-    }
+    } 
 
     enum board_dir facing;
     float angle = 0.0f;
     std::pair<int, int> pos;
 
-    for (int i = 0; i < GameController::get_players(); i++) {
+    for (int i = 0; i < GameController::getInstance()->get_players(); i++) {
+        angle = 0.0f;
         enum PlayerSelect player = static_cast<PlayerSelect>(i);
         facing = game->get_direction(player);
         if (facing == UP) {

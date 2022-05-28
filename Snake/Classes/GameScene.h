@@ -32,6 +32,7 @@ private:
     Board *board;
     Game *game;
     GamePauseScene* layer;
+    cocos2d::EventListenerKeyboard *listener;
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
     float time;
@@ -39,6 +40,8 @@ private:
     std::mt19937 *rng;
     int bwidth;
     int bheight;
+    bool pressed;
+
 public:
     static cocos2d::Scene *
     createScene();

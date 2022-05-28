@@ -22,6 +22,7 @@ GamePauseScene* GamePauseScene::create() {
     });
     restart_button->setColor(cocos2d::Color3B(0, 0, 0));
 
+    
     auto save_button = cocos2d::MenuItemFont::create("Save", [layer](Ref* psender) {
         GameController::getInstance()->saveGame();
 
@@ -29,6 +30,10 @@ GamePauseScene* GamePauseScene::create() {
         cocos2d::Director::getInstance()->replaceScene(scene);
     });
     save_button->setColor(cocos2d::Color3B(0, 0, 0));
+
+    if (GameController::getInstance()->get_game_type() != SOLO) {
+        save_button->setEnabled(false);
+    }
 
     auto exit_button = cocos2d::MenuItemFont::create("Return to title", [layer](Ref* psender) {
         auto scene = StartScene::createScene();

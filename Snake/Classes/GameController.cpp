@@ -9,6 +9,9 @@ using namespace std;
 
 GameController* GameController::instance = nullptr;
 bool GameController::isCreated = false;
+int GameController::players = 0;
+enum game_T GameController::game_type;
+enum PlayerSelect GameController::winner = NONE;
 
 void GameController::clicked(bool isLoad) {
 	instance = GameController::getInstance();
@@ -27,7 +30,7 @@ GameController* GameController::getInstance() {
 
 void GameController::resetGame() {
 	this->game->init();
-    game->place_apple(25, 5);
+    game->place_apple();
 	this->game->play();
 }
 
@@ -215,4 +218,23 @@ void GameController::resetData() {
 	fout.close();
 	fout.open("board.txt");
 	fout.close();
+}
+
+void GameController::set_players(int player) {
+	players = player;
+}
+
+enum game_T GameController::get_game_type() {
+	return game_type;
+}
+void GameController::set_game_type(enum game_T game_t) {
+	game_type = game_t;
+}
+
+void GameController::set_winner(enum PlayerSelect win) {
+	winner = win;
+}
+
+enum PlayerSelect GameController::get_winner() {
+	return winner;
 }

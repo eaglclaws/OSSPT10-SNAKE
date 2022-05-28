@@ -77,6 +77,19 @@ cocos run -s . -p mac -m release -o ./bin
 ```
 
 ### Windows
+
+Download the latest version of cocos2d-x from [here](https://www.cocos.com/en/cocos2dx/download) and extract its contents. Once extracted, run the following
+```
+cd cocos2d-x-4.0
+python setup.py
+```
+
+if the following command outputs a version number, system is read to build
+```
+cocos -v
+```
+
+build and run by running
 ```
 git clone https://github.com/eaglclaws/OSSPT10-SNAKE
 cd OSSPT10-SNAKE/Snake

@@ -6,6 +6,7 @@
 #include "Game.h"
 #include <vector>
 #include <utility>
+#include "GameFactory.h"
 
 using namespace std;
 
@@ -17,6 +18,9 @@ private:
 	void saveDirection(int dir);
 	static GameController* instance;
 	static int players;
+	static enum PlayerSelect winner;
+	static enum game_T game_type;
+
 public:
 	static GameController* getInstance();
 	bool isLoadClicked;
@@ -54,7 +58,13 @@ public:
 	//파일에 저장한 랭킹을 불러옴. (RankingScene에서 사용할 수 있게)
 	static vector<pair<int, string>>* getRecordedRank();
 	void resetData();
+
 	static int get_players() { return players; };
+	static void set_players(int);
+	static enum game_T get_game_type();
+	static void set_game_type(enum game_T);
+	static void set_winner(enum PlayerSelect);
+	static enum PlayerSelect get_winner();
 };
 
 #endif
