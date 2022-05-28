@@ -26,6 +26,7 @@ class AutoGame: public Game {
 private:
     Board* board;
     enum game_state state;
+    void autoplay_by_direction(enum board_dir);
 public:
     AutoGame();
     ~AutoGame();
