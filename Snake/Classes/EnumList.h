@@ -14,10 +14,9 @@ enum board_elements
 enum board_dir
 {
     UP,
-    DOWN,
-    LEFT,
     RIGHT,
-    NONE_DIR
+    DOWN,
+    LEFT
 };
 
 enum PlayerSelect {
