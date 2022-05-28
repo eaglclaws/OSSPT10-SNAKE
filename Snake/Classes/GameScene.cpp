@@ -28,6 +28,7 @@ limitations under the License.
 #include "SoloGame.h"
 #include "GameFactory.h"
 #include "DualResultScene.h"
+#include "AutoGame2.h"
 
 USING_NS_CC;
 

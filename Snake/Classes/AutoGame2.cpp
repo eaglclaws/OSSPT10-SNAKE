@@ -17,11 +17,13 @@ limitations under the License.
 #include <cstdlib>
 #include <exception>
 #include "AutoGame2.h"
+#include "EnumList.h"
 //State modification methods
 AutoGame2::AutoBoard::AutoBoard(int y, int x)
 {
     height = y;
     width = x;
+    apple_placed = false;
     board = std::vector<std::vector<enum board_elements>>(height);
     for (int i = 0; i < height; i++) {
         board.at(i) = std::vector<enum board_elements>(width);
@@ -42,11 +44,14 @@ AutoGame2::AutoBoard::AutoBoard(int y, int x)
 
     snake = std::deque<struct point *>();
     snake.push_back(new point(height / 2, width / 2));
-    snake.push_back(new point(snake.front->x, snake.front->y - 1));
-    board.at(snake.front->y).at(snake.front->x) = HEAD;
-    place_apple();
+    snake.push_back(new point(snake.front()->y - 1, snake.front()->x));
+    board.at(snake.front()->y).at(snake.front()->x) = HEAD;
+    board.at(snake.back()->y).at(snake.back()->x) = TAIL;
+    head_x = snake.front()->x;
+    head_y = snake.front()->y;
+    set_dir(UP);
 }
-enum AutoGame2::AutoBoard::board_elements at(int y, int x)
+enum board_elements AutoGame2::AutoBoard::at(int y, int x)
 {
     return board.at(y).at(x);
 }
@@ -58,6 +63,22 @@ enum board_dir AutoGame2::AutoBoard::get_dir()
 {
     return current_dir;
 }
+int AutoGame2::AutoBoard::get_head_x()
+{
+    return head_x;
+}
+int AutoGame2::AutoBoard::get_head_y()
+{
+    return head_y;
+}
+int AutoGame2::AutoBoard::get_apple_x()
+{
+    return apple_x;
+}
+int AutoGame2::AutoBoard::get_apple_y()
+{
+    return apple_y;
+}
 bool AutoGame2::AutoBoard::update()
 {
     int xinc, yinc;
@@ -65,39 +86,50 @@ bool AutoGame2::AutoBoard::update()
     case UP:
         xinc = 0;
         yinc = 1;
+        break;
     case DOWN:
         xinc = 0;
         yinc = -1;
+        break;
     case LEFT:
         xinc = -1;
         yinc = 0;
+        break;
     case RIGHT:
         xinc = 1;
         yinc = 0;
+        break;
+    case NONE_DIR:
+        break;
     }
-    int next_head_x = snake.front->x + xinc;
-    int next_head_y = snake.front->y + yinc;
+    int next_head_x = snake.front()->x + xinc;
+    int next_head_y = snake.front()->y + yinc;
     if (board.at(next_head_y).at(next_head_x) == SNAKE ||
             board.at(next_head_y).at(next_head_x) == WALL ||
             board.at(next_head_y).at(next_head_x) == TAIL) {
         return false;
     }
-    board.at(snake.front->y).at(snake.front->x) = SNAKE;
-    snake.push_front(new point(next_head_x, next_head_y));
-    if (board.at(snake.front->y).at(snake.front->x) == APPLE) {
+    board.at(snake.front()->y).at(snake.front()->x) = SNAKE;
+    snake.push_front(new point(next_head_y, next_head_x));
+    head_x = snake.front()->x;
+    head_y = snake.front()->y;
+    if (board.at(snake.front()->y).at(snake.front()->x) == APPLE) {
+        board.at(snake.front()->y).at(snake.front()->x) = HEAD;
         snake_length++;
-        board.at(snake.front->y).at(snake.front->x) = HEAD;
         apple_placed = false;
         return true;
     }
-    board.at(snake.back->y).at(snake.back->x) = EMPTY;
+    board.at(snake.front()->y).at(snake.front()->x) = HEAD;
+    board.at(snake.back()->y).at(snake.back()->x) = EMPTY;
     snake.pop_back();
-    board.at(snake.back-y).at(snake.back->x) = TAIL;
+    board.at(snake.back()->y).at(snake.back()->x) = TAIL;
+    return true;
 }
 bool AutoGame2::AutoBoard::place_apple()
 {
-    int y = std::rand() % height;
-    int x = std::rand() % width;
+    if (apple_placed) return false;
+    int y = 10; //std::rand() % height;
+    int x = 10; //std::rand() % width;
     if (board.at(y).at(x) != EMPTY) {
         return false;
     } else {
@@ -120,6 +152,14 @@ bool AutoGame2::AutoBoard::is_apple_placed()
 {
     return apple_placed;
 }
+int AutoGame2::AutoBoard::get_width()
+{
+    return width;
+}
+int AutoGame2::AutoBoard::get_height()
+{
+    return height;
+}
 
 AutoGame2::AutoGame2(int y, int x)
 {
@@ -132,47 +172,14 @@ AutoGame2::AutoGame2(int y, int x)
         }
     }
     board = new AutoBoard(y, x);
+    scan_graph();
+    dist = std::vector<int>(y * x);
+    prev = std::vector<int>(y * x);
+    Q = std::vector<int>(y * x);
     for (int i = 0; i < y * x; i++) {
-        int board_y = i / x;
-        int board_x = i % x;
-        if (board.at(board_y).at(board_x) == WALL) continue;
-        int id_r = board_y       * x + board_x + 1;
-        int id_l = board_y       * x + board_x - 1;
-        int id_u = (board_y - 1) * x + board_x;
-        int id_d = (board_y + 1) * x + board_x;
-
-        bool xunder = board_x - 1 < 0;
-        bool xover = board_x + 1 >= x;
-        bool yunder = board_y - 1 < 0;
-        bool yover = board_y + 1 >= y;   
-        if (!xover) {
-            if (board.at(board_y).at(board_x + 1) == EMPTY) {
-                graph.at(id).at(id_r) = 1;
-            } else {
-                graph.at(id).at(id_r) = 0;
-            }
-        }
-        if (!xunder) {
-            if (board.at(board_y).at(board_x - 1) == EMPTY) {
-                graph.at(id).at(id_l) = 1;
-            } else {
-                graph.at(id).at(id_l) = 0;
-            }
-        }
-        if (!yover) {
-            if (board.at(board_y + 1).at(board_x) == EMPTY) {
-                graph.at(id_d).at(id) = 1;
-            } else {
-                graph.at(id_d).at(id) = 0;
-            }
-        }
-        if (!yunder) {
-            if (board.at(board_y - 1).at(board_x) == EMPTY) {
-                graph.at(id_u).at(id) = 1;
-            } else {
-                graph.at(id_u).at(id) = 0;
-            }
-        }
+        dist.at(i) = y * x;
+        prev.at(i) = -1;
+        Q.at(i) = 1;
     }
 }
 void AutoGame2::init()
@@ -193,18 +200,60 @@ void AutoGame2::over()
 }
 enum game_state AutoGame2::update()
 {
-    switch (board->get_dir) {
-    case UP:
-    case DOWN:
-        board->set_dir(RIGHT);
-        break;
-    case LEFT:
-        board->set_dir(UP);
-        break;
-    case RIGHT:
-        board->set_dir(DOWN);
-        break;
+    int y = board->get_head_y();
+    int x = board->get_head_x();
+    scan_graph();
+    enum board_dir next = next_dir(board->get_apple_y(), board->get_apple_x(),
+            board->get_head_y(), board->get_head_x());
+    if (next == NONE_DIR) {
+        switch (board->get_dir()) {
+        case UP:
+            if (y - 1 >= 0 && board->at(y - 1, x) == EMPTY) {
+                next = UP;
+            } else if (x - 1 >= 0 && board->at(y, x - 1) == EMPTY) {
+                next = LEFT;
+            } else if (x + 1 < board->get_width() && board->at(y, x + 1) == EMPTY) {
+                next = RIGHT;
+            } else {
+                next = UP;
+            }
+            break;
+        case DOWN:
+            if (y + 1 < board->get_height() && board->at(y + 1, x) == EMPTY) {
+                next = DOWN;
+            } else if (x - 1 >= 0 && board->at(y, x - 1) == EMPTY) {
+                next = LEFT;
+            } else if (x + 1 < board->get_width() && board->at(y, x + 1) == EMPTY) {
+                next = RIGHT;
+            } else {
+                next = DOWN;
+            }
+            break;
+        case LEFT:
+            if (y - 1 >= 0 && board->at(y - 1, x) == EMPTY) {
+                next = UP;
+            } else if (y + 1 < board->get_height() && board->at(y + 1, x) == EMPTY) {
+                next = DOWN;
+            } else if (x - 1 < board->get_width() && board->at(y, x - 1) == EMPTY) {
+                next = LEFT;
+            } else {
+                next = LEFT;
+            }
+            break;
+        case RIGHT:
+            if (y - 1 >= 0 && board->at(y - 1, x) == EMPTY) {
+                next = UP;
+            } else if (y + 1 < board->get_height() && board->at(y + 1, x) == EMPTY) {
+                next = DOWN;
+            } else if (x + 1 >= 0 && board->at(y, x + 1) == EMPTY) {
+                next = RIGHT;
+            } else {
+                next = RIGHT;
+            }
+            break;
+        }
     }
+    board->set_dir(next);
     if(!board->update()) {
         over();
         return GAME_STATE_OVER;
@@ -212,7 +261,7 @@ enum game_state AutoGame2::update()
         return GAME_STATE_PLAY;
     }
 }
-bool AutoGame2::place_apple(int x, int y)
+bool AutoGame2::place_apple()
 {
     return board->place_apple();
 }
@@ -235,7 +284,7 @@ int AutoGame2::player_score()
 }
 bool AutoGame2::is_apple_placed()
 {
-    return board->is_apple_place();
+    return board->is_apple_placed();
 }
 //Unnecessary methods
 void AutoGame2::key_event(enum key_press)
@@ -244,25 +293,152 @@ void AutoGame2::key_event(enum key_press)
 }
 std::vector<std::pair<int, int>> *AutoGame2::export_snake()
 {
-    std::terminate();
+    return nullptr;
 }
 int AutoGame2::export_dir()
 {
-    std::terminate();
+    return -1;
 }
 int **AutoGame2::export_board()
 {
-    std::terminate();
+    return nullptr;
 }
 void AutoGame2::load(int **, std::vector<std::pair<int, int>> *, int)
 {
-    std::terminate();
+    return;
 }
 std::pair<int, int> AutoGame2::get_head_pos(enum PlayerSelect)
 {
-    std::terminate();
+    return std::pair<int, int>(board->get_head_x(), board->get_head_y());
 }
 board_dir AutoGame2::get_direction(enum PlayerSelect)
 {
-    std::terminate();
+    return board->get_dir();
+}
+int AutoGame2::get_board_height()
+{
+    return board->get_height();
+}
+int AutoGame2::get_board_width()
+{
+    return board->get_width();
+}
+void AutoGame2::key_event(enum key_press, enum PlayerSelect)
+{
+    return;
+}
+enum PlayerSelect AutoGame2::get_winner()
+{
+    return PLAYER1;
+}
+
+enum board_dir AutoGame2::next_dir(int dy, int dx, int sy, int sx)
+{
+    board_dir dir;
+    int y = board->get_height();
+    int x = board->get_width();
+    int src = sy * board->get_width() + sx;
+    int des = dy * board->get_width() + dx;
+
+    for (int i = 0; i < y * x; i++) {
+        dist.at(i) = y * x;
+        prev.at(i) = -1;
+        Q.at(i) = 1;
+    }
+    dist.at(src) = 0;
+    
+    int u;
+    int v;
+    for (int k = 0; k < y * x + 2; k++) {
+        int dist_min = y * x;
+        for (int i = 0; i < y * x; i++) {
+            if (dist.at(i) < dist_min) {
+                dist_min = dist.at(i);
+                u = i;
+            }
+        }
+        Q.at(u) = 0;
+        if (u == des) break;
+        for (int i = 0; i < y * x; i++) {
+            if (graph.at(i).at(u) == 1 && Q.at(i) == 1) {
+                v = i;
+                int alt = dist.at(u) + 1;
+                printf("%d\n", alt);
+                if (alt < dist.at(v)) {
+                    dist.at(v) = alt;
+                    prev.at(v) = u;
+                }
+            }
+        }
+        dist_min = y * x;
+    }
+    if (prev.at(des) == -1) {
+        return NONE_DIR;
+    } else {
+        printf("breakpoint\n");
+        int next_node;
+        int cur_node = des;
+        while (prev.at(cur_node) != src) {
+            next_node = prev.at(cur_node);
+            cur_node = next_node;
+        }
+        if (src + 1 == cur_node) {
+            dir = RIGHT;
+        } else if (src - 1 == cur_node) {
+            dir = LEFT;
+        } else if (src - x == cur_node) {
+            dir = UP;
+        } else if (src + x == cur_node) {
+            dir = DOWN;
+        }
+    }
+    return dir;
+}
+void AutoGame2::scan_graph()
+{
+    int y = board->get_height();
+    int x = board->get_width();
+    for (int i = 0; i < y * x; i++) {
+        int board_y = i / x;
+        int board_x = i % x;
+        int id = i;
+        if (board->at(board_y, board_x) == WALL) continue;
+        int id_r = board_y       * x + board_x + 1;
+        int id_l = board_y       * x + board_x - 1;
+        int id_u = (board_y - 1) * x + board_x;
+        int id_d = (board_y + 1) * x + board_x;
+    
+        bool xunder = board_x - 1 < 0;
+        bool xover = board_x + 1 >= x;
+        bool yunder = board_y - 1 < 0;
+        bool yover = board_y + 1 >= y;   
+        if (!xover) {
+            if (board->at(board_y, board_x + 1) == EMPTY || board->at(board_y, board_x + 1) == APPLE) {
+                graph.at(id).at(id_r) = 1;
+            } else {
+                graph.at(id).at(id_r) = 0;
+            }
+        }
+        if (!xunder) {
+            if (board->at(board_y, board_x - 1) == EMPTY || board->at(board_y, board_x - 1) == APPLE) {
+                graph.at(id).at(id_l) = 1;
+            } else {
+                graph.at(id).at(id_l) = 0;
+            }
+        }
+        if (!yover) {
+            if (board->at(board_y + 1, board_x) == EMPTY || board->at(board_y + 1, board_x) == APPLE) {
+                graph.at(id_d).at(id) = 1;
+            } else {
+                graph.at(id_d).at(id) = 0;
+            }
+        }
+        if (!yunder) {
+            if (board->at(board_y - 1, board_x) == EMPTY || board->at(board_y - 1, board_x) == APPLE) {
+                graph.at(id_u).at(id) = 1;
+            } else {
+                graph.at(id_u).at(id) = 0;
+            }
+        }
+    }
 }

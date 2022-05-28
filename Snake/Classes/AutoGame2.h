@@ -45,29 +45,40 @@ private:
         bool apple_placed;
         int apple_x;
         int apple_y;
+        int head_x;
+        int head_y;
     public:
         AutoBoard(int, int);
         enum board_elements at(int, int);
         void set_dir(enum board_dir);
         enum board_dir get_dir();
         bool update();
-        void place_apple();
+        bool place_apple();
         void set_apple(int, int);
         int get_snake_length();
         bool is_apple_placed();
+        int get_width();
+        int get_height();
+        int get_head_x();
+        int get_head_y();
+        int get_apple_x();
+        int get_apple_y();
     };
     enum game_state state;
     AutoGame2::AutoBoard *board;
     std::vector<std::vector<int>> graph;
+    std::vector<int> dist;
+    std::vector<int> prev;
+    std::vector<int> Q;
 public:
-    AutoGame2();
+    AutoGame2(int, int);
     //State modification methods
     void init() override;
     void play() override;
     void pause() override;
     void over() override;
     enum game_state update() override;
-    bool place_apple(int, int) override; //TODO: Eventually deprecate this method
+    bool place_apple() override; //TODO: Eventually deprecate this method
     //State report methods
     enum game_state get_state() override;
     enum board_elements board_data(int, int) override;
@@ -82,4 +93,13 @@ public:
     void load(int **, std::vector<std::pair<int, int>> *, int) override;
     std::pair<int, int> get_head_pos(enum PlayerSelect) override;
     board_dir get_direction(enum PlayerSelect) override;
+    int get_board_height() override;
+    int get_board_width() override;
+    void key_event(enum key_press, enum PlayerSelect) override;
+    enum PlayerSelect get_winner() override;
+private:
+    enum board_dir next_dir(int, int, int, int);
+    void scan_graph();
 };
+
+#endif
