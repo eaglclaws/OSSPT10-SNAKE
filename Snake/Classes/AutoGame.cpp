@@ -106,6 +106,153 @@ int AutoGame::player_score()
 
 void
 Game::autoplay_by_direction(enum board_dir dir) {
+
+    int xinc = 0, yinc = 0;
+    switch (dir) {
+    case UP:
+        yinc = 1;
+        break;
+    case DOWN:
+        yinc = -1;
+        break;
+    case LEFT:
+        xinc = -1;
+        break;
+    case RIGHT:
+        xinc = 1;
+        break;
+    }
+
+    if (xinc != 0 && board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + xinc) == WALL) {
+        if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == TAIL) {
+            board->set_direction(DOWN);
+            return;
+        }
+        else if (board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == TAIL) {
+            board->set_direction(UP);
+            return;
+        }
+    }
+    if (yinc != 0 && board->data()->at((*(board->get_head()))->y + yinc).at((*(board->get_head()))->x) == WALL) {
+        if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == TAIL) {
+            board->set_direction(LEFT);
+            return;
+        }
+        else if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == TAIL) {
+            board->set_direction(RIGHT);
+            return;
+        }
+    }
+    //int xdetect = 0;
+    //int ydetect = 0;
+    int checksnake = 0;
+
+    if (board->data()->at((*(board->get_head()))->y + yinc).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + yinc).at((*(board->get_head()))->x) == TAIL) {
+        if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == TAIL) {
+            board->set_direction(LEFT);
+            return;
+        }
+        else if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == TAIL) {
+            board->set_direction(RIGHT);
+            return;
+        }
+        if (yinc > 0) {
+            checksnake -= 1;
+            while (board->data()->at((*(board->get_head()))->y + checksnake).at((*(board->get_head()))->x) == SNAKE) {
+                checksnake -= 1;
+            }
+            if (board->data()->at((*(board->get_head()))->y + checksnake + 1).at((*(board->get_head()))->x + 1) == SNAKE) {
+                board->set_direction(LEFT);
+                return;
+            }
+            else {
+                board->set_direction(RIGHT);
+                return;
+            }
+        }
+        if (yinc < 0) {
+            checksnake += 1;
+            while (board->data()->at((*(board->get_head()))->y + checksnake).at((*(board->get_head()))->x) == SNAKE) {
+                checksnake += 1;
+            }
+            if (board->data()->at((*(board->get_head()))->y + checksnake - 1).at((*(board->get_head()))->x + 1) == SNAKE) {
+                board->set_direction(LEFT);
+                return;
+            }
+            else {
+                board->set_direction(RIGHT);
+                return;
+            }
+        }
+        //while (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + xdetect) != SNAKE) {
+        //    xdetect += 1;
+        //    if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + xdetect) == WALL) {
+        //        xdetect = -1;
+        //    }
+        //}
+        //if (xdetect > 0) {
+        //    board->set_direction(LEFT);
+        //    return;
+        //}
+        //else {
+        //    board->set_direction(RIGHT);
+        //    return;
+        //}
+    }
+    if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + xinc) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + xinc) == TAIL) {
+        if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == TAIL) {
+            board->set_direction(DOWN);
+            return;
+        }
+        else if (board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == TAIL) {
+            board->set_direction(UP);
+            return;
+        }
+        if (xinc > 0) {
+            checksnake -= 1;
+            while (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + checksnake) == SNAKE) {
+                checksnake -= 1;
+            }
+            if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x + checksnake + 1) == SNAKE) {
+                board->set_direction(DOWN);
+                return;
+            }
+            else {
+                board->set_direction(UP);
+                return;
+            }
+        }
+        if (xinc < 0) {
+            checksnake += 1;
+            while (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + checksnake) == SNAKE) {
+                checksnake += 1;
+            }
+            if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x + checksnake - 1) == SNAKE) {
+                board->set_direction(DOWN);
+                return;
+            }
+            else {
+                board->set_direction(UP);
+                return;
+            }
+        }
+
+        //while (board->data()->at((*(board->get_head()))->y + ydetect).at((*(board->get_head()))->x) != SNAKE) {
+        //    ydetect += 1;
+        //    if (board->data()->at((*(board->get_head()))->y + ydetect).at((*(board->get_head()))->x) == WALL) {
+        //        ydetect = -1;
+        //    }
+        //}
+        //if (ydetect > 0) {
+        //    board->set_direction(DOWN);
+        //    return;
+        //}
+        //else {
+        //    board->set_direction(UP);
+        //    return;
+        //}
+    }
+
     switch (dir) {
     case UP:
         if ((*(board->get_head()))->y < board->get_apple_pos().second) {
@@ -114,16 +261,25 @@ Game::autoplay_by_direction(enum board_dir dir) {
         }
         else if ((*(board->get_head()))->y == board->get_apple_pos().second) {
             if ((*(board->get_head()))->x < board->get_apple_pos().first) {
+                if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 1) % 4));
                 break;
             }
             else if ((*(board->get_head()))->x == board->get_apple_pos().first) {
                 if ((*(board->get_head()))->y >= 40) {
                     if ((*(board->get_head()))->x <= 20) {
+                        if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == TAIL) {
+                            break;
+                        }
                         board->set_direction((board_dir)((dir + 1) % 4));
                         break;
                     }
                     else {
+                        if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == TAIL) {
+                            break;
+                        }
                         board->set_direction((board_dir)((dir + 3) % 4));
                         break;
                     }
@@ -131,6 +287,9 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 break;
             }
             else {
+                if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 3) % 4));
                 //board->set_direction(DOWN);
                 break;
@@ -138,13 +297,22 @@ Game::autoplay_by_direction(enum board_dir dir) {
         }
         else {
             if ((*(board->get_head()))->x < board->get_apple_pos().first) {
+                if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 1) % 4));
                 //autoplay_by_direction((board_dir)((dir + 1) % 4));
                 break;
             }
             else if ((*(board->get_head()))->x == board->get_apple_pos().first) {
                 if ((*(board->get_head()))->x >= 40) {
+                    if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == TAIL) {
+                        break;
+                    }
                     board->set_direction((board_dir)((dir + 3) % 4));
+                    break;
+                }
+                if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == TAIL) {
                     break;
                 }
                 board->set_direction((board_dir)((dir + 1) % 4));
@@ -152,6 +320,9 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 break;
             }
             else {
+                if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 3) % 4));
                 //board->set_direction(UP);
                 //autoplay_by_direction((board_dir)((dir + 3) % 4));
@@ -167,28 +338,45 @@ Game::autoplay_by_direction(enum board_dir dir) {
         }
         else if ((*(board->get_head()))->x == board->get_apple_pos().first) {
             if ((*(board->get_head()))->y > board->get_apple_pos().second) {
+                if (board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 1) % 4));
                 //board->set_direction(UP);
                 break;
             }
             else if ((*(board->get_head()))->y == board->get_apple_pos().second) {
-                if ((*(board->get_head()))->y > 20) {
-                    board->set_direction((board_dir)((dir + 1) % 4));
-                    break;
-                }
-                else {
-                    board->set_direction((board_dir)((dir + 3) % 4));
-                    break;
+                if ((*(board->get_head()))->x >= 40) {
+                    if ((*(board->get_head()))->y > 20) {
+                        if (board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == TAIL) {
+                            break;
+                        }
+                        board->set_direction((board_dir)((dir + 1) % 4));
+                        break;
+                    }
+                    else {
+                        if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == TAIL) {
+                            break;
+                        }
+                        board->set_direction((board_dir)((dir + 3) % 4));
+                        break;
+                    }
                 }
                 break;
             }
             else {
+                if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 3) % 4));
                 break;
             }
         }
         else {
             if ((*(board->get_head()))->y > board->get_apple_pos().second) {
+                if (board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 1) % 4));
                 //board->set_direction(DOWN);
                 //autoplay_by_direction((board_dir)((dir + 1) % 4));
@@ -197,7 +385,13 @@ Game::autoplay_by_direction(enum board_dir dir) {
             else if ((*(board->get_head()))->y == board->get_apple_pos().second) {
                 if ((*(board->get_head()))->x >= 40) {
                     if ((*(board->get_head()))->y <= 1) {
+                        if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == TAIL) {
+                            break;
+                        }
                         board->set_direction((board_dir)((dir + 3) % 4));
+                        break;
+                    }
+                    if (board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == TAIL) {
                         break;
                     }
                     board->set_direction((board_dir)((dir + 1) % 4));
@@ -207,6 +401,9 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 }
             }
             else {
+                if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 3) % 4));
                 //autoplay_by_direction((board_dir)((dir + 3) % 4));
                 break;
@@ -222,16 +419,25 @@ Game::autoplay_by_direction(enum board_dir dir) {
         }
         else if ((*(board->get_head()))->y == board->get_apple_pos().second) {
             if ((*(board->get_head()))->x > board->get_apple_pos().first) {
+                if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 1) % 4));
                 break;
             }
             else if ((*(board->get_head()))->x == board->get_apple_pos().first) {
                 if ((*(board->get_head()))->y <= 1) {
                     if ((*(board->get_head()))->x > 20) {
+                        if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == TAIL) {
+                            break;
+                        }
                         board->set_direction((board_dir)((dir + 1) % 4));
                         break;
                     }
                     else {
+                        if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == TAIL) {
+                            break;
+                        }
                         board->set_direction((board_dir)((dir + 3) % 4));
                         break;
                     }
@@ -239,19 +445,31 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 break;
             }
             else {
+                if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 3) % 4));
                 break;
             }
         }
         else {
             if ((*(board->get_head()))->x > board->get_apple_pos().first) {
+                if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 1) % 4));
                 //autoplay_by_direction((board_dir)((dir + 1) % 4));
                 break;
             }
             else if ((*(board->get_head()))->x == board->get_apple_pos().first) {
                 if ((*(board->get_head()))->x <= 1) {
+                    if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == TAIL) {
+                        break;
+                    }
                     board->set_direction((board_dir)((dir + 3) % 4));
+                    break;
+                }
+                if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x - 1) == TAIL) {
                     break;
                 }
                 board->set_direction((board_dir)((dir + 1) % 4));
@@ -259,6 +477,9 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 break;
             }
             else {
+                if (board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == SNAKE || board->data()->at((*(board->get_head()))->y).at((*(board->get_head()))->x + 1) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 3) % 4));
                 //autoplay_by_direction((board_dir)((dir + 3) % 4));
                 break;
@@ -274,16 +495,25 @@ Game::autoplay_by_direction(enum board_dir dir) {
         }
         else if ((*(board->get_head()))->x == board->get_apple_pos().first) {
             if ((*(board->get_head()))->y < board->get_apple_pos().second) {
+                if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 1) % 4));
                 break;
             }
             else if ((*(board->get_head()))->y == board->get_apple_pos().second) {
                 if ((*(board->get_head()))->x <= 1) {
                     if ((*(board->get_head()))->y <= 20) {
+                        if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == TAIL) {
+                            break;
+                        }
                         board->set_direction((board_dir)((dir + 1) % 4));
                         break;
                     }
                     else {
+                        if (board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == TAIL) {
+                            break;
+                        }
                         board->set_direction((board_dir)((dir + 3) % 4));
                         break;
                     }
@@ -291,19 +521,31 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 break;
             }
             else {
+                if (board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 3) % 4));
                 break;
             }
         }
         else {
             if ((*(board->get_head()))->y < board->get_apple_pos().second) {
+                if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 1) % 4));
                 //autoplay_by_direction((board_dir)((dir + 1) % 4));
                 break;
             }
             else if ((*(board->get_head()))->y == board->get_apple_pos().second) {
                 if ((*(board->get_head()))->y >= 40) {
+                    if (board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == TAIL) {
+                        break;
+                    }
                     board->set_direction((board_dir)((dir + 3) % 4));
+                    break;
+                }
+                if (board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y + 1).at((*(board->get_head()))->x) == TAIL) {
                     break;
                 }
                 board->set_direction((board_dir)((dir + 1) % 4));
@@ -311,6 +553,9 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 break;
             }
             else {
+                if (board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == SNAKE || board->data()->at((*(board->get_head()))->y - 1).at((*(board->get_head()))->x) == TAIL) {
+                    break;
+                }
                 board->set_direction((board_dir)((dir + 3) % 4));
                 //autoplay_by_direction((board_dir)((dir + 3) % 4));
                 break;
