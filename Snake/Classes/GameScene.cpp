@@ -103,43 +103,59 @@ GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event*
     
     switch (keyCode) {
     case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
-        pressed = true;
-        if (!(game->get_direction(PLAYER1) == DOWN)) game->key_event(KEY_UP, PLAYER1);
+        if (!(game->get_direction(PLAYER1) == DOWN) && !pressed) {
+            game->key_event(KEY_UP, PLAYER1);
+            pressed = true;
+        }
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-        pressed = true;
-        if (!(game->get_direction(PLAYER1) == UP)) game->key_event(KEY_DOWN, PLAYER1);
+        if (!(game->get_direction(PLAYER1) == UP) && !pressed) {
+            game->key_event(KEY_DOWN, PLAYER1);
+            pressed = true;
+        }
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-        pressed = true;
-        if (!(game->get_direction(PLAYER1) == LEFT)) game->key_event(KEY_RIGHT, PLAYER1);
+        if (!(game->get_direction(PLAYER1) == LEFT) && !pressed) {
+            game->key_event(KEY_RIGHT, PLAYER1);
+            pressed = true;
+        }
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-        pressed = true;
-        if (!(game->get_direction(PLAYER1) == RIGHT)) game->key_event(KEY_LEFT, PLAYER1);
+        if (!(game->get_direction(PLAYER1) == RIGHT) && !pressed) {
+            game->key_event(KEY_LEFT, PLAYER1);
+            pressed = true;
+        }
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_W: case cocos2d::EventKeyboard::KeyCode::KEY_W:
-        pressed = true;
-        if (!(game->get_direction(PLAYER2) == DOWN)) game->key_event(KEY_W, PLAYER2);
+        if (!(game->get_direction(PLAYER2) == DOWN) && !pressed) {
+            game->key_event(KEY_W, PLAYER2);
+            pressed = true;
+        }
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_S: case cocos2d::EventKeyboard::KeyCode::KEY_S:
-        pressed = true;
-        if (!(game->get_direction(PLAYER2) == UP)) game->key_event(KEY_S, PLAYER2);
+        if (!(game->get_direction(PLAYER2) == UP) && !pressed ) {
+            game->key_event(KEY_S, PLAYER2);
+            pressed = true;
+        }
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_D: case cocos2d::EventKeyboard::KeyCode::KEY_D:
-        pressed = true;
-        if (!(game->get_direction(PLAYER2) == LEFT)) game->key_event(KEY_D, PLAYER2);
+        if (!(game->get_direction(PLAYER2) == LEFT) && !pressed) {
+            game->key_event(KEY_D, PLAYER2);
+            pressed = true;
+        }
         break;
 
     case cocos2d::EventKeyboard::KeyCode::KEY_CAPITAL_A: case cocos2d::EventKeyboard::KeyCode::KEY_A:
-        pressed = true;
-        if (!(game->get_direction(PLAYER2) == RIGHT)) game->key_event(KEY_A, PLAYER2);
+        if (!(game->get_direction(PLAYER2) == RIGHT) && !pressed) {
+            game->key_event(KEY_A, PLAYER2);
+            pressed = true;
+        }
         break;
 
 
