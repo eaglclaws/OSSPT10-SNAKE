@@ -104,6 +104,7 @@ int AutoGame::player_score()
     return board->get_length();
 }
 
+//부딪히기 직전 몸의 이전노드의 방향의 반대로 이동
 void
 Game::autoplay_by_direction(enum board_dir dir) {
 
