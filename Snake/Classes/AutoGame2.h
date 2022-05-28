@@ -63,6 +63,7 @@ private:
         int get_head_y();
         int get_apple_x();
         int get_apple_y();
+        void init();
     };
     enum game_state state;
     AutoGame2::AutoBoard *board;

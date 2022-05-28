@@ -14,8 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#include <cstdlib>
 #include <exception>
+#include <chrono>
+#include <random>
 #include "AutoGame2.h"
 #include "EnumList.h"
 //State modification methods
@@ -25,8 +26,15 @@ AutoGame2::AutoBoard::AutoBoard(int y, int x)
     width = x;
     apple_placed = false;
     board = std::vector<std::vector<enum board_elements>>(height);
+    snake = std::deque<struct point *>();
     for (int i = 0; i < height; i++) {
         board.at(i) = std::vector<enum board_elements>(width);
+    }
+    init();
+}
+void AutoGame2::AutoBoard::init()
+{
+    for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             board.at(i).at(j) = EMPTY;
         }
@@ -41,14 +49,15 @@ AutoGame2::AutoBoard::AutoBoard(int y, int x)
         board.at(i).at(0) = WALL;
         board.at(i).at(width - 1) = WALL;
     }
-
-    snake = std::deque<struct point *>();
+    snake.clear();
     snake.push_back(new point(height / 2, width / 2));
     snake.push_back(new point(snake.front()->y - 1, snake.front()->x));
     board.at(snake.front()->y).at(snake.front()->x) = HEAD;
     board.at(snake.back()->y).at(snake.back()->x) = TAIL;
     head_x = snake.front()->x;
     head_y = snake.front()->y;
+    snake_length = 0;
+    apple_placed = false;
     set_dir(UP);
 }
 enum board_elements AutoGame2::AutoBoard::at(int y, int x)
@@ -107,7 +116,6 @@ bool AutoGame2::AutoBoard::update()
     }
     int next_head_x = snake.front()->x + xinc;
     int next_head_y = snake.front()->y + yinc;
-    printf("%d %d %d\n", current_dir, next_head_x, next_head_y);
     if (board.at(next_head_y).at(next_head_x) == SNAKE ||
             board.at(next_head_y).at(next_head_x) == WALL ||
             board.at(next_head_y).at(next_head_x) == TAIL) {
@@ -131,9 +139,11 @@ bool AutoGame2::AutoBoard::update()
 }
 bool AutoGame2::AutoBoard::place_apple()
 {
+    unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
+    std::mt19937* rng = new std::mt19937(seed1);
     if (apple_placed) return true;
-    int y = std::rand() % height;
-    int x = std::rand() % width;
+    int y = (*rng)() % height;
+    int x = (*rng)() % width;
     if (board.at(y).at(x) != EMPTY) {
         return false;
     } else {
@@ -169,33 +179,31 @@ AutoGame2::AutoGame2(int y, int x)
 {
     state = GAME_STATE_INIT;
     graph = std::vector<std::vector<int>>(y * x);
-    path = std::deque<int>();
     for (int i = 0; i < y * x; i++) graph.at(i) = std::vector<int>(y * x);
+    path = std::deque<int>();
+    board = new AutoBoard(y, x);
+    dist = std::vector<int>(y * x);
+    prev = std::vector<int>(y * x);
+    Q = std::vector<int>(y * x);
+    init();
+}
+void AutoGame2::init()
+{
+    state = GAME_STATE_INIT;
+    int y = board->get_height();
+    int x = board->get_width();
+    board->init();
     for (int i = 0; i < y * x; i++) {
         for (int j = 0; j < y * x; j++) {
             graph.at(i).at(j) = 0;
         }
     }
-    board = new AutoBoard(y, x);
     scan_graph();
-    for (int i = 0; i < y * x; i++) {
-        int sum = 0;
-        for (int j = 0; j < y * x; j++) {
-            sum += graph.at(i).at(j);
-        }
-    }
-    dist = std::vector<int>(y * x);
-    prev = std::vector<int>(y * x);
-    Q = std::vector<int>(y * x);
     for (int i = 0; i < y * x; i++) {
         dist.at(i) = y * x;
         prev.at(i) = -1;
         Q.at(i) = 1;
     }
-}
-void AutoGame2::init()
-{
-    state = GAME_STATE_INIT;
 }
 void AutoGame2::play()
 {
@@ -217,14 +225,10 @@ enum game_state AutoGame2::update()
     int x = board->get_head_x();
     scan_graph();
     enum board_dir next;
+    if (searched && next > 5) searched = false;
     if (!searched) {
         next = next_dir(board->get_apple_y(), board->get_apple_x(), board->get_head_y(), board->get_head_x());
         searched = true;
-        if (next == NONE_DIR) {
-            none = true;
-        } else {
-            none = false;
-        }
     }
     if (searched && next == NONE_DIR) {
         switch (board->get_dir()) {
@@ -292,12 +296,11 @@ enum game_state AutoGame2::update()
         {
             searched = false;
         }
-        printf("s%d\n", next);
-    }
+    } 
     board->set_dir(next);
     bool failed = !board->update();
     if(failed) {
-        printf("GAME OVER!\n");
+        printf("%d\n", board->get_snake_length());
         over();
         return GAME_STATE_OVER;
     } else {
@@ -330,8 +333,9 @@ bool AutoGame2::is_apple_placed()
 {
 }
 //Unnecessary methods
-void AutoGame2::key_event(enum key_press)
+void AutoGame2::key_event(enum key_press key)
 {
+    if (key == KEY_ESC) pause();
     return;
 }
 std::vector<std::pair<int, int>> *AutoGame2::export_snake()
@@ -366,9 +370,12 @@ int AutoGame2::get_board_width()
 {
     return board->get_width();
 }
-void AutoGame2::key_event(enum key_press, enum PlayerSelect)
+void AutoGame2::key_event(enum key_press key, enum PlayerSelect)
 {
-    return;
+    if (key == KEY_ESC) 
+    {
+        pause();
+    }
 }
 enum PlayerSelect AutoGame2::get_winner()
 {
@@ -426,7 +433,6 @@ enum board_dir AutoGame2::next_dir(int dy, int dx, int sy, int sx)
             path.push_front(cur_node);
             cur_node = next_node;
         }
-        printf("cur_node %d\n", cur_node);
         path.push_front(cur_node);
         if (src + 1 == cur_node) {
             dir = RIGHT;
