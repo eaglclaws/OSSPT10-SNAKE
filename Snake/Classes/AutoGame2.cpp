@@ -331,6 +331,7 @@ int AutoGame2::player_score()
 }
 bool AutoGame2::is_apple_placed()
 {
+    return board->is_apple_placed();
 }
 //Unnecessary methods
 void AutoGame2::key_event(enum key_press key)
