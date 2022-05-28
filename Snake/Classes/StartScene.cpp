@@ -22,8 +22,14 @@ bool StartScene::init(){
     this->addChild(header);
 
 
-    auto play_button = MenuItemFont::create("Play", CC_CALLBACK_1(StartScene::playGame, this));
-    play_button->setColor(Color3B(0, 0, 0));
+    auto single_button = MenuItemFont::create("Single Play", CC_CALLBACK_1(StartScene::singleGame, this));
+    single_button->setColor(Color3B(0, 0, 0));
+
+    auto dual_button = MenuItemFont::create("Dual Play", CC_CALLBACK_1(StartScene::dualGame, this));
+    dual_button->setColor(Color3B(0, 0, 0));
+
+    auto auto_button = MenuItemFont::create("Auto Play", CC_CALLBACK_1(StartScene::autoGame, this));
+    auto_button->setColor(Color3B(0, 0, 0));
 
     auto load_button = MenuItemFont::create("Load", CC_CALLBACK_1(StartScene::loadGame, this));
     load_button->setColor(Color3B(0, 0, 0));
@@ -35,7 +41,7 @@ bool StartScene::init(){
     exit_button->setColor(Color3B(0, 0, 0));
 
 
-    auto pMenu = Menu::create(play_button, load_button, ranking_button, exit_button, NULL);
+    auto pMenu = Menu::create(single_button, dual_button, auto_button, load_button, ranking_button, exit_button, NULL);
 
     pMenu->alignItemsVertically();
 
@@ -43,13 +49,33 @@ bool StartScene::init(){
     return true;
 }
 
-void StartScene::playGame(cocos2d::Ref* pSender) {
+
+void StartScene::singleGame(cocos2d::Ref* pSender) {
     GameController::clicked(false);
+    auto gc = GameController::getInstance();
+    gc->set_game_type(SOLO);
+    gc->set_players(1);
 
     auto scene = GameScene::createScene();
     Director::getInstance()->replaceScene(scene);
 }
 
+void StartScene::dualGame(cocos2d::Ref* pSender) {
+    GameController::clicked(false);
+    auto gc = GameController::getInstance();
+    gc->set_game_type(DUAL);
+    gc->set_players(2);
+
+    auto scene = GameScene::createScene();
+    Director::getInstance()->replaceScene(scene);
+}
+
+void StartScene::autoGame(cocos2d::Ref* pSender) {
+    GameController::clicked(false);
+
+    auto scene = GameScene::createScene();
+    Director::getInstance()->replaceScene(scene);
+}
 
 void StartScene::loadGame(cocos2d::Ref* pSender) {
     if (GameController::getInstance()->loadDirection() != -1) {

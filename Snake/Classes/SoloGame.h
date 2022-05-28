@@ -20,6 +20,7 @@ limitations under the License.
 #include <utility>
 #include "Game.h"
 #include "Board.h"
+#include "EnumList.h"
 
 class SoloGame : public Game {
 private:
@@ -45,7 +46,16 @@ public:
     void over() override;
     void load(int **, std::vector<std::pair<int, int>> *, int) override;
     void key_event(enum key_press) override;
-    bool place_apple(int, int) override;
+
+
+    bool place_apple() override;
+    std::pair<int, int> get_head_pos(enum PlayerSelect) override;
+    int get_board_height() override;
+    int get_board_width() override;
+    void key_event(enum key_press, enum PlayerSelect) override;
+    board_dir get_direction(enum PlayerSelect) override;
+    enum PlayerSelect get_winner() override;
+
 };
 
 #endif

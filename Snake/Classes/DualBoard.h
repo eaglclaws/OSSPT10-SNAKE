@@ -1,47 +1,38 @@
-/*
-Copyright 2022 고석현
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-#ifndef __BOARD_H__
-#define __BOARD_H__
+#ifndef __DUALBOARD_H__
+#define __DUALBOARD_H__
 #include <vector>
-#include <utility>
 #include "EnumList.h"
-#define BOARD_WIDTH 42
-#define BOARD_HEIGHT 42
+#define DUALBOARD_WIDTH 82
+#define DUALBOARD_HEIGHT 42
 
 class Snake;
 
-class Board
+class DualBoard
 {
 private:
-    std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT>* board_data;
+    std::array<std::array<board_elements, DUALBOARD_WIDTH>, DUALBOARD_HEIGHT>* board_data;
     struct snake_node** head;
     struct snake_node** tail;
+    struct snake_node** sec_head;
+    struct snake_node** sec_tail;
     int length;
+    int sec_length;
     enum board_dir current;
+    enum board_dir sec_current;
     bool has_apple;
     std::pair<int, int> apple_pos;
+    int apple_amount;
+    enum PlayerSelect winner;
+    bool winner_flag;
+
 public:
-    Board();
-    ~Board();
+    DualBoard();
+    ~DualBoard();
 
     void
         init();
 
-    std::array<std::array<board_elements, BOARD_WIDTH>, BOARD_HEIGHT>*
+    std::array<std::array<board_elements, DUALBOARD_WIDTH>, DUALBOARD_HEIGHT>*
         data();
 
     bool
@@ -90,13 +81,30 @@ public:
         set_apple_pos(int, int);
 
     int
-        get_width() { return BOARD_WIDTH; }
+        get_width() { return DUALBOARD_WIDTH; }
 
     int
-        get_height() { return BOARD_HEIGHT; }
+        get_height() { return DUALBOARD_HEIGHT; }
 
     std::pair<int, int>
         get_snake_head();
+
+    std::pair<int, int>
+        get_snake_head(enum PlayerSelect);
+
+    void
+        set_direction(enum board_dir, enum PlayerSelect);
+
+    enum board_dir
+        get_direction(enum PlayerSelect);
+
+    bool
+        update(enum board_dir, enum PlayerSelect);
+    int
+        get_apple_amount();
+
+    enum PlayerSelect
+        get_winner() { return winner; }
 };
 
 #endif
