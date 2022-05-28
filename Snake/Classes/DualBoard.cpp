@@ -73,7 +73,7 @@ DualBoard::init()
     (*sec_head)->next = nullptr;
     (*sec_tail) = new struct snake_node;
     (*sec_tail)->next = (*sec_head);
-    (*sec_head)->y = 4;
+    (*sec_head)->y = 2;
     (*sec_head)->x = DUALBOARD_WIDTH - 2;
     (*sec_tail)->y = (*sec_head)->y - 1;
     (*sec_tail)->x = (*sec_head)->x;
