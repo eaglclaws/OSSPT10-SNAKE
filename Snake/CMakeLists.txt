@@ -57,6 +57,7 @@ endif()
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
+     Classes/AutoGame1.cpp
      Classes/HelloWorldScene.cpp
      Classes/GameScene.cpp
      Classes/Board.cpp
@@ -71,9 +72,11 @@ list(APPEND GAME_SOURCE
      Classes/DualGame.cpp
      Classes/DualBoard.cpp
      Classes/DualResultScene.cpp
+     
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
+     Classes/AutoGame1.h
      Classes/HelloWorldScene.h
      Classes/GameScene.h
      Classes/Board.h

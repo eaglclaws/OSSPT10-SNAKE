@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "SoloGame.h"
 #include "DualGame.h"
-#include "AutoGame.h"
+#include "AutoGame1.h"
 
 Game *GameFactory::createGame(enum game_T game_type)
 {

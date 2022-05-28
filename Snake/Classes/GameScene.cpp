@@ -184,9 +184,10 @@ GameScene::update(float delta)
                 auto gameover = DualResultScene::createScene();
                 Director::getInstance()->replaceScene(gameover);
             }
-        }
-        if (game_type == AUTO1) {
-            game->auto_play();
+            else {
+                auto gameover = GameOverScene::createScene();
+                Director::getInstance()->replaceScene(gameover);
+            }
         }
         update_sprites();
         draw_board();

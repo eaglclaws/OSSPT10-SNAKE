@@ -17,14 +17,16 @@ limitations under the License.
 #include <vector>
 #include <utility>
 #include "Game.h"
-#include "AutoGame.h"
+#include "AutoGame1.h"
 #include "Board.h"
+#include <chrono>
+#include <random>
 
 using namespace std;
 
 AutoGame::AutoGame()
 {
-    state = AutoGame_STATE_INIT;
+    state = GAME_STATE_INIT;
     board = new Board;
 }
 
@@ -35,23 +37,23 @@ AutoGame::~AutoGame()
 
 void AutoGame::init()
 {
-    state = AutoGame_STATE_INIT;
+    state = GAME_STATE_INIT;
     board->init();
 }
 
 void AutoGame::play()
 {
-    state = AutoGame_STATE_PLAY;
+    state = GAME_STATE_PLAY;
 }
 
 void AutoGame::pause()
 {
-    state = AutoGame_STATE_PAUSE;
+    state = GAME_STATE_PAUSE;
 }
 
 void AutoGame::over()
 {
-    state = AutoGame_STATE_OVER;
+    state = GAME_STATE_OVER;
 }
 
 enum game_state AutoGame::get_state()
@@ -69,7 +71,7 @@ enum board_dir AutoGame::get_direction()
     return board->get_direction();
 }
 
-enum AutoGame_state AutoGame::update()
+enum game_state AutoGame::update()
 {
     bool board_live = board->update();
     if (!board_live) {
@@ -77,12 +79,18 @@ enum AutoGame_state AutoGame::update()
         return state;
     }
     else {
+        auto_play();
         return state;
     }
 }
 
-bool AutoGame::place_apple(int x, int y)
+bool AutoGame::place_apple()
 {
+    unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
+    std::mt19937* rng = new std::mt19937(seed1);
+
+    int x = (*rng)() % 40 + 1, y = (*rng)() % 40 + 1;
+
     if (board->data()->at(y).at(x) != EMPTY) {
         return false;
     }
@@ -106,7 +114,7 @@ int AutoGame::player_score()
 
 //부딪히기 직전 몸의 이전노드의 방향의 반대로 이동
 void
-Game::autoplay_by_direction(enum board_dir dir) {
+AutoGame::autoplay_by_direction(enum board_dir dir) {
 
     int xinc = 0, yinc = 0;
     switch (dir) {
@@ -233,7 +241,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(RIGHT);
                 break;
             }
             else if (board->get_snake_head().first == board->get_apple_pos().first) {
@@ -242,14 +250,14 @@ Game::autoplay_by_direction(enum board_dir dir) {
                         if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == TAIL) {
                             break;
                         }
-                        board->set_direction((board_dir)((dir + 1) % 4));
+                        board->set_direction(RIGHT);
                         break;
                     }
                     else {
                         if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == TAIL) {
                             break;
                         }
-                        board->set_direction((board_dir)((dir + 3) % 4));
+                        board->set_direction(LEFT);
                         break;
                     }
                 }
@@ -259,7 +267,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 3) % 4));
+                board->set_direction(LEFT);
                 break;
             }
         }
@@ -268,7 +276,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(RIGHT);
                 break;
             }
             else if (board->get_snake_head().first == board->get_apple_pos().first) {
@@ -276,20 +284,20 @@ Game::autoplay_by_direction(enum board_dir dir) {
                     if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == TAIL) {
                         break;
                     }
-                    board->set_direction((board_dir)((dir + 3) % 4));
+                    board->set_direction(LEFT);
                     break;
                 }
                 if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(RIGHT);
                 break;
             }
             else {
                 if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 3) % 4));
+                board->set_direction(LEFT);
                 break;
             }
         }
@@ -304,7 +312,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(DOWN);
                 break;
             }
             else if (board->get_snake_head().second == board->get_apple_pos().second) {
@@ -313,14 +321,14 @@ Game::autoplay_by_direction(enum board_dir dir) {
                         if (board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == TAIL) {
                             break;
                         }
-                        board->set_direction((board_dir)((dir + 1) % 4));
+                        board->set_direction(DOWN);
                         break;
                     }
                     else {
                         if (board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == TAIL) {
                             break;
                         }
-                        board->set_direction((board_dir)((dir + 3) % 4));
+                        board->set_direction(UP);
                         break;
                     }
                 }
@@ -330,7 +338,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 3) % 4));
+                board->set_direction(UP);
                 break;
             }
         }
@@ -339,7 +347,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(DOWN);
                 break;
             }
             else if (board->get_snake_head().second == board->get_apple_pos().second) {
@@ -348,13 +356,13 @@ Game::autoplay_by_direction(enum board_dir dir) {
                         if (board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == TAIL) {
                             break;
                         }
-                        board->set_direction((board_dir)((dir + 3) % 4));
+                        board->set_direction(UP);
                         break;
                     }
                     if (board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == TAIL) {
                         break;
                     }
-                    board->set_direction((board_dir)((dir + 1) % 4));
+                    board->set_direction(DOWN);
                     break;
                 }
             }
@@ -362,7 +370,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 3) % 4));
+                board->set_direction(UP);
                 break;
             }
         }
@@ -377,7 +385,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(LEFT);
                 break;
             }
             else if (board->get_snake_head().first == board->get_apple_pos().first) {
@@ -386,14 +394,14 @@ Game::autoplay_by_direction(enum board_dir dir) {
                         if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == TAIL) {
                             break;
                         }
-                        board->set_direction((board_dir)((dir + 1) % 4));
+                        board->set_direction(LEFT);
                         break;
                     }
                     else {
                         if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == TAIL) {
                             break;
                         }
-                        board->set_direction((board_dir)((dir + 3) % 4));
+                        board->set_direction(RIGHT);
                         break;
                     }
                 }
@@ -403,7 +411,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 3) % 4));
+                board->set_direction(RIGHT);
                 break;
             }
         }
@@ -412,7 +420,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(LEFT);
                 break;
             }
             else if (board->get_snake_head().first == board->get_apple_pos().first) {
@@ -420,20 +428,20 @@ Game::autoplay_by_direction(enum board_dir dir) {
                     if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == TAIL) {
                         break;
                     }
-                    board->set_direction((board_dir)((dir + 3) % 4));
+                    board->set_direction(RIGHT);
                     break;
                 }
                 if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first - 1) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(LEFT);
                 break;
             }
             else {
                 if (board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == SNAKE || board->data()->at(board->get_snake_head().second).at(board->get_snake_head().first + 1) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 3) % 4));
+                board->set_direction(RIGHT);
                 break;
             }
         }
@@ -448,7 +456,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(UP);
                 break;
             }
             else if (board->get_snake_head().second == board->get_apple_pos().second) {
@@ -457,14 +465,14 @@ Game::autoplay_by_direction(enum board_dir dir) {
                         if (board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == TAIL) {
                             break;
                         }
-                        board->set_direction((board_dir)((dir + 1) % 4));
+                        board->set_direction(UP);
                         break;
                     }
                     else {
                         if (board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == TAIL) {
                             break;
                         }
-                        board->set_direction((board_dir)((dir + 3) % 4));
+                        board->set_direction(DOWN);
                         break;
                     }
                 }
@@ -474,7 +482,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 3) % 4));
+                board->set_direction(DOWN);
                 break;
             }
         }
@@ -483,7 +491,7 @@ Game::autoplay_by_direction(enum board_dir dir) {
                 if (board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(UP);
                 break;
             }
             else if (board->get_snake_head().second == board->get_apple_pos().second) {
@@ -491,20 +499,20 @@ Game::autoplay_by_direction(enum board_dir dir) {
                     if (board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == TAIL) {
                         break;
                     }
-                    board->set_direction((board_dir)((dir + 3) % 4));
+                    board->set_direction(DOWN);
                     break;
                 }
                 if (board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second + 1).at(board->get_snake_head().first) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 1) % 4));
+                board->set_direction(UP);
                 break;
             }
             else {
                 if (board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == SNAKE || board->data()->at(board->get_snake_head().second - 1).at(board->get_snake_head().first) == TAIL) {
                     break;
                 }
-                board->set_direction((board_dir)((dir + 3) % 4));
+                board->set_direction(DOWN);
                 break;
             }
         }
@@ -512,8 +520,59 @@ Game::autoplay_by_direction(enum board_dir dir) {
     }
 }
 
-void
-Game::auto_play()
+std::pair<int, int> AutoGame::get_head_pos(enum PlayerSelect player) {
+    return board->get_snake_head();
+}
+
+void AutoGame::key_event(enum key_press)
+{
+    return;
+}
+
+int AutoGame::get_board_height()
+{
+    return board->get_height();
+}
+
+int AutoGame::get_board_width() 
+{
+    return board->get_width();
+}
+void AutoGame::key_event(enum key_press, enum PlayerSelect)
+{
+    return;
+}
+
+void AutoGame::load(int**, std::vector<std::pair<int, int>>*, int)
+{
+    return;
+}
+
+std::vector<std::pair<int, int>>* AutoGame::export_snake() 
+{
+    return nullptr;
+}
+
+int AutoGame::export_dir() 
+{
+    return 0;
+}
+
+int** AutoGame::export_board()
+{
+    return nullptr;
+}
+void AutoGame::auto_play()
 {
     autoplay_by_direction(board->get_direction());
+}
+
+board_dir AutoGame::get_direction(enum PlayerSelect player) {
+    if (player == PLAYER1)
+        return board->get_direction();
+    return NONE_DIR;
+}
+
+enum PlayerSelect AutoGame::get_winner() {
+    return NONE;
 }
