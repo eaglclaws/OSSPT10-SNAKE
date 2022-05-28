@@ -38,22 +38,27 @@ private:
         int width;
         int height;
         std::deque<struct point *> snake;
-        enum board_dir current;
+        enum board_dir current_dir;
         struct snake_node **head;
         struct snake_node **tail;
         int snake_length;
         bool apple_placed;
+        int apple_x;
+        int apple_y;
     public:
         AutoBoard(int, int);
         enum board_elements at(int, int);
         void set_dir(enum board_dir);
-        void update();
+        enum board_dir get_dir();
+        bool update();
         void place_apple();
+        void set_apple(int, int);
         int get_snake_length();
         bool is_apple_placed();
     };
     enum game_state state;
     AutoGame2::AutoBoard *board;
+    std::vector<std::vector<int>> graph;
 public:
     AutoGame2();
     //State modification methods

@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+#include <cstdlib>
 #include <exception>
 #include "AutoGame2.h"
 //State modification methods
@@ -41,38 +42,138 @@ AutoGame2::AutoBoard::AutoBoard(int y, int x)
 
     snake = std::deque<struct point *>();
     snake.push_back(new point(height / 2, width / 2));
+    snake.push_back(new point(snake.front->x, snake.front->y - 1));
     board.at(snake.front->y).at(snake.front->x) = HEAD;
-    board.at(10).at(10) = APPLE;
+    place_apple();
 }
 enum AutoGame2::AutoBoard::board_elements at(int y, int x)
 {
     return board.at(y).at(x);
 }
-void AutoGame2::AutoBoard::set_dir(enum board_dir)
+void AutoGame2::AutoBoard::set_dir(enum board_dir dir)
 {
-    /*TODO*/
+    current_dir = dir;
 }
-void AutoGame2::AutoBoard::update()
+enum board_dir AutoGame2::AutoBoard::get_dir()
 {
-    /*TODO*/
+    return current_dir;
 }
-void AutoGame2::AutoBoard::place_apple()
+bool AutoGame2::AutoBoard::update()
 {
-    /*TODO*/
+    int xinc, yinc;
+    switch (current_dir) {
+    case UP:
+        xinc = 0;
+        yinc = 1;
+    case DOWN:
+        xinc = 0;
+        yinc = -1;
+    case LEFT:
+        xinc = -1;
+        yinc = 0;
+    case RIGHT:
+        xinc = 1;
+        yinc = 0;
+    }
+    int next_head_x = snake.front->x + xinc;
+    int next_head_y = snake.front->y + yinc;
+    if (board.at(next_head_y).at(next_head_x) == SNAKE ||
+            board.at(next_head_y).at(next_head_x) == WALL ||
+            board.at(next_head_y).at(next_head_x) == TAIL) {
+        return false;
+    }
+    board.at(snake.front->y).at(snake.front->x) = SNAKE;
+    snake.push_front(new point(next_head_x, next_head_y));
+    if (board.at(snake.front->y).at(snake.front->x) == APPLE) {
+        snake_length++;
+        board.at(snake.front->y).at(snake.front->x) = HEAD;
+        apple_placed = false;
+        return true;
+    }
+    board.at(snake.back->y).at(snake.back->x) = EMPTY;
+    snake.pop_back();
+    board.at(snake.back-y).at(snake.back->x) = TAIL;
+}
+bool AutoGame2::AutoBoard::place_apple()
+{
+    int y = std::rand() % height;
+    int x = std::rand() % width;
+    if (board.at(y).at(x) != EMPTY) {
+        return false;
+    } else {
+        board.at(y).at(x) = APPLE;
+        set_apple(y, x);
+        return true;
+    }
+}
+void AutoGame2::AutoBoard::set_apple(int y, int x)
+{
+    apple_placed = true;
+    apple_x = x;
+    apple_y = y;
 }
 int AutoGame2::AutoBoard::get_snake_length()
 {
-    /*TODO*/
+    return snake_length;
 }
 bool AutoGame2::AutoBoard::is_apple_placed()
 {
-    /*TODO*/
+    return apple_placed;
 }
 
-AutoGame2::AutoGame2()
+AutoGame2::AutoGame2(int y, int x)
 {
     state = GAME_STATE_INIT;
-    board = new AutoBoard;
+    graph = std::vector<std::vector<int>>(y * x);
+    for (int i = 0; i < y * x; i++) graph.at(i) = std::vector<int>(y * x);
+    for (int i = 0; i < y * x; i++) {
+        for (int j = 0; j < y * x; j++) {
+            graph.at(i).at(j) = 0;
+        }
+    }
+    board = new AutoBoard(y, x);
+    for (int i = 0; i < y * x; i++) {
+        int board_y = i / x;
+        int board_x = i % x;
+        if (board.at(board_y).at(board_x) == WALL) continue;
+        int id_r = board_y       * x + board_x + 1;
+        int id_l = board_y       * x + board_x - 1;
+        int id_u = (board_y - 1) * x + board_x;
+        int id_d = (board_y + 1) * x + board_x;
+
+        bool xunder = board_x - 1 < 0;
+        bool xover = board_x + 1 >= x;
+        bool yunder = board_y - 1 < 0;
+        bool yover = board_y + 1 >= y;   
+        if (!xover) {
+            if (board.at(board_y).at(board_x + 1) == EMPTY) {
+                graph.at(id).at(id_r) = 1;
+            } else {
+                graph.at(id).at(id_r) = 0;
+            }
+        }
+        if (!xunder) {
+            if (board.at(board_y).at(board_x - 1) == EMPTY) {
+                graph.at(id).at(id_l) = 1;
+            } else {
+                graph.at(id).at(id_l) = 0;
+            }
+        }
+        if (!yover) {
+            if (board.at(board_y + 1).at(board_x) == EMPTY) {
+                graph.at(id_d).at(id) = 1;
+            } else {
+                graph.at(id_d).at(id) = 0;
+            }
+        }
+        if (!yunder) {
+            if (board.at(board_y - 1).at(board_x) == EMPTY) {
+                graph.at(id_u).at(id) = 1;
+            } else {
+                graph.at(id_u).at(id) = 0;
+            }
+        }
+    }
 }
 void AutoGame2::init()
 {
@@ -92,32 +193,49 @@ void AutoGame2::over()
 }
 enum game_state AutoGame2::update()
 {
-    /*TODO*/
+    switch (board->get_dir) {
+    case UP:
+    case DOWN:
+        board->set_dir(RIGHT);
+        break;
+    case LEFT:
+        board->set_dir(UP);
+        break;
+    case RIGHT:
+        board->set_dir(DOWN);
+        break;
+    }
+    if(!board->update()) {
+        over();
+        return GAME_STATE_OVER;
+    } else {
+        return GAME_STATE_PLAY;
+    }
 }
-bool AutoGame2::place_apple(int, int)
+bool AutoGame2::place_apple(int x, int y)
 {
-    /*TODO*/
+    return board->place_apple();
 }
 //State report methods
 enum game_state AutoGame2::get_state()
 {
-    /*TODO*/
+    return state;
 }
-enum board_elements AutoGame2::board_data(int y, int x)
+enum board_elements AutoGame2::board_data(int x, int y)
 {
     return board->at(y, x);
 }
 enum board_dir AutoGame2::get_direction()
 {
-    /*TODO*/
+    return board->get_dir();
 }
 int AutoGame2::player_score()
 {
-    /*TODO*/
+    return board->get_snake_length();
 }
 bool AutoGame2::is_apple_placed()
 {
-    /*TODO*/
+    return board->is_apple_place();
 }
 //Unnecessary methods
 void AutoGame2::key_event(enum key_press)
