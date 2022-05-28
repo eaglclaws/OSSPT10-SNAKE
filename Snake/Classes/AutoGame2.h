@@ -70,6 +70,7 @@ private:
     std::vector<int> dist;
     std::vector<int> prev;
     std::vector<int> Q;
+    std::deque<int> path; 
 public:
     AutoGame2(int, int);
     //State modification methods

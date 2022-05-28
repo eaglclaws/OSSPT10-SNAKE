@@ -100,10 +100,14 @@ bool AutoGame2::AutoBoard::update()
         yinc = 0;
         break;
     case NONE_DIR:
+    default:
+        //xinc = 0;
+        //yinc = 0;
         break;
     }
     int next_head_x = snake.front()->x + xinc;
     int next_head_y = snake.front()->y + yinc;
+    printf("%d %d %d\n", current_dir, next_head_x, next_head_y);
     if (board.at(next_head_y).at(next_head_x) == SNAKE ||
             board.at(next_head_y).at(next_head_x) == WALL ||
             board.at(next_head_y).at(next_head_x) == TAIL) {
@@ -127,9 +131,9 @@ bool AutoGame2::AutoBoard::update()
 }
 bool AutoGame2::AutoBoard::place_apple()
 {
-    if (apple_placed) return false;
-    int y = 10; //std::rand() % height;
-    int x = 10; //std::rand() % width;
+    if (apple_placed) return true;
+    int y = std::rand() % height;
+    int x = std::rand() % width;
     if (board.at(y).at(x) != EMPTY) {
         return false;
     } else {
@@ -165,6 +169,7 @@ AutoGame2::AutoGame2(int y, int x)
 {
     state = GAME_STATE_INIT;
     graph = std::vector<std::vector<int>>(y * x);
+    path = std::deque<int>();
     for (int i = 0; i < y * x; i++) graph.at(i) = std::vector<int>(y * x);
     for (int i = 0; i < y * x; i++) {
         for (int j = 0; j < y * x; j++) {
@@ -173,6 +178,12 @@ AutoGame2::AutoGame2(int y, int x)
     }
     board = new AutoBoard(y, x);
     scan_graph();
+    for (int i = 0; i < y * x; i++) {
+        int sum = 0;
+        for (int j = 0; j < y * x; j++) {
+            sum += graph.at(i).at(j);
+        }
+    }
     dist = std::vector<int>(y * x);
     prev = std::vector<int>(y * x);
     Q = std::vector<int>(y * x);
@@ -200,12 +211,22 @@ void AutoGame2::over()
 }
 enum game_state AutoGame2::update()
 {
+    static bool searched = false;
+    static bool none = false;
     int y = board->get_head_y();
     int x = board->get_head_x();
     scan_graph();
-    enum board_dir next = next_dir(board->get_apple_y(), board->get_apple_x(),
-            board->get_head_y(), board->get_head_x());
-    if (next == NONE_DIR) {
+    enum board_dir next;
+    if (!searched) {
+        next = next_dir(board->get_apple_y(), board->get_apple_x(), board->get_head_y(), board->get_head_x());
+        searched = true;
+        if (next == NONE_DIR) {
+            none = true;
+        } else {
+            none = false;
+        }
+    }
+    if (searched && next == NONE_DIR) {
         switch (board->get_dir()) {
         case UP:
             if (y - 1 >= 0 && board->at(y - 1, x) == EMPTY) {
@@ -241,21 +262,42 @@ enum game_state AutoGame2::update()
             }
             break;
         case RIGHT:
-            if (y - 1 >= 0 && board->at(y - 1, x) == EMPTY) {
+            if (y + 1 < board->get_height() && board->at(y + 1, x) == EMPTY) {
                 next = UP;
-            } else if (y + 1 < board->get_height() && board->at(y + 1, x) == EMPTY) {
+            } else if (y - 1 >= 0 && board->at(y - 1, x) == EMPTY) {
                 next = DOWN;
             } else if (x + 1 >= 0 && board->at(y, x + 1) == EMPTY) {
                 next = RIGHT;
             } else {
                 next = RIGHT;
             }
+            next = RIGHT;
             break;
         }
+        searched = false;
+    } else if (searched) {
+        int src = y * board->get_width() + x;
+        int k = path.front() - src;
+        path.pop_front();
+        if (k == 1) {
+            next = RIGHT;
+        } else if (k == -1) {
+            next = LEFT;
+        } else if (k == -42) {
+            next = DOWN;
+        } else if (k == 42) {
+            next = UP;
+        }
+        if (path.empty()) 
+        {
+            searched = false;
+        }
+        printf("s%d\n", next);
     }
     board->set_dir(next);
     bool failed = !board->update();
     if(failed) {
+        printf("GAME OVER!\n");
         over();
         return GAME_STATE_OVER;
     } else {
@@ -264,6 +306,7 @@ enum game_state AutoGame2::update()
 }
 bool AutoGame2::place_apple()
 {
+    while (!board->place_apple());
     return board->place_apple();
 }
 //State report methods
@@ -285,7 +328,6 @@ int AutoGame2::player_score()
 }
 bool AutoGame2::is_apple_placed()
 {
-    return board->is_apple_placed();
 }
 //Unnecessary methods
 void AutoGame2::key_event(enum key_press)
@@ -335,6 +377,7 @@ enum PlayerSelect AutoGame2::get_winner()
 
 enum board_dir AutoGame2::next_dir(int dy, int dx, int sy, int sx)
 {
+    path.clear();
     board_dir dir;
     int y = board->get_height();
     int x = board->get_width();
@@ -351,10 +394,10 @@ enum board_dir AutoGame2::next_dir(int dy, int dx, int sy, int sx)
     int v;
     int dist_min;
     int alt;
-    for (int k = 0; k < y * x + 2; k++) {
+    for (int _ = 0; _ < y * x + 2; _++) {
         dist_min = y * x + 1;
         for (int i = 0; i < y * x; i++) {
-            if (dist.at(i) < dist_min) {
+            if (Q.at(i) == 1 && dist.at(i) < dist_min) {
                 dist_min = dist.at(i);
                 u = i;
             }
@@ -364,7 +407,6 @@ enum board_dir AutoGame2::next_dir(int dy, int dx, int sy, int sx)
         for (int i = 0; i < y * x; i++) {
             if (graph.at(u).at(i) == 1 && Q.at(i) == 1) {
                 v = i;
-                //printf("%d -> %d\n", u, v);
                 alt = dist.at(u) + 1;
                 if (alt < dist.at(v)) {
                     dist.at(v) = alt;
@@ -373,7 +415,6 @@ enum board_dir AutoGame2::next_dir(int dy, int dx, int sy, int sx)
             }
         }
         dist_min = y * x + 1;
-        //printf("\n\n");
     }
     if (prev.at(des) == -1) {
         return NONE_DIR;
@@ -382,15 +423,18 @@ enum board_dir AutoGame2::next_dir(int dy, int dx, int sy, int sx)
         int cur_node = des;
         while (prev.at(cur_node) != src) {
             next_node = prev.at(cur_node);
+            path.push_front(cur_node);
             cur_node = next_node;
         }
+        printf("cur_node %d\n", cur_node);
+        path.push_front(cur_node);
         if (src + 1 == cur_node) {
             dir = RIGHT;
         } else if (src - 1 == cur_node) {
             dir = LEFT;
-        } else if (src - x == cur_node) {
-            dir = UP;
         } else if (src + x == cur_node) {
+            dir = UP;
+        } else if (src - x == cur_node) {
             dir = DOWN;
         }
     }
@@ -403,16 +447,20 @@ void AutoGame2::scan_graph()
     for (int i = 0; i < y * x; i++) {
         int board_y = i / x;
         int board_x = i % x;
+        int ydec = board_y - 1;
+        int yinc = board_y + 1;
+        int xdec = board_x - 1;
+        int xinc = board_x + 1;
         int id = i;
-        if (board->at(board_y, board_x) == WALL) continue;
-        int id_r = i + 1;
-        int id_l = i - 1;
-        int id_u = i - x;
-        int id_d = i + x;
-        bool xunder = board_x - 1 < 0;
-        bool xover = board_x + 1 >= x;
-        bool yunder = board_y - 1 < 0;
-        bool yover = board_y + 1 >= y;
+        if (board->at(board_y, board_x) == WALL || board->at(board_y, board_x) == SNAKE || board->at(board_y, board_x) == TAIL) continue;
+        int id_r = board_y * x + xinc;
+        int id_l = board_y * x + xdec;
+        int id_u = ydec * x + board_x;
+        int id_d = yinc * x + board_x;
+        bool xunder = xdec < 0;
+        bool xover = xinc >= x;
+        bool yunder = ydec < 0;
+        bool yover = yinc >= y;
         graph.at(id).at(id) = 0;
         if (!xover) {
             if (board->at(board_y, board_x + 1) == EMPTY || board->at(board_y, board_x + 1) == APPLE || board->at(board_y, board_x + 1) == HEAD) {
