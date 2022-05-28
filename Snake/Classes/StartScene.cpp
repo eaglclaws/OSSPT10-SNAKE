@@ -72,6 +72,9 @@ void StartScene::dualGame(cocos2d::Ref* pSender) {
 
 void StartScene::autoGame(cocos2d::Ref* pSender) {
     GameController::clicked(false);
+    auto gc = GameController::getInstance();
+    gc->set_game_type(AUTO1);
+    gc->set_players(1);
 
     auto scene = GameScene::createScene();
     Director::getInstance()->replaceScene(scene);

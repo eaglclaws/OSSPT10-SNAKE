@@ -185,6 +185,9 @@ GameScene::update(float delta)
                 Director::getInstance()->replaceScene(gameover);
             }
         }
+        if (game_type == AUTO1) {
+            game->auto_play();
+        }
         update_sprites();
         draw_board();
         addChild(layer, 1);
