@@ -254,7 +254,8 @@ enum game_state AutoGame2::update()
         }
     }
     board->set_dir(next);
-    if(!board->update()) {
+    bool failed = !board->update();
+    if(failed) {
         over();
         return GAME_STATE_OVER;
     } else {
@@ -339,9 +340,8 @@ enum board_dir AutoGame2::next_dir(int dy, int dx, int sy, int sx)
     int x = board->get_width();
     int src = sy * board->get_width() + sx;
     int des = dy * board->get_width() + dx;
-
     for (int i = 0; i < y * x; i++) {
-        dist.at(i) = y * x;
+        dist.at(i) = y * x + 1;
         prev.at(i) = -1;
         Q.at(i) = 1;
     }
@@ -349,8 +349,10 @@ enum board_dir AutoGame2::next_dir(int dy, int dx, int sy, int sx)
     
     int u;
     int v;
+    int dist_min;
+    int alt;
     for (int k = 0; k < y * x + 2; k++) {
-        int dist_min = y * x;
+        dist_min = y * x + 1;
         for (int i = 0; i < y * x; i++) {
             if (dist.at(i) < dist_min) {
                 dist_min = dist.at(i);
@@ -360,22 +362,22 @@ enum board_dir AutoGame2::next_dir(int dy, int dx, int sy, int sx)
         Q.at(u) = 0;
         if (u == des) break;
         for (int i = 0; i < y * x; i++) {
-            if (graph.at(i).at(u) == 1 && Q.at(i) == 1) {
+            if (graph.at(u).at(i) == 1 && Q.at(i) == 1) {
                 v = i;
-                int alt = dist.at(u) + 1;
-                printf("%d\n", alt);
+                //printf("%d -> %d\n", u, v);
+                alt = dist.at(u) + 1;
                 if (alt < dist.at(v)) {
                     dist.at(v) = alt;
                     prev.at(v) = u;
                 }
             }
         }
-        dist_min = y * x;
+        dist_min = y * x + 1;
+        //printf("\n\n");
     }
     if (prev.at(des) == -1) {
         return NONE_DIR;
     } else {
-        printf("breakpoint\n");
         int next_node;
         int cur_node = des;
         while (prev.at(cur_node) != src) {
@@ -403,41 +405,49 @@ void AutoGame2::scan_graph()
         int board_x = i % x;
         int id = i;
         if (board->at(board_y, board_x) == WALL) continue;
-        int id_r = board_y       * x + board_x + 1;
-        int id_l = board_y       * x + board_x - 1;
-        int id_u = (board_y - 1) * x + board_x;
-        int id_d = (board_y + 1) * x + board_x;
-    
+        int id_r = i + 1;
+        int id_l = i - 1;
+        int id_u = i - x;
+        int id_d = i + x;
         bool xunder = board_x - 1 < 0;
         bool xover = board_x + 1 >= x;
         bool yunder = board_y - 1 < 0;
-        bool yover = board_y + 1 >= y;   
+        bool yover = board_y + 1 >= y;
+        graph.at(id).at(id) = 0;
         if (!xover) {
-            if (board->at(board_y, board_x + 1) == EMPTY || board->at(board_y, board_x + 1) == APPLE) {
+            if (board->at(board_y, board_x + 1) == EMPTY || board->at(board_y, board_x + 1) == APPLE || board->at(board_y, board_x + 1) == HEAD) {
                 graph.at(id).at(id_r) = 1;
+                graph.at(id_r).at(id) = 1;
             } else {
                 graph.at(id).at(id_r) = 0;
+                graph.at(id_r).at(id) = 0;
             }
         }
         if (!xunder) {
-            if (board->at(board_y, board_x - 1) == EMPTY || board->at(board_y, board_x - 1) == APPLE) {
+            if (board->at(board_y, board_x - 1) == EMPTY || board->at(board_y, board_x - 1) == APPLE || board->at(board_y, board_x - 1) == HEAD) {
                 graph.at(id).at(id_l) = 1;
+                graph.at(id_l).at(id) = 1;
             } else {
                 graph.at(id).at(id_l) = 0;
+                graph.at(id_l).at(id) = 0;
             }
         }
         if (!yover) {
-            if (board->at(board_y + 1, board_x) == EMPTY || board->at(board_y + 1, board_x) == APPLE) {
+            if (board->at(board_y + 1, board_x) == EMPTY || board->at(board_y + 1, board_x) == APPLE || board->at(board_y + 1, board_x) == HEAD) {
                 graph.at(id_d).at(id) = 1;
+                graph.at(id).at(id_d) = 1;
             } else {
                 graph.at(id_d).at(id) = 0;
+                graph.at(id).at(id_d) = 0;
             }
         }
         if (!yunder) {
-            if (board->at(board_y - 1, board_x) == EMPTY || board->at(board_y - 1, board_x) == APPLE) {
+            if (board->at(board_y - 1, board_x) == EMPTY || board->at(board_y - 1, board_x) == APPLE || board->at(board_y - 1, board_x) == HEAD) {
                 graph.at(id_u).at(id) = 1;
+                graph.at(id).at(id_u) = 1;
             } else {
                 graph.at(id_u).at(id) = 0;
+                graph.at(id).at(id_u) = 0;
             }
         }
     }
