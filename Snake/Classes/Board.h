@@ -18,6 +18,7 @@ limitations under the License.
 #define __BOARD_H__
 #include <vector>
 #include <utility>
+#include <array>
 #include "EnumList.h"
 #define BOARD_WIDTH 42
 #define BOARD_HEIGHT 42

@@ -71,6 +71,7 @@ list(APPEND GAME_SOURCE
      Classes/DualGame.cpp
      Classes/DualBoard.cpp
      Classes/DualResultScene.cpp
+     Classes/AutoGame2.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -93,6 +94,7 @@ list(APPEND GAME_HEADER
      Classes/DualGame.h
      Classes/DualBoard.h
      Classes/DualResultScene.h
+     Classes/AutoGame2.h
      )
 
 if(ANDROID)

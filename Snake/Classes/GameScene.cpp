@@ -28,10 +28,12 @@ limitations under the License.
 #include "SoloGame.h"
 #include "GameFactory.h"
 #include "DualResultScene.h"
+#include "ShowResultScene.h"
+#include "AutoGame2.h"
 
 USING_NS_CC;
 
-#define REFRESH_INTERVAL 0.2 //업데이트 대기 시간 (초)
+#define REFRESH_INTERVAL 0.02 //업데이트 대기 시간 (초)
 const int sprite_size = 16;
 
 Scene *
@@ -198,6 +200,9 @@ GameScene::update(float delta)
             }
             else if (game_type == DUAL) {
                 auto gameover = DualResultScene::createScene();
+                Director::getInstance()->replaceScene(gameover);
+            } else {
+                auto gameover = ShowResultScene::createScene();
                 Director::getInstance()->replaceScene(gameover);
             }
         }
