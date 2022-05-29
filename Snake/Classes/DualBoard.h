@@ -1,6 +1,7 @@
 #ifndef __DUALBOARD_H__
 #define __DUALBOARD_H__
 #include <vector>
+#include <array>
 #include "EnumList.h"
 #define DUALBOARD_WIDTH 82
 #define DUALBOARD_HEIGHT 42
