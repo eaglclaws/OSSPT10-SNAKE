@@ -33,7 +33,7 @@ limitations under the License.
 
 USING_NS_CC;
 
-#define REFRESH_INTERVAL 0.02 //업데이트 대기 시간 (초)
+#define REFRESH_INTERVAL 0.1 //업데이트 대기 시간 (초)
 const int sprite_size = 16;
 
 Scene *
